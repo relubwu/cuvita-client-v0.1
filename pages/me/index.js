@@ -1,12 +1,10 @@
-import * as actions from './actions';
 const app = getApp();
 const Store = app.store;
 const localepkg = require('./localepkg');
-const { debounce } = require('../../utils/util');
 
 /**
  * CUVita Client Side Implementations - index.js
- * @scope /pages/index
+ * @scope /pages/me
  * @author relubwu
  * @version 0.1.5
  * @copyright  © CHINESE UNION 2019
@@ -34,7 +32,7 @@ Component({
       this.unsubscribe = Store.subscribe(() => {
         this.relaySubscription();
       });
-      console.group(` %cpageData %c/page/vitae %c@ ${new Date().toLocaleTimeString("en-US")}`, "font-weight: normal; color: #888888", "font-weight: bold", "font-weight: normal; color: #888888");
+      console.group(` %cpageData %c/page/me %c@ ${new Date().toLocaleTimeString("en-US")}`, "font-weight: normal; color: #888888", "font-weight: bold", "font-weight: normal; color: #888888");
       console.log(this.data);
       console.groupEnd();
     },
@@ -49,25 +47,6 @@ Component({
         this.setData({
           locale: newState.global.locale
         });
-    },
-    onScanQr() {
-      wx.scanCode({
-        onlyFromCamera: true,
-        scanType: ['qrCode'],
-        success: function(res) {},
-        fail: function(res) {},
-        complete: function(res) {},
-      })
-    },
-    tapFeedback({ currentTarget: { dataset: { id } } }) {
-      if (!this.throttle[`${actions.TAP_FEEDBACK}$${id}`]) {
-        this.throttle[`${actions.TAP_FEEDBACK}$${id}`] = debounce(() =>
-          wx.vibrateShort()
-          , 250);
-        this.throttle[`${actions.TAP_FEEDBACK}$${id}`]();
-      } else {
-        this.throttle[`${actions.TAP_FEEDBACK}$${id}`]();
-      }
-    },
+    }
   }
 })

@@ -5,4 +5,7 @@
 <view class="viewport" hidden="{{ current != 1 }}">
   <page-vitae />
 </view>
+<view class="viewport" hidden="{{ current != 2 }}">
+  <page-me />
+</view>
 <tab-bar />
