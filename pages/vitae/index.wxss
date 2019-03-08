@@ -14,9 +14,9 @@
  * @-5 :: .card-background
  */
 
-nav-bar {
-  position: absolute !important;
-}
+/**
+ * Nav Bar
+ */
 
 .nav-bar-title {
   color: white;
@@ -28,10 +28,14 @@ nav-bar {
   height: 20px;
 }
 
+/**
+ * Card
+ */
+
 .card {
   position: absolute;
   top: 0;
-  height: 90vw;
+  height: 95vw;
   box-sizing: border-box;
 }
 
@@ -50,8 +54,8 @@ nav-bar {
 
 .card-body {
   position: absolute;
-  height: 45vw;
-  width: 72.5vw;
+  height: 50vw;
+  width: 80vw;
   background: white;
   border-radius: 10px;
   overflow: hidden;
@@ -84,16 +88,24 @@ nav-bar {
   z-index: 1;
 }
 
-.card-body-display-trademark {
+.card-body-display-brand {
   color: #d1233e;
-  font-size: 22pt;
+  font-size: 24pt;
   font-weight: lighter;
 }
 
+/**
+ * Body Generic
+ */
+
 .body {
   position: absolute;
-  top: 85vw;
+  top: 90vw;
 }
+
+/**
+ * Mmembership
+ */
 
 .membership {
   position: relative;
@@ -146,11 +158,16 @@ nav-bar {
   color: #b2b2b2;
 }
 
+/**
+ * Navigators
+ */
+
 .navigators {
   padding: 14px 0;
   padding-bottom: 28px;
 }
 
 .navigators-title {
+  font-size: 11pt;
   text-transform: capitalize;
 }
