@@ -1,0 +1,23 @@
+<!-- USER_INFO -->
+<view class="user container fw d-flex-row align-items-center" style="padding-top: {{ systemInfo.navigationBarHeight }}px;">
+  <open-data class="user-avatar" type="userAvatarUrl" />
+  <view class="user-info d-flex-column align-items-start justify-content-start">
+    <open-data class="user-info-nickname" type="userNickName" />
+    <open-data class="user-info-region" type="userCity" />
+  </view>
+</view>
+<view class="body fw">
+  <!-- BASE -->
+  <label class="body-cell-group-title">{{ localepkg[locale].mine }}</label>
+  <van-cell-group custom-class="body-cell-group">
+    <van-cell title="{{ localepkg[locale].services }}" icon="bars" is-link />
+    <van-cell title="{{ localepkg[locale].tickets }}" icon="label" is-link />
+  </van-cell-group>
+  <!-- SETTINGS -->
+  <label class="body-cell-group-title">{{ localepkg[locale].settings }}</label>
+  <van-cell-group custom-class="body-cell-group">
+    <van-cell title="{{ localepkg[locale].region }}" icon="location" is-link />
+    <van-cell title="{{ localepkg[locale].locale }}" icon="chat" is-link />
+    <van-cell title="{{ localepkg[locale].license }}" icon="info-o" is-link />
+  </van-cell-group>
+</view>
