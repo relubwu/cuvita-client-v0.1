@@ -1,0 +1,28 @@
+{
+  "name": "cuvita",
+  "version": "0.2.0",
+  "description": "",
+  "main": "app.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0",
+    "vant-weapp": "^0.5.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/relubwu/cuvita.git"
+  },
+  "author": "relubwu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/relubwu/cuvita/issues"
+  },
+  "homepage": "https://github.com/relubwu/cuvita#readme"
+}

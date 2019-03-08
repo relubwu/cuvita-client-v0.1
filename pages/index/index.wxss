@@ -1,0 +1,17 @@
+/**
+ * CUVita Client Side Implementations - index.wxss
+ * @scope /pages/index
+ * @author relubwu
+ * @version 0.1.0b
+ * @copyright  © CHINESE UNION 2019
+ */
+
+/**
+ * Sizing
+ */
+.viewport {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 0;
+}

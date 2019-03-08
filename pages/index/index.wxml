@@ -1,0 +1,8 @@
+<!-- /pages/index/index.wxml -->
+<view class="viewport" hidden="{{ current != 0 }}">
+  <page-discovery />
+</view>
+<view class="viewport" hidden="{{ current != 1 }}">
+  <page-vitae />
+</view>
+<tab-bar />

@@ -1,0 +1,47 @@
+/**
+ * CUVita Client Side Implementations - index.wxss
+ * @scope /custom-tab-bar
+ * @author relubwu
+ * @version 0.1.5
+ * @copyright  © CHINESE UNION 2019
+ */
+
+/**Colors**/
+.active {
+  color: #d1233e !important;
+}
+
+/**Tabbar**/
+.wrapper {
+  height: 4rem;
+  position: fixed;
+  bottom: 0;
+  margin-bottom: 17px;
+}
+
+.container {
+  width: 90vw;
+  height: 3.75rem;
+  background-color: #f8f8f8f3;
+  -webkit-backdrop-filter: blur(100px);
+  box-shadow: 0px 0px 3px #b2b2b2b2;
+  border-radius: 10px 10px 25px 25px;
+  padding: 0 15px;
+}
+
+/**Items**/
+.item-wrapper {
+  height: 3rem;
+  border-radius: 3.75rem;
+}
+
+.item-icon {
+  width: 1.7rem;
+  height: 1.7rem;
+}
+
+.item-label {
+  text-align: center;
+  font-size: 8pt;
+  margin-top: 2px;
+}

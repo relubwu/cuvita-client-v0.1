@@ -1,0 +1,16 @@
+<cover-view wx:if="{{ !dynamic }}" class="fvw bg-primary" style="height: {{ systemInfo.navigationBarHeight }}px; opacity: {{ opacity }};">
+  <cover-view class="fw container d-flex-row align-items-center justify-content-between" style="height: {{ systemInfo.navigationBarHeight - systemInfo.statusBarHeight }}px; top: {{ systemInfo.statusBarHeight }}px;">
+    <cover-view wx:if="{{ enableNavigateBack }}" class="left" catch:tap="onNavigateBack">
+      <cover-image src="/assets/icons/nav-back.png" class="btn-nav-back"/>
+    </cover-view>
+    <cover-view class="center d-flex-column align-items-center justify-contents-center">
+      <cover-view class="title" style="font-size: {{ systemInfo.fontSizeSetting }}px;">{{title}}</cover-view>
+    </cover-view>
+    <cover-view class="right" />
+  </cover-view>
+</cover-view>
+<view wx:if="{{ dynamic }}" class="fvw {{ background }}" style="height: {{ systemInfo.navigationBarHeight }}px; opacity: {{ opacity }};">
+  <view class="fw container d-flex-row align-items-center" style="height: {{ systemInfo.navigationBarHeight - systemInfo.statusBarHeight }}px; top: {{ systemInfo.statusBarHeight }}px;">
+    <slot />
+  </view>
+</view>

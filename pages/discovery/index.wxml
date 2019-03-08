@@ -1,0 +1,115 @@
+<!-- NAV_BAR -->
+<nav-bar title="{{ localepkg[locale].discovery }}" dynamic background="{{ Layout.banner_bg(scrollTop, systemInfo.screenWidth, systemInfo.navigationBarHeight) >= 1 ? 'bg-primary' : 'bg-transparent' }}" opacity="{{ Layout.banner_bg(scrollTop, systemInfo.screenWidth, systemInfo.navigationBarHeight) - 0.1 }}">
+  <van-search custom-class="nav-bar-search" field-class="nav-bar-search-field" background="none" />
+</nav-bar>
+<view class="refresh fw d-flex-column align-items-center justify-content-center" style="padding-top: {{ systemInfo.statusBarHeight }}px;">
+</view>
+<!-- BACKGROUND -->
+<view class="background fw fh" hidden="{{ scrollTop >= 0.75 * systemInfo.screenWidth }}">
+  <!-- BANNER -->
+  <view class="banner fw">
+    <view class="banner-overlay fw fh" style="opacity: {{ Layout.banner_bg(scrollTop, systemInfo.screenWidth, systemInfo.navigationBarHeight) }};" />
+    <image class="banner-image fw fh" src="{{ pageData.banner.image.src }}" mode="{{ pageData.banner.image.mode || 'aspectFill' }}" />
+  </view>
+  <view class="background-bottom fw">
+    <view class="background-pulldownrefresh fw d-flex-row align-items-center justify-content-center">
+      <image src="/assets/icons/action-refresh.png" class="background-pulldownrefresh-icon" style="transform: rotate({{ Layout.pulldownrefresh_rotation(scrollTop) }}); -webkit-transform: rotate({{ Layout.pulldownrefresh_rotation(scrollTop) }});" />
+    </view>
+  </view>
+</view>
+<!-- BODY -->
+<scroll-view scroll-y class="body fvw fvh" bind:scroll="onScroll" bind:scrolltoupper="onScrollToUpper" upper-threshold="-85" bind:touchend="onScrollReleased" enable-back-to-top>
+  <!-- BANNER_CONTENT -->
+  <view class="banner-container fw d-flex-column justify-content-between align-items-{{ pageData.banner.alignment || 'start' }}" style="opacity: {{ Layout.banner_content(scrollTop, systemInfo.screenWidth, systemInfo.navigationBarHeight) }};">
+    <text class="banner-content-header" style="color: {{ pageData.banner.color }};">{{ pageData.banner.content.header[locale] }}</text>
+    <text class="banner-content-description" style="color: {{ pageData.banner.color }};">{{ pageData.banner.content.description[locale] }}</text>
+    <navigator wx:if="{{ !!pageData.banner.action }}" class="banner-content-action" style="color: {{ pageData.banner.color }}; border-color: {{ pageData.banner.color }}">{{ pageData.banner.action.description[locale] }}</navigator>
+  </view>
+  <!-- FUNCTION_NAVIGATORS -->
+  <view class="functions fw" style="top: {{ Layout.functions_top(systemInfo.screenWidth, systemInfo.statusBarHeight) }}px;">
+    <view class="functions-container container fw fh d-flex-row align-items-center justify-content-between" style="opacity: {{ Layout.functions_container_opacity(scrollTop, systemInfo.screenWidth, systemInfo.navigationBarHeight) }};">
+      <navigator class="functions-items fw fh d-flex-column align-items-center justify-content-between" wx:for="{{ layout.functions }}" wx:key="{{ item.is }}" hover-class="functions-items-hover" hover-stay-time="300" bind:tap="tapFeedback" bind:longpress="tapFeedback"
+        data-id="functions${{ item.is }}">
+        <image class="functions-items-icon" src="{{ item.icon }}" />
+        <label class="functions-items-label">{{ localepkg[locale][item.is] }}</label>
+      </navigator>
+    </view>
+  </view>
+  <view class="body-container fw">
+    <!-- SERVICES -->
+    <view class="services fw">
+      <view class="section-info fvw d-flex-row align-items-center justify-content-between">
+        <label class="section-info-title">{{ localepkg[locale].services }}</label>
+      </view>
+      <view class="services-container container fw d-flex-row">
+        <navigator class="services-item-container d-flex-column align-items-center justify-content-center" wx:for="{{ layout.services }}" hover-class="services-item-container-hover" bind:tap="tapFeedback" bind:longpress="tapFeedback" data-id="services${{ item.is }}">
+            <image src="{{ item.icon }}" class="services-item-icon" />
+            <label class="services-item-label">{{ localepkg[locale][item.is] }}</label>
+        </navigator>
+      </view>
+    </view>
+    <!-- RECOMMENDATION -->
+    <view class="recommendation fw">
+      <view class="section-info fvw d-flex-row align-items-center justify-content-between">
+        <label class="section-info-title">{{ pageData.recommendation.title[locale] }}</label>
+        <navigator class="section-info-description d-flex-row align-items-center justify-content-center" hover-class="section-info-description-hover" bind:tap="tapFeedback" bind:longpress="tapFeedback" data-id="recommendationDescription">
+          {{ pageData.recommendation.action.description[locale] }}
+        </navigator>
+      </view>
+      <scroll-view scroll-x="true" class="recommendation-items-container fw d-flex-column justify-content-center">
+        <navigator class="recommendation-item {{ (index == pageData.recommendation.items.length - 1) && 'recommendation-item-last'}}" wx:for="{{ pageData.recommendation.items }}" hover-class="recommendation-item-hover" bind:longpress="tapFeedback" data-id="recommendationItem${{ index }}">
+          <image class="recommendation-item-image fw" src="{{ item.image.src }}" mode="{{ item.image.mode }}" lazy-load />
+          <view class="recommendation-item-info fw d-flex-column align-items-start justify-content-start">
+            <label class="recommendation-item-info-title fw">{{ item.title[locale] }}</label>
+            <label class="recommendation-item-info-description fw">{{ item.description[locale] }}</label>
+          </view>
+        </navigator>
+      </scroll-view>
+    </view>
+    <!-- FEED -->
+    <view class="feed fw">
+      <view class="section-info fvw d-flex-row align-items-center justify-content-between">
+        <label class="section-info-title">{{ pageData.feed.title[locale] }}</label>
+        <label class="section-info-description">{{ pageData.feed.description[locale] }}</label>
+      </view>
+      <view class="feed-items-container container fw d-flex-column align-items-center">
+        <navigator class="feed-item-article fw d-flex-column" wx:for="{{pageData.feed.items}}" wx:key="id" hover-class="feed-item-article-hover" bind:longpress="tapFeedback" data-id="feedItem{{ index }}">
+          <image class="feed-item-article-image fw" src="{{item.thumbnail}}" mode="aspectFill" lazy-load />
+          <view class="feed-item-article-info d-flex-column">
+            <label class="feed-item-article-info-title fw">{{item.title}}</label>
+            <label class="feed-item-article-info-description fw">{{item.description}}</label>
+          </view>
+        </navigator>
+      </view>
+    </view>
+  </view>
+  <view class="body-bottom-inset" style="padding-bottom: {{ systemInfo.safeAreaInset ? 'calc(4rem + 34px)' : '4rem' }};" />
+</scroll-view>
+<!-- WXS MODULES -->
+<wxs module="Layout">
+  module.exports.banner_bg = function(scrollTop, screenWidth, navigationBarHeight) {
+    return scrollTop / ((screenWidth * 0.7) - navigationBarHeight);
+  }
+  module.exports.banner_content = function(scrollTop, screenWidth, navigationBarHeight) {
+    if (scrollTop >= 0)
+      return 1.5 - (scrollTop / ((screenWidth * 0.27) - navigationBarHeight));
+    else
+      return 2 - ((-scrollTop) / ((screenWidth * 0.35) - navigationBarHeight));
+
+  }
+  module.exports.functions_top = function(screenWidth) {
+    return screenWidth * 0.7 - 20;
+  }
+  module.exports.functions_container_opacity = function(scrollTop, screenWidth, navigationBarHeight) {
+    if (scrollTop >= (screenWidth * 0.2))
+      return 1 - (scrollTop - (screenWidth * 0.2)) / (screenWidth * 0.2);
+    if (scrollTop < 0)
+      return 2 - ((-scrollTop) / ((screenWidth * 0.35) - navigationBarHeight));
+  }
+  module.exports.pulldownrefresh_rotation = function(scrollTop) {
+    if (scrollTop <= 0 && scrollTop >= -85)
+      return ((-scrollTop / 85) * 360) + "deg";
+    if (scrollTop < -85)
+      return 360 + "deg";
+  }
+</wxs>

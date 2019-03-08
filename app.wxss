@@ -1,0 +1,127 @@
+/**
+ * CUVita Client Side Implementations - app.wxss
+ * @author relubwu
+ * @version 0.1.0b
+ * @copyright  © CHINESE UNION 2019
+ */
+
+/**
+ * Globals
+ */
+
+page {
+  background-color: #fafafa;
+}
+
+tab-bar {
+  z-index: 100;
+}
+
+nav-bar {
+  position: fixed;
+  top: 0;
+  z-index: 100;
+}
+
+/**
+ * Tuples - Size
+ */
+.fw {
+  width: 100%;
+}
+
+.fvw {
+  width: 100vw;
+}
+
+.fh {
+  height: 100%;
+}
+
+.fvh {
+  height: 100vh;
+}
+
+/**
+ * Tuples - Flex
+ */
+
+.d-flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.d-flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.justify-content-start {
+  justify-content: start;
+}
+
+.justify-content-end {
+  justify-content: end;
+}
+
+.justify-content-center {
+  justify-content: center;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+.justify-content-around {
+  justify-content: space-around;
+}
+
+.justify-content-evenly {
+  justify-content: space-evenly;
+}
+
+.align-items-start {
+  align-items: start;
+}
+
+.align-items-end {
+  align-items: end;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+/**
+ * Tuples - Spacing
+ */
+
+.container {
+  box-sizing: border-box;
+  padding: 7px 15px;
+}
+
+/** Colors **/
+.bg-primary {
+  background: #d1233e;
+}
+
+.bg-transparent {
+  background: none;
+}
+
+.primary {
+  color: #d1233e;
+}
+
+/** Fonts **/
+.label-sm {
+  font-size: 11pt;
+  color: #b2b2b2;
+}
+/**
+ * Safe Area Responsive
+ */
+.inset {
+  margin-bottom: 34px !important;
+}

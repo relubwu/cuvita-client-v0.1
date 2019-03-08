@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "tab-bar": "/custom-tab-bar/index",
+    "page-discovery": "/pages/discovery/index",
+    "page-vitae": "/pages/vitae/index"
+  },
+  "navigationStyle": "custom"
+}

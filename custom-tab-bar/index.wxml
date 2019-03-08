@@ -1,0 +1,8 @@
+<view class="wrapper fvw d-flex-column align-items-center justify-content-center {{systemInfo.safeAreaInset ? 'inset' : ''}}">
+  <view class="container d-flex-row align-items-center justify-content-center">
+      <view class="item-wrapper fw d-flex-column align-items-center justify-content-center" bind:tap="onSwitch" wx:for="{{ items }}" wx:key="name" data-name="{{ item.name }}" data-index="{{ index }}">
+        <image class="item-icon" src="{{ current == index ? item.iconActive : item.icon}}" mode="aspectFit" />
+        <view class="item-label {{ current == index && 'active' }}">{{localepkg[locale][item.name]}}</view>
+      </view>
+  </view>
+</view>

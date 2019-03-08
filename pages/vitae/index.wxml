@@ -1,0 +1,58 @@
+<scroll-view scroll-y class="fvw fvh">
+  <!-- NAV_BAR -->
+  <nav-bar dynamic background="bg-transparent">
+    <view class="fvw d-flex-row align-items-center justify-content-between">
+      <view class="fw d-flex-column justify-content-center">
+        <image src="/assets/icons/action-scanqr.png" class="nav-bar-scanqr" />
+      </view>
+      <label class="nav-bar-title fw" style="font-size: {{ systemInfo.fontSizeSetting }}px;"></label>
+      <view class="fw" />
+    </view>
+  </nav-bar>
+  <!-- CARD -->
+  <view class="user fw">
+    <image class="user-background" src="/assets/images/vitae-banner.png" class="fw fh" mode="aspectFill" />
+    <view class="user-container fw fh container d-flex-column align-items-center justify-content-center" style="padding-top: {{ systemInfo.navigationBarHeight }}px;">
+      
+    </view>
+  </view>
+  <view class="body fw">
+    <!-- PREAUTH -->
+    <view wx:if="{{ false }}" class="preauth fw d-flex-column align-items-center justify-content-center">
+      <label class="preauth-label">{{ localepkg[locale].preauth }}</label>
+      <view class="preauth-actions-container d-flex-row align-items-center justify-content-center fw">
+        <navigator class="preauth-actions preauth-actions-bind" hover-class="preauth-actions-hover">{{ localepkg[locale].bind }}</navigator>
+        <navigator class="preauth-actions preauth-actions-register" hover-class="preauth-actions-hover">{{ localepkg[locale].register }}</navigator>
+      </view>
+    </view>
+    <!-- MEMBERSHIP -->
+    <view class="membership fw d-flex-column align-items-center justify-content-center">
+      <view class="membership-info container fw fh d-flex-row align-items-center justify-content-center">
+        <image src="/assets/icons/membership-star.png" class="membership-info-icon" mode="aspectFit" />
+        <label class="membership-info-credit-current">20/</label>
+        <label class="membership-info-credit-next">199</label>
+      </view>
+      <view class="membership-progressbar-container fw container">
+        <view class="membership-progressbar-base fh">
+          <view class="membership-progressbar fh" style="width: 20%;" />
+        </view>
+      </view>
+      <view class="membership-rubric fw d-flex-row">
+        <label class="membership-rubric-label">0</label>
+        <label class="membership-rubric-label">距离下一级还有80分</label>
+        <label class="membership-rubric-label">199</label>
+      </view>
+    </view>
+    <!-- NAVIGATORS -->
+    <view class="navigators fw">
+      <van-group>
+        <van-cell title="{{ localepkg[locale].history }}" is-link icon="cash-back-record"
+        title-class="text-transform: capitalize;" />
+        <van-cell title="{{ localepkg[locale].coupon }}" is-link icon="coupon"
+        title-class="text-transform: capitalize;" />
+        <van-cell title="{{ localepkg[locale].gift }}" is-link icon="gift"
+        title-class="text-transform: capitalize;" />
+      </van-group>
+    </view>
+  </view>
+</scroll-view>

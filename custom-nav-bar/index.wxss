@@ -1,0 +1,32 @@
+/**
+ * CUVita Client Side Implementations - index.wxss
+ * @scope /custom-nav-bar
+ * @author relubwu
+ * @version 0.1.5
+ * @copyright  © CHINESE UNION 2019
+ */
+
+.container {
+  position: absolute;
+}
+
+.left {
+  width: 10%;
+}
+
+.center {
+  width: 60%;
+}
+
+.title {
+  color: white;
+}
+
+.right {
+  width: 10%;
+}
+
+.btn-nav-back {
+  width: 18pt;
+  height: 18pt;
+}

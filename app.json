@@ -1,0 +1,14 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/vitae/index"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#d1233e",
+    "navigationBarTitleText": "CUVita",
+    "navigationBarTextStyle": "white",
+    "backgroundColorTop": "#d1233e",
+    "backgroundColorBottom": "#fafafa"
+  }
+}
