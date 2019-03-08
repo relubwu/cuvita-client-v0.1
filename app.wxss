@@ -119,6 +119,7 @@ nav-bar {
   font-size: 11pt;
   color: #b2b2b2;
 }
+
 /**
  * Safe Area Responsive
  */

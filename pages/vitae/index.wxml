@@ -10,10 +10,15 @@
     </view>
   </nav-bar>
   <!-- CARD -->
-  <view class="user fw">
-    <image class="user-background" src="/assets/images/vitae-banner.png" class="fw fh" mode="aspectFill" />
-    <view class="user-container fw fh container d-flex-column align-items-center justify-content-center" style="padding-top: {{ systemInfo.navigationBarHeight }}px;">
-      
+  <view class="card fw">
+    <image class="card-background" src="/assets/images/vitae-banner.png" class="fw fh" mode="aspectFill" />
+    <view class="card-container fw fh container d-flex-column align-items-center justify-content-center" style="padding-top: {{ systemInfo.navigationBarHeight }}px;">
+      <view class="card-body" hover-class="card-body-hover">
+        <image src="/assets/images/vitae-logo.png" class="card-body-background-logo" />
+        <view class="card-body-display fw fh d-flex-column align-items-center justify-content-center">
+          <label class="card-body-display-trademark">中国同学联合会</label>
+        </view>
+      </view>
     </view>
   </view>
   <view class="body fw">
@@ -47,11 +52,13 @@
     <view class="navigators fw">
       <van-group>
         <van-cell title="{{ localepkg[locale].history }}" is-link icon="cash-back-record"
-        title-class="text-transform: capitalize;" />
+        title-class="navigators-title" url="" />
         <van-cell title="{{ localepkg[locale].coupon }}" is-link icon="coupon"
-        title-class="text-transform: capitalize;" />
+        title-class="navigators-title" url="" />
         <van-cell title="{{ localepkg[locale].gift }}" is-link icon="gift"
-        title-class="text-transform: capitalize;" />
+        title-class="navigators-title" url="" />
+        <van-cell title="{{ localepkg[locale].roadmap }}" is-link icon="medel"
+        title-class="navigators-title" url="" />
       </van-group>
     </view>
   </view>
