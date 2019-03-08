@@ -46,7 +46,7 @@ Component({
         });
     },
     onScanQr() {
-      wx,wx.scanCode({
+      wx.scanCode({
         onlyFromCamera: true,
         scanType: ['qrCode'],
         success: function(res) {},
