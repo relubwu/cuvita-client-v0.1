@@ -51,13 +51,13 @@ nav-bar {
 .card-body {
   position: absolute;
   height: 45vw;
-  width: 70vw;
+  width: 72.5vw;
   background: white;
   border-radius: 10px;
   overflow: hidden;
+  box-shadow: 0 0 10px #b2b2b2b2;
   -webkit-transform: perspective(1px) translateZ(0);
   transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
   -webkit-transition-duration: 0.2s;
   transition-duration: 0.2s;
   -webkit-transition-property: transform;
@@ -93,60 +93,6 @@ nav-bar {
 .body {
   position: absolute;
   top: 85vw;
-}
-
-.preauth {
-  position: relative;
-  padding-top: 14px;
-}
-
-.preauth-promo {
-  height: 60vw;
-  box-sizing: border-box;
-  padding: 14px 15px;
-}
-
-.preauth-promo-slide {
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.preauth-label {
-  font-size: 14pt;
-  text-transform: uppercase;
-  font-weight: bold;
-}
-
-.preauth-actions-container {
-  margin-top: 14px;
-}
-
-.preauth-actions {
-  padding: 7px 15px;
-  margin: 0 7px;
-  border-radius: 10px;
-  color: white;
-  font-size: 14pt;
-  -webkit-transform: perspective(1px) translateZ(0);
-  transform: perspective(1px) translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-  -webkit-transition-duration: 0.2s;
-  transition-duration: 0.2s;
-  -webkit-transition-property: transform;
-  transition-property: transform;
-}
-
-.preauth-actions-hover {
-  -webkit-transform: scale(1.02);
-  transform: scale(1.02);
-}
-
-.preauth-actions-bind {
-  background: #b2b2b2;
-}
-
-.preauth-actions-register {
-  background: #d1233e;
 }
 
 .membership {

@@ -3,7 +3,7 @@
   <nav-bar dynamic background="bg-transparent">
     <view class="fvw d-flex-row align-items-center justify-content-between">
       <view class="fw d-flex-column justify-content-center">
-        <image src="/assets/icons/action-scanqr.png" class="nav-bar-scanqr" />
+        <image src="/assets/icons/action-scanqr.png" class="nav-bar-scanqr" bind:tap="onScanQr" />
       </view>
       <label class="nav-bar-title fw" style="font-size: {{ systemInfo.fontSizeSetting }}px;"></label>
       <view class="fw" />

@@ -44,6 +44,15 @@ Component({
         this.setData({
           locale: newState.global.locale
         });
+    },
+    onScanQr() {
+      wx,wx.scanCode({
+        onlyFromCamera: true,
+        scanType: ['qrCode'],
+        success: function(res) {},
+        fail: function(res) {},
+        complete: function(res) {},
+      })
     }
   }
 })

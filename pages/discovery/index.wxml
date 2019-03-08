@@ -42,7 +42,7 @@
         <label class="section-info-title">{{ localepkg[locale].services }}</label>
       </view>
       <view class="services-container container fw d-flex-row">
-        <navigator class="services-item-container d-flex-column align-items-center justify-content-center" wx:for="{{ layout.services }}" hover-class="services-item-container-hover" bind:tap="tapFeedback" bind:longpress="tapFeedback" data-id="services${{ item.is }}">
+        <navigator class="services-item-container d-flex-column align-items-center justify-content-center" wx:for="{{ layout.services }}" wx:key="{{ item.is }}" hover-class="services-item-container-hover" bind:tap="tapFeedback" bind:longpress="tapFeedback" data-id="services${{ item.is }}">
             <image src="{{ item.icon }}" class="services-item-icon" />
             <label class="services-item-label">{{ localepkg[locale][item.is] }}</label>
         </navigator>
