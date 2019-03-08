@@ -1,6 +1,8 @@
+import * as actions from './actions';
 const app = getApp();
 const Store = app.store;
 const localepkg = require('./localepkg');
+const { debounce } = require('../../utils/util');
 
 /**
  * CUVita Client Side Implementations - index.js
@@ -9,6 +11,8 @@ const localepkg = require('./localepkg');
  * @version 0.1.5
  * @copyright  © CHINESE UNION 2019
  */
+
+const DEFAULT_THROTTLE_GROUP = {};
 
 Component({
   options: {
@@ -26,6 +30,7 @@ Component({
   },
   lifetimes: {
     attached() {
+      this.throttle = DEFAULT_THROTTLE_GROUP;
       this.unsubscribe = Store.subscribe(() => {
         this.relaySubscription();
       });
@@ -53,6 +58,16 @@ Component({
         fail: function(res) {},
         complete: function(res) {},
       })
-    }
+    },
+    tapFeedback({ currentTarget: { dataset: { id } } }) {
+      if (!this.throttle[`${actions.TAP_FEEDBACK}$${id}`]) {
+        this.throttle[`${actions.TAP_FEEDBACK}$${id}`] = debounce(() =>
+          wx.vibrateShort()
+          , 250);
+        this.throttle[`${actions.TAP_FEEDBACK}$${id}`]();
+      } else {
+        this.throttle[`${actions.TAP_FEEDBACK}$${id}`]();
+      }
+    },
   }
 })
