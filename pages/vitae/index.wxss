@@ -147,7 +147,8 @@ nav-bar {
 }
 
 .navigators {
-  padding-top: 14px;
+  padding: 14px 0;
+  padding-bottom: 28px;
 }
 
 .navigators-title {
