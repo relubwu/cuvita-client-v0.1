@@ -1,5 +1,4 @@
-<scroll-view scroll-y class="fvw fvh">
-  <!-- NAV_BAR -->
+<!-- NAV_BAR -->
   <nav-bar dynamic background="bg-transparent">
     <view class="fvw d-flex-row align-items-center justify-content-between">
       <view class="fw d-flex-column justify-content-center">
@@ -9,14 +8,15 @@
       <view class="fw" />
     </view>
   </nav-bar>
+<scroll-view scroll-y class="fvw fvh">
   <!-- CARD -->
   <view class="card fw">
     <image class="card-background" src="/assets/images/vitae-banner.png" class="fw fh" mode="aspectFill" />
     <view class="card-container fw fh container d-flex-column align-items-center justify-content-center" style="padding-top: {{ systemInfo.navigationBarHeight }}px;">
-      <view class="card-body" hover-class="card-body-hover">
+      <view class="card-body" hover-class="card-body-hover" bind:longpress="tapFeedback" data-id="card">
         <image src="/assets/images/vitae-logo.png" class="card-body-background-logo" />
         <view class="card-body-display fw fh d-flex-column align-items-center justify-content-center">
-          <label class="card-body-display-trademark">中国同学联合会</label>
+          <label class="card-body-display-brand">中国同学联合会</label>
         </view>
       </view>
     </view>
