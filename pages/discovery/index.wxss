@@ -68,32 +68,6 @@ page {
   height: calc(100vh - 80vw);
 }
 
-.background-network-disconnected {
-  padding: 28px 0;
-}
-
-.background-network-disconnected-icon {
-  padding-top: 7px;
-  width: 60px;
-  height: 60px;
-  text-transform: uppercase;
-}
-
-.background-network-disconnected-description {
-  padding-top: 7px;
-  color: #b2b2b2;
-  font-size: 14pt;
-  text-transform: uppercase;
-}
-
-.background-network-disconnected-action {
-  margin-top: 7px;
-  background-color: white;
-  color: #b2b2b2;
-  font-size: 14pt;
-  text-transform: uppercase;
-}
-
 /**
  * Banner
  */
@@ -129,11 +103,17 @@ page {
   font-weight: bold;
   text-transform: uppercase;
   max-height: 40px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .banner-content-description {
   font-size: 14pt;
   text-transform: capitalize;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .banner-content-action {
