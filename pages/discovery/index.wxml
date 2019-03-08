@@ -21,8 +21,8 @@
 <scroll-view scroll-y class="body fvw fvh" bind:scroll="onScroll" bind:scrolltoupper="onScrollToUpper" upper-threshold="-85" bind:touchend="onScrollReleased" enable-back-to-top>
   <!-- BANNER_CONTENT -->
   <view class="banner-container fw d-flex-column justify-content-between align-items-{{ pageData.banner.alignment || 'start' }}" style="opacity: {{ Layout.banner_content(scrollTop, systemInfo.screenWidth, systemInfo.navigationBarHeight) }};">
-    <text class="banner-content-header" style="color: {{ pageData.banner.color }};">{{ pageData.banner.content.header[locale] }}</text>
-    <text class="banner-content-description" style="color: {{ pageData.banner.color }};">{{ pageData.banner.content.description[locale] }}</text>
+    <text class="banner-content-header fw" style="color: {{ pageData.banner.color }};">{{ pageData.banner.content.header[locale] }}</text>
+    <text class="banner-content-description fw" style="color: {{ pageData.banner.color }};">{{ pageData.banner.content.description[locale] }}</text>
     <navigator wx:if="{{ !!pageData.banner.action }}" class="banner-content-action" style="color: {{ pageData.banner.color }}; border-color: {{ pageData.banner.color }}">{{ pageData.banner.action.description[locale] }}</navigator>
   </view>
   <!-- FUNCTION_NAVIGATORS -->
@@ -30,7 +30,7 @@
     <view class="functions-container container fw fh d-flex-row align-items-center justify-content-between" style="opacity: {{ Layout.functions_container_opacity(scrollTop, systemInfo.screenWidth, systemInfo.navigationBarHeight) }};">
       <navigator class="functions-items fw fh d-flex-column align-items-center justify-content-between" wx:for="{{ layout.functions }}" wx:key="{{ item.is }}" hover-class="functions-items-hover" hover-stay-time="300" bind:tap="tapFeedback" bind:longpress="tapFeedback"
         data-id="functions${{ item.is }}">
-        <image class="functions-items-icon" src="{{ item.icon }}" />
+        <image class="functions-items-icon" src="{{ item.icon }}" mode="aspectFit"/>
         <label class="functions-items-label">{{ localepkg[locale][item.is] }}</label>
       </navigator>
     </view>
