@@ -61,11 +61,17 @@ Component({
       Store.dispatch(actions.toggleSettings(detail));
     },
     setLocale({ detail: { index } }) {
+      wx.showLoading({
+        title: localepkg[this.data.locale].setlocale
+      });
       wx.setStorage({
         key: 'locale',
         data: app.globalActions.DEFAULT_LOCALE_MAPPING[index],
       });
-      Store.dispatch(app.globalActions.setLocale(app.globalActions.DEFAULT_LOCALE_MAPPING[index]));
+      setTimeout(() => {
+        Store.dispatch(app.globalActions.setLocale(app.globalActions.DEFAULT_LOCALE_MAPPING[index]));
+        wx.hideLoading();
+      }, 1000);
     }
   }
 })

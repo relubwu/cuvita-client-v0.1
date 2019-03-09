@@ -99,7 +99,7 @@ page {
 }
 
 .banner-content-header {
-  font-size: 26pt;
+  font-size: 24pt;
   font-weight: bold;
   text-transform: uppercase;
   max-height: 40px;

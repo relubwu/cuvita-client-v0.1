@@ -21,7 +21,7 @@ const { detectSafeAreaInset } = require('./utils/util');
  * @version 0.1.5
  * @copyright  © CHINESE UNION 2019
  */
-
+ 
 const DEFAULT_TABBAR = { current: 0 };
 const DEFAULT_ROUTER = { path: "/pages/index/index", delta: 0 };
 const DEFAULT_SYSTEM_INFO = null;

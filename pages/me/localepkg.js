@@ -6,6 +6,7 @@ module.exports = {
     settings: "设置",
     region: "地区",
     locale: "语言",
+    setlocale: "应用更改中",
     license: "开源组件许可",
     zh_CN: "简体中文"
   },
@@ -16,6 +17,7 @@ module.exports = {
     settings: "Settings",
     region: "Region",
     locale: "Language",
+    setlocale: "Applying",
     license: "Licenses",
     en_US: "English"
   }
