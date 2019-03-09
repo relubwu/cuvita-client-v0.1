@@ -11,6 +11,7 @@ import {
   SET_NETWORK_STATUS
 } from './actions';
 import PAGE_REDUCER_DISCOVERY from './pages/discovery/reducers';
+import PAGE_REDUCER_ME from './pages/me/reducers';
 const { detectSafeAreaInset } = require('./utils/util');
 
 /**
@@ -135,7 +136,8 @@ const GLOBAL_REDUCERS = combineReducers({
  * Page Reducers
  */
 const PAGE_REDUCERS = combineReducers({
-  discovery: PAGE_REDUCER_DISCOVERY
+  discovery: PAGE_REDUCER_DISCOVERY,
+  me: PAGE_REDUCER_ME
 });
 
 /**
