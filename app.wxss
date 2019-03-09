@@ -126,3 +126,15 @@ nav-bar {
 .inset {
   margin-bottom: 34px !important;
 }
+
+/** Implementing Notice **/
+.implementing-icon {
+  width: 40px;
+  height: 40px;
+  padding: 7px 15px;
+}
+
+.implementing-label {
+  color: #b2b2b2;
+  font-size: 11pt;
+}
