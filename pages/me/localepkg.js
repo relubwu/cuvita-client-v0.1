@@ -8,7 +8,8 @@ module.exports = {
     locale: "语言",
     setlocale: "应用更改中",
     license: "开源组件许可",
-    zh_CN: "简体中文"
+    zh_CN: "简体中文",
+    dev: "开发"
   },
   en_US: {
     mine: "My",
@@ -19,6 +20,7 @@ module.exports = {
     locale: "Language",
     setlocale: "Applying",
     license: "Licenses",
-    en_US: "English"
+    en_US: "English",
+    dev: "Debug"
   }
 }

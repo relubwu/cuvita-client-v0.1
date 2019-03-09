@@ -15,7 +15,7 @@
   </van-cell-group>
   <!-- SETTINGS -->
   <label class="body-cell-group-title">{{ localepkg[locale].settings }}</label>
-  <van-collapse value="{{ activeSetting }}" bind:change="toggleSettings" accordion>
+  <van-collapse custom-class="body-cell-group" value="{{ activeSetting }}" bind:change="toggleSettings" accordion>
     <van-collapse-item title="{{ localepkg[locale].region }}" icon="location" name="region">
       <view class="fw d-flex-column align-items-center justify-content-center">
         <image class="implementing-icon" src="/assets/icons/implementing.png" />
@@ -26,7 +26,9 @@
     <van-collapse-item title="{{ localepkg[locale].locale }}" icon="chat" name="locale" value="{{ localepkg[locale][locale] }}">
       <van-picker columns="{{ layout.localeOptions }}" bind:change="setLocale" />
     </van-collapse-item>
-    <van-collapse-item title="{{ localepkg[locale].license }}" icon="info-o" name="license">
-    </van-collapse-item>
   </van-collapse>
+  <label class="body-cell-group-title">{{ localepkg[locale].dev }}</label>
+  <van-cell-group custom-class="body-cell-group">
+    <van-cell title="{{ localepkg[locale].license }}" icon="info-o" is-link url="/pages/license/index"/>
+  </van-cell-group>
 </view>

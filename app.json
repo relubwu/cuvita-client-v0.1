@@ -1,7 +1,8 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/vitae/index"
+    "pages/vitae/index",
+    "pages/license/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
