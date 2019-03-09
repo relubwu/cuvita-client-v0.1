@@ -90,7 +90,7 @@
 
 .card-body-display-brand {
   color: #d1233e;
-  font-size: 24pt;
+  font-size: 26pt;
   font-weight: lighter;
 }
 
