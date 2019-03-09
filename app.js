@@ -38,6 +38,9 @@ App({
       success(res) {
         store.dispatch(actions.setLocale(res.data));
       },
+      fail() {
+        store.dispatch(actions.setLocale("zh_CN"));
+      }
     });
     wx.getNetworkType({
       success({ networkType }) {
