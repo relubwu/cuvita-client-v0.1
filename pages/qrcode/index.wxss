@@ -18,6 +18,8 @@
 
 .qrcode-container {
   position: relative;
+  left: 0;
+  top: 0;
   height: calc(70vw + 45px + 11pt);
   width: 70vw;
   background: white;
