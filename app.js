@@ -33,12 +33,6 @@ App({
         store.dispatch(actions.setSystemInfo(res));
       },
     });
-    wx.getStorage({
-      key: 'locale',
-      success(res) {
-        store.dispatch(actions.setLocale(res.data));
-      },
-    });
     wx.getNetworkType({
       success({ networkType }) {
         store.dispatch(actions.setNetworkStatus(networkType));
@@ -60,7 +54,7 @@ App({
 
   onAppRoute() {
     wx.onAppRoute(res => {
-      !res.openType === 'appLaunch' && store.dispatch(actions.switchPage(res.path, getCurrentPages().length - 1));
+      res.openType !== 'appLaunch' && store.dispatch(actions.switchPage(res.path, getCurrentPages().length - 1));
     });
   },
 

@@ -86,30 +86,4 @@
   <view class="body-bottom-inset" style="padding-bottom: {{ systemInfo.safeAreaInset ? 'calc(4rem + 34px)' : '4rem' }};" />
 </scroll-view>
 <!-- WXS MODULES -->
-<wxs module="Layout">
-  module.exports.banner_bg = function(scrollTop, screenWidth, navigationBarHeight) {
-    return scrollTop / ((screenWidth * 0.7) - navigationBarHeight);
-  }
-  module.exports.banner_content = function(scrollTop, screenWidth, navigationBarHeight) {
-    if (scrollTop >= 0)
-      return 1.5 - (scrollTop / ((screenWidth * 0.27) - navigationBarHeight));
-    else
-      return 2 - ((-scrollTop) / ((screenWidth * 0.35) - navigationBarHeight));
-
-  }
-  module.exports.functions_top = function(screenWidth) {
-    return screenWidth * 0.7 - 20;
-  }
-  module.exports.functions_container_opacity = function(scrollTop, screenWidth, navigationBarHeight) {
-    if (scrollTop >= (screenWidth * 0.2))
-      return 1 - (scrollTop - (screenWidth * 0.2)) / (screenWidth * 0.2);
-    if (scrollTop < 0)
-      return 2 - ((-scrollTop) / ((screenWidth * 0.35) - navigationBarHeight));
-  }
-  module.exports.pulldownrefresh_rotation = function(scrollTop) {
-    if (scrollTop <= 0 && scrollTop >= -85)
-      return ((-scrollTop / 85) * 360) + "deg";
-    if (scrollTop < -85)
-      return 360 + "deg";
-  }
-</wxs>
+<wxs module="Layout" src="layout.wxs"></wxs>

@@ -1,3 +1,4 @@
+import * as actions from './actions';
 const app = getApp();
 const Store = app.store;
 const localepkg = require('./localepkg');
@@ -24,6 +25,10 @@ Component({
   },
   data: {
     systemInfo: Store.getState().global.systemInfo,
+    activeSetting: Store.getState().pages.me.activeSetting,
+    layout: {
+      localeOptions: ['简体中文', 'English']
+    },
     localepkg: localepkg
   },
   lifetimes: {
@@ -47,6 +52,26 @@ Component({
         this.setData({
           locale: newState.global.locale
         });
+      if (this.data.activeSetting !== newState.pages.me.activeSetting)
+        this.setData({
+          activeSetting: newState.pages.me.activeSetting
+        });
+    },
+    toggleSettings({ detail }) {
+      Store.dispatch(actions.toggleSettings(detail));
+    },
+    setLocale({ currentTarget: { dataset: { locale } } }) {
+      wx.showLoading({
+        title: localepkg[this.data.locale].setlocale
+      });
+      wx.setStorage({
+        key: 'locale',
+        data: locale,
+      });
+      setTimeout(() => {
+        Store.dispatch(app.globalActions.setLocale(locale));
+        wx.hideLoading();
+      }, 1000);
     }
   }
 })

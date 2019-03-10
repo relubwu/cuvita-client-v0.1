@@ -22,10 +22,6 @@ Component({
       type: String,
       value: "CUVita"
     },
-    enableNavigateBack: {
-      type: Boolean,
-      value: false
-    },
     dynamic: {
       type: Boolean,
       value: false

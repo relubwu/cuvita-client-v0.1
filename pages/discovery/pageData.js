@@ -93,7 +93,7 @@ module.exports = {
   feed: {
     title: {
       zh_CN: "为你推荐",
-      en_US: "heads up"
+      en_US: "top stories"
     },
     description: {
       zh_CN: new Date().toLocaleDateString("zh-CN", {

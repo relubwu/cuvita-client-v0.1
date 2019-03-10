@@ -59,6 +59,14 @@ Component({
         complete: function(res) {},
       })
     },
+    onShowQr() {
+      this.tapFeedback({ currentTarget: { dataset: { id: "card" } } });
+      setTimeout(() => {
+        wx.navigateTo({
+          url: '/pages/qrcode/index'
+        });
+      } , 250);
+    },
     tapFeedback({ currentTarget: { dataset: { id } } }) {
       if (!this.throttle[`${actions.TAP_FEEDBACK}$${id}`]) {
         this.throttle[`${actions.TAP_FEEDBACK}$${id}`] = debounce(() =>
