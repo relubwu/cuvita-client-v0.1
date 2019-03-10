@@ -3,7 +3,8 @@
     "pages/index/index",
     "pages/vitae/index",
     "pages/license/index",
-    "pages/qrcode/index"
+    "pages/qrcode/index",
+    "pages/article/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

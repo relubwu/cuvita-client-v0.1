@@ -1,0 +1,33 @@
+@import '/assets/stylesheets/weui.wxss';
+
+/**
+ * CUVita Client Side Implementations - index.wxss
+ * @scope /pages/disocvery
+ * @author relubwu
+ * @version 0.1.5
+ * @copyright  © CHINESE UNION 2019
+ */
+
+page {
+  background-color: #fff;
+}
+
+.local__h1 {
+  font-weight: bold;
+  font-size: 14pt;
+}
+
+.footer {
+  padding-bottom: 16px;
+}
+
+.font-label {
+  font-size: 11pt;
+  text-align: center;
+  color: #b2b2b2;
+}
+
+.font-author {
+  font-size: 11pt;
+  color: #b2b2b2;
+}
