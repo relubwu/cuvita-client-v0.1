@@ -3,8 +3,7 @@ const app = getApp();
 const { request, requestFailed } = app;
 const Store = app.store;
 const localepkg = require('./localepkg');
-const REQUEST_ENV_URL = "/env";
-const pageData = require('./pageData');
+const REQUEST_PAGEDATA_URL = "/debug/fetch";
 const { debounce } = require('../../utils/util');
 
 /**
@@ -141,10 +140,10 @@ Component({
         });
     },
     requestPageData() {
-      request(REQUEST_ENV_URL, 'GET', {
+      request(REQUEST_PAGEDATA_URL, 'GET', {
         region: 'sd'
       }, true).then(data => {
-        Store.dispatch(actions.setPageData({ ...pageData, ready: !0 }));
+        Store.dispatch(actions.setPageData({ ...data, ready: !0 }));
         wx.hideLoading();
       }).catch(e => {
         wx.hideLoading();
