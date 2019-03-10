@@ -1,6 +1,6 @@
-<cover-view wx:if="{{ !dynamic }}" class="fvw bg-primary" style="height: {{ systemInfo.navigationBarHeight }}px; opacity: {{ opacity }};">
+<cover-view wx:if="{{ !dynamic }}" class="fvw {{ background }}" style="height: {{ systemInfo.navigationBarHeight }}px;">
   <cover-view class="fw container d-flex-row align-items-center justify-content-between" style="height: {{ systemInfo.navigationBarHeight - systemInfo.statusBarHeight }}px; top: {{ systemInfo.statusBarHeight }}px;">
-    <cover-view wx:if="{{ enableNavigateBack }}" class="left" catch:tap="onNavigateBack">
+    <cover-view class="left" catch:tap="onNavigateBack">
       <cover-image src="/assets/icons/nav-back.png" class="btn-nav-back"/>
     </cover-view>
     <cover-view class="center d-flex-column align-items-center justify-contents-center">

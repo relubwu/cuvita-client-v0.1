@@ -12,6 +12,7 @@
 
 .left {
   width: 10%;
+  padding: 7px 0;
 }
 
 .center {
