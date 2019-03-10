@@ -41,3 +41,5 @@
     <van-cell title="{{ localepkg[locale].license }}" icon="info-o" is-link url="/pages/license/index" />
   </van-cell-group>
 </view>
+<!-- INSET -->
+<view class="body-bottom-inset" style="padding-bottom: {{ systemInfo.safeAreaInset ? 'calc(4rem + 34px)' : '4rem' }};" />
