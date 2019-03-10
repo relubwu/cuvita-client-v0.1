@@ -1,0 +1,30 @@
+<view class="page">
+  <view class="page__bd">
+    <view class="weui-article">
+      <!-- TITLE -->
+      <view class="weui-article__h1 local__h1">{{ title }}</view>
+      <!-- AUTHOR -->
+      <view class="weui-article__section">
+        <view class="weui-article__h3 font-author">{{ author }}</view>
+      </view>
+      <!-- SECTION -->
+      <view class="weui-article__section" wx:for="{{data}}" style="text-align: {{ item.alignment || 'justify' }}; color: {{ item.color || 'black' }}; font-weight: {{ !!item.bold?'bold':'normal' }}">
+        <!-- H3 -->
+        <view wx:if="{{ item.nodeType == 'article__h3' }}" class="weui-article__h3">{{item.content}}</view>
+        <!-- PARAGRAPH -->
+        <text wx:if="{{ item.nodeType == 'article__p' }}" selectable="{{ true }}" space="{{ true }}" decode="{{ true }}" class="weui-article__p" style="font-size: {{ item.fontSize || 'inherit' }}">
+          {{ item.content }}
+        </text>
+        <!-- IMAGE -->
+        <view wx:if="{{ item.nodeType == 'article__img' }}" class="weui-article__p d-flex-column" style="align-items: center;">
+          <image class="weui-article__img fw" src="{{ item.src }}" mode="{{ item.mode || 'aspectFit' }}" style="height: {{ item.height || '180px' }}" bindtap="previewImage" data-url="{{ item.src }}" data-previewable="{{ item.previewable }}" />
+          <label wx:if="{{ !!item.description }}" class="font-label">{{ item.description }}</label>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- FOOTER -->
+  <view class="weui-footer {{ systemInfo.safeAreaInset && 'inset' }} footer">
+      <view class="weui-footer__text">Copyright © 2019 Chinese Union</view>
+    </view>
+</view>

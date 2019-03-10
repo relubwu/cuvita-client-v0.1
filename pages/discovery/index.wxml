@@ -1,6 +1,6 @@
 <!-- NAV_BAR -->
 <nav-bar title="{{ localepkg[locale].discovery }}" dynamic background="{{ Layout.banner_bg(scrollTop, systemInfo.screenWidth, systemInfo.navigationBarHeight) >= 1 ? 'bg-primary' : 'bg-transparent' }}" opacity="{{ Layout.banner_bg(scrollTop, systemInfo.screenWidth, systemInfo.navigationBarHeight) - 0.1 }}">
-  <van-search custom-class="nav-bar-search" field-class="nav-bar-search-field" background="none" />
+  <van-search custom-class="nav-bar-search" field-class="nav-bar-search-field" background="none" placeholder="{{ pageData.search[locale] }}" />
 </nav-bar>
 <view class="refresh fw d-flex-column align-items-center justify-content-center" style="padding-top: {{ systemInfo.statusBarHeight }}px;">
 </view>
@@ -73,8 +73,8 @@
         <label class="section-info-description">{{ pageData.feed.description[locale] }}</label>
       </view>
       <view class="feed-items-container container fw d-flex-column align-items-center">
-        <navigator class="feed-item-article fw d-flex-column" wx:for="{{pageData.feed.items}}" wx:key="id" hover-class="feed-item-article-hover" bind:longpress="tapFeedback" data-id="feedItem{{ index }}">
-          <image class="feed-item-article-image fw" src="{{item.thumbnail}}" mode="aspectFill" lazy-load />
+        <navigator class="feed-item-article fw d-flex-column" wx:for="{{ pageData.feed.items }}" wx:key="id" hover-class="feed-item-article-hover" bind:longpress="tapFeedback" data-id="feedItem{{ index }}" url="/pages/article/index?id={{ item._id }}">
+          <image class="feed-item-article-image fw" src="{{ item.thumbnail }}" mode="aspectFill" lazy-load />
           <view class="feed-item-article-info d-flex-column">
             <label class="feed-item-article-info-title fw">{{item.title}}</label>
             <label class="feed-item-article-info-description fw">{{item.description}}</label>

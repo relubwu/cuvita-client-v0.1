@@ -49,13 +49,6 @@ Page({
       }
     });
   },
-  onReady() {
-    setTimeout(() => {
-      this.setData({
-        showInstruction: 1
-      });
-    }, 500);
-  },
   onUnload() {
     wx.stopAccelerometer({
       
