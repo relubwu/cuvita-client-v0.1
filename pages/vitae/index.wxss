@@ -26,6 +26,8 @@
 .nav-bar-scanqr {
   width: 20px;
   height: 20px;
+  padding: 7px 0;
+  padding-right: 15px;
 }
 
 /**
@@ -73,12 +75,7 @@
   transform: scale(1.05);
 }
 
-.card-body-background-logo {
-  position: relative;
-  left: -10vw;
-  height: 55vw;
-  width: 55vw;
-  opacity: 0.05;
+.card-body-background {
   z-index: 0;
 }
 
@@ -92,6 +89,7 @@
   color: #d1233e;
   font-size: 24pt;
   font-weight: 300;
+  text-transform: uppercase;
 }
 
 /**

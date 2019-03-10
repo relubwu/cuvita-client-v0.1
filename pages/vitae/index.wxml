@@ -4,7 +4,7 @@
       <view class="fw d-flex-column justify-content-center">
         <image src="/assets/icons/action-scanqr.png" class="nav-bar-scanqr" bind:tap="onScanQr" />
       </view>
-      <label class="nav-bar-title fw" style="font-size: {{ systemInfo.fontSizeSetting }}px;"></label>
+      <label class="nav-bar-title fw" style="font-size: {{ systemInfo.fontSizeSetting }}px;" />
       <view class="fw" />
     </view>
   </nav-bar>
@@ -14,9 +14,9 @@
     <image class="card-background" src="/assets/images/vitae-banner.png" class="fw fh" mode="aspectFill" />
     <view class="card-container fw fh container d-flex-column align-items-center justify-content-center" style="padding-top: {{ systemInfo.navigationBarHeight }}px;">
       <view class="card-body" hover-class="card-body-hover" bind:longpress="tapFeedback" data-id="card">
-        <image src="/assets/images/vitae-logo.png" class="card-body-background-logo" />
+        <image src="/assets/images/card-black.jpg" class="card-body-background fw fh" />
         <view class="card-body-display fw fh d-flex-column align-items-center justify-content-center">
-          <label class="card-body-display-brand">中国同学联合会</label>
+          <label class="card-body-display-brand">{{ localepkg[locale].brand }}</label>
         </view>
       </view>
     </view>
