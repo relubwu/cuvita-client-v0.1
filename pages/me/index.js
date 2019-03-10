@@ -60,16 +60,16 @@ Component({
     toggleSettings({ detail }) {
       Store.dispatch(actions.toggleSettings(detail));
     },
-    setLocale({ detail: { index } }) {
+    setLocale({ currentTarget: { dataset: { locale } } }) {
       wx.showLoading({
         title: localepkg[this.data.locale].setlocale
       });
       wx.setStorage({
         key: 'locale',
-        data: app.globalActions.DEFAULT_LOCALE_MAPPING[index],
+        data: locale,
       });
       setTimeout(() => {
-        Store.dispatch(app.globalActions.setLocale(app.globalActions.DEFAULT_LOCALE_MAPPING[index]));
+        Store.dispatch(app.globalActions.setLocale(locale));
         wx.hideLoading();
       }, 1000);
     }

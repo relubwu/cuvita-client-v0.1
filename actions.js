@@ -20,7 +20,7 @@ export const SET_NETWORK_STATUS = "SET_NETWORK_STATUS";
 /**
  * Tuples
  */
-export const DEFAULT_LOCALE = "zh_CN";
+export const DEFAULT_LOCALE =  wx.getStorageSync("locale") || "zh_CN";
 export const DEFAULT_LOCALE_MAPPING = ["zh_CN", "en_US"];
 export const DEFAULT_REGION = "sd";
 export const DEFUALT_TABBAR_ITEMS = [ "discovery", "vitae", "me"];
