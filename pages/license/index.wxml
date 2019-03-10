@@ -30,8 +30,8 @@
     <text class="license-body">Copyright (c) 2009-2014 TJ Holowaychuk 2013-2014 Roman Shtylman 2014-2015 Douglas Christopher Wilson</text>
   </view>
   <view class="license d-flex-column align-items-center justify-content-center">
-    <label class="license-title fw d-flex-column">weapp-qrcode</label>
-    <text class="license-body">Copyright (c) 2018 yingye</text>
+    <label class="license-title fw d-flex-column">wx-base64-qrcode</label>
+    <text class="license-body">Copyright (c) 2009 Kazuhiko Arase</text>
   </view>
   <view class="license" style="margin-bottom: {{ systemInfo.safeAreaInset ? '34px' : '10px' }};">
     <image src="https://webassets.mongodb.com/_com_assets/global/mongodb-logo-white.png" mode="aspectFit" style="width: 50vw; height: 25vw; background: #2b2b2b; padding: 0px 10px;" />
