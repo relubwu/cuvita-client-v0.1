@@ -1,0 +1,13 @@
+<!-- NAV_BAR -->
+<nav-bar background="bg-transparent" title="" />
+<!-- Body -->
+<scroll-view class="body fvw fvh">
+  <view class="fw d-flex-column align-items-center justify-content-center" style="height: {{ systemInfo.screenHeight + 1 }}px;">
+    <view class="qrcode-container d-flex-column align-items-center justify-content-center" style="box-shadow: {{ -orientation.x * 20 }}px {{ orientation.y * 20 }}px 50px #2b2b2b2b; left: {{ -orientation.x * 20 }}px; top: {{ orientation.y * 20 }}px;">
+      <image src="{{ context }}" class="qrcode-canvas" />
+      <label class="qrcode-label" style="opacity: {{ showInstruction }}">{{ instruction }}</label>
+    </view>
+  </view>
+</scroll-view>
+<!-- Background -->
+<background />

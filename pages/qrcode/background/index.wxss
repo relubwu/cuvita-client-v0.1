@@ -1,0 +1,51 @@
+/**
+ * CUVita Client Side Implementations - index.wxss
+ * @scope /pages/qrcode/background
+ * @author relubwu
+ * @version 0.1.5
+ * @copyright  © CHINESE UNION 2019
+ */
+
+:host {
+  position: absolute;
+  top: 0;
+  z-index: -1;
+  width: 100vw;
+  height: 100vh;
+}
+
+.hue {
+  position: absolute;
+  transition: background-position 1s ease;
+  -webkit-transition: background-position 1s ease;
+  background: linear-gradient(-45deg, #d1233e, #fa7921);
+  background-size: 300%;
+  z-index: -1;
+  -webkit-animation: Gradient 10s ease infinite;
+	animation: Gradient 10s ease infinite;
+}
+
+@-webkit-keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+
+@keyframes Gradient {
+	0% {
+		background-position: 0% 50%
+	}
+	50% {
+		background-position: 100% 50%
+	}
+	100% {
+		background-position: 0% 50%
+	}
+}
+

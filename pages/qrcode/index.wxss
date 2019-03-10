@@ -1,1 +1,42 @@
-/* pages/qrcode/index.wxss */
+/**
+ * CUVita Client Side Implementations - index.wxss
+ * @scope /pages/qrcode
+ * @author relubwu
+ * @version 0.1.5
+ * @copyright  © CHINESE UNION 2019
+ */
+
+/**
+ * z-index table
+ * @0  :: .body
+ * @-1 :: background
+ */
+
+.body {
+  white-space: nowrap;
+}
+
+.qrcode-container {
+  position: relative;
+  height: calc(70vw + 45px + 11pt);
+  width: 70vw;
+  background: white;
+  border-radius: 5px;
+  padding: 30px;
+  padding-bottom: 0;
+  transition: all 0.2s linear;
+  -webkit-transition: all 0.2s linear;
+}
+
+.qrcode-canvas {
+  width: 70vw;
+  height: 70vw;
+}
+
+.qrcode-label {
+  color: #b2b2b2;
+  font-size: 11pt;
+  padding: 15px 0;
+  transition: opacity 0.5s ease;
+  -webkit-transition: opacity 0.5s ease;
+}
