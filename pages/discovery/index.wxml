@@ -87,4 +87,3 @@
 </scroll-view>
 <!-- WXS MODULES -->
 <wxs module="Layout" src="layout.wxs"></wxs>
-<wxs module="Handle" src="handle.wxs">
