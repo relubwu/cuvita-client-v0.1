@@ -26,7 +26,7 @@ const DEFAULT_TABBAR = { current: 0 };
 const DEFAULT_ROUTER = { path: "/pages/index/index", delta: 0 };
 const DEFAULT_SYSTEM_INFO = null;
 const DEFAULT_USER_INFO = null;
-const DEFAULT_NETWORK = { connected: null, type: null };
+const DEFAULT_NETWORK = { connected: true, type: null };
 
 /**
  * Global Reducers
