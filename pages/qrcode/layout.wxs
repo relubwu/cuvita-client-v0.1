@@ -2,19 +2,19 @@ module.exports.calc = function (x, y) {
   var res = "";
 
   res += "box-shadow: ";
-  res += -x * 5;
+  res += -x * 10;
   res += "px ";
-  res += y * 5;
+  res += y * 10;
   res += "px ";
   res += "50px ";
   res += "#2b2b2b2b; ";
 
   res += "left: ";
-  res += -x * 5;
+  res += -x * 10;
   res += "px; ";
 
   res += "top: ";
-  res += y * 5;
+  res += y * 10;
   res += "px; ";
 
   return res;
