@@ -2,7 +2,8 @@
   "pages": [
     "pages/index/index",
     "pages/vitae/index",
-    "pages/license/index"
+    "pages/license/index",
+    "pages/qrcode/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
