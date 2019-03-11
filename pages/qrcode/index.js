@@ -11,21 +11,9 @@ import QR from "../../miniprogram_npm/wx-base64-qrcode/index";
  * @copyright  © CHINESE UNION 2019
  */
 
-const normalize = (x, y, z) => {
-  let mag = Math.sqrt(x * x + y * y + z * z);
-  // normalization
-  x /= mag;
-  y /= mag;
-  z /= mag;
-  return {
-    x, y, z
-  }
-}
-
 Page({
   data: {
     systemInfo: Store.getState().global.systemInfo,
-    showInstruction: 0,
     localepkg: localepkg
   },
   onLoad(options) {
@@ -38,20 +26,5 @@ Page({
     console.group(` %cpageData %c/page/qrcode %c@ ${new Date().toLocaleTimeString("en-US")}`, "font-weight: normal; color: #888888", "font-weight: bold", "font-weight: normal; color: #888888");
     console.log(this.data);
     console.groupEnd();
-    wx.startAccelerometer({
-      interval: 'ui',
-      success() {
-        wx.onAccelerometerChange(res => {
-          that.setData({
-            orientation: normalize(res.x, res.y, res.z)
-          });
-        });
-      }
-    });
-  },
-  onUnload() {
-    wx.stopAccelerometer({
-      
-    });
   }
 });
