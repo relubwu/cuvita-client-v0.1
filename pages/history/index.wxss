@@ -1,0 +1,45 @@
+@import '/assets/stylesheets/weui.wxss';
+
+/**
+ * CUVita Client Side Implementations - index.wxss
+ * @scope /pages/history
+ * @author relubwu
+ * @version 0.1.0b
+ * @copyright  © CHINESE UNION 2019
+ */
+
+.body-wrapper {
+  box-sizing: border-box;
+  padding: 7px 15px;
+}
+
+.entry {
+  height: 20vw;
+  background-color: white;
+  box-shadow: 0 0 1px #b2b2b2;
+  box-sizing: border-box;
+  padding: 0px 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+}
+
+.entry-hover {
+  -webkit-transform: scale(1.02);
+  transform: scale(1.02);
+}
+
+.entry-left {
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.entry-right {
+  align-items: flex-end;
+  justify-content: center;
+}

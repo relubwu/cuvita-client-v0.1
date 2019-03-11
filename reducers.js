@@ -8,6 +8,7 @@ import {
   DEFAULT_REGION,
   SET_SYSTEM_INFO,
   SET_USER_INFO,
+  SET_MEMBER_INFO,
   SET_NETWORK_STATUS
 } from './actions';
 import PAGE_REDUCER_DISCOVERY from './pages/discovery/reducers';
@@ -26,6 +27,7 @@ const DEFAULT_TABBAR = { current: 0 };
 const DEFAULT_ROUTER = { path: "/pages/index/index", delta: 0 };
 const DEFAULT_SYSTEM_INFO = null;
 const DEFAULT_USER_INFO = null;
+const DEFAULT_MEMBER_INFO = null;
 const DEFAULT_NETWORK = { connected: true, type: null };
 
 /**
@@ -107,6 +109,17 @@ function userInfo (state = DEFAULT_USER_INFO, action) {
   }
 }
 
+function memberInfo (state = DEFAULT_MEMBER_INFO, action) {
+  switch (action.type) {
+    case SET_MEMBER_INFO:
+      return { ...action.res };
+      break;
+    default:
+      return state;
+      break;
+  }
+}
+
 function network (state = DEFAULT_NETWORK, action) {
   switch (action.type) {
     case SET_NETWORK_STATUS:
@@ -129,6 +142,7 @@ const GLOBAL_REDUCERS = combineReducers({
   locale,
   systemInfo,
   userInfo,
+  memberInfo,
   network
 });
 

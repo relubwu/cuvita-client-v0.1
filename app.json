@@ -4,7 +4,8 @@
     "pages/vitae/index",
     "pages/license/index",
     "pages/qrcode/index",
-    "pages/article/index"
+    "pages/article/index",
+    "pages/history/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
