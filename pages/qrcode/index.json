@@ -1,7 +1,8 @@
 {
   "usingComponents": {
     "nav-bar": "/custom-nav-bar/index",
-    "background": "background/index"
+    "background": "background/index",
+    "pane": "pane/index"
   },
   "navigationStyle": "custom"
 }

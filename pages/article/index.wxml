@@ -8,9 +8,9 @@
         <view class="weui-article__h3 font-author">{{ author }}</view>
       </view>
       <!-- SECTION -->
-      <view class="weui-article__section" wx:for="{{data}}" style="text-align: {{ item.alignment || 'justify' }}; color: {{ item.color || 'black' }}; font-weight: {{ !!item.bold?'bold':'normal' }}">
+      <view class="weui-article__section" wx:for="{{data}}" style="text-align: {{ item.alignment || 'justify' }}; color: {{ item.color || 'black' }}; font-weight: {{ !!item.bold ? 'bold' : 'normal' }}">
         <!-- H3 -->
-        <view wx:if="{{ item.nodeType == 'article__h3' }}" class="weui-article__h3">{{item.content}}</view>
+        <view wx:if="{{ item.nodeType == 'article__h3' }}" class="weui-article__h3">{{ item.content }}</view>
         <!-- PARAGRAPH -->
         <text wx:if="{{ item.nodeType == 'article__p' }}" selectable="{{ true }}" space="{{ true }}" decode="{{ true }}" class="weui-article__p" style="font-size: {{ item.fontSize || 'inherit' }}">
           {{ item.content }}

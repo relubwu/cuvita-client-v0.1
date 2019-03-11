@@ -1,0 +1,8 @@
+<view class="fw fh d-flex-column align-items-center justify-content-center">
+  <view class="qrcode-container d-flex-column align-items-center justify-content-center" style="{{ Layout.calc(orientation.x, orientation.y) }}">
+    <image src="{{ context }}" class="qrcode-canvas" />
+    <label class="qrcode-label">{{ instruction }}</label>
+  </view>
+</view>
+<!-- WXS MODULE -->
+<wxs module="Layout" src="layout.wxs"></wxs>

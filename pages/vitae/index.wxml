@@ -52,7 +52,7 @@
     <view class="navigators fw">
       <van-group>
         <van-cell title="{{ localepkg[locale].history }}" is-link icon="cash-back-record"
-        title-class="navigators-title" url="" />
+        title-class="navigators-title" url="/pages/history/index" />
         <van-cell title="{{ localepkg[locale].coupon }}" is-link icon="coupon"
         title-class="navigators-title" url="" />
         <van-cell title="{{ localepkg[locale].gift }}" is-link icon="gift"
