@@ -1,4 +1,4 @@
-import * as actions from './actions';
+import * as actions from 'actions';
 const app = getApp();
 const { request, requestFailed } = app;
 const Store = app.store;
