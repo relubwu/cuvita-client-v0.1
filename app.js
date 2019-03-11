@@ -46,7 +46,10 @@ App({
         that.request('/dispatch', 'GET', {
           code: res.code
         }).then(data => {
-          store.dispatch(actions.setUserInfo(data));
+          store.dispatch(actions.setUserInfo(data.userInfo));
+          if (!!data.memberInfo) {
+            store.dispatch(actions.setMemberInfo(data.memberInfo));
+          }
         });
       }
     });
