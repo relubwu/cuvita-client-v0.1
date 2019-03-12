@@ -3,6 +3,7 @@ const app = getApp();
 const Store = app.store;
 const localepkg = require('localepkg');
 const { debounce } = require('../../utils/util');
+import QR from "../../miniprogram_npm/wx-base64-qrcode/index";
 
 /**
  * CUVita Client Side Implementations - index.js
@@ -18,13 +19,17 @@ const FETCH_URL = '/membership/fetchCoupons';
 Page({
   data: {
     systemInfo: Store.getState().global.systemInfo,
+    currentCoupon: Store.getState().pages.coupon.currentCoupon,
     localepkg: localepkg
   },
   onLoad() {
     this.throttle = DEFAULT_THROTTLE_GROUP;
     let that = this;
+    this.unsubscribe = Store.subscribe(() => {
+      this.relaySubscription();
+    });
     this.setData({
-      locale: Store.getState().global.locale,
+      locale: Store.getState().global.locale
     });
     wx.setNavigationBarTitle({ title: localepkg[that.data.locale].title });
     if (!!Store.getState().global.memberInfo) {
@@ -36,6 +41,17 @@ Page({
         coupons: []
       });
     }
+  },
+  onUnload() {
+    Store.dispatch(actions.resetCouponDetail());
+    this.unsubscribe();
+  },
+  relaySubscription() {
+    let newState = Store.getState();
+    if (this.data.currentCoupon !== newState.pages.coupon.currentCoupon)
+      this.setData({
+        currentCoupon: newState.pages.coupon.currentCoupon,
+      });
   },
   formatCoupons(coupons) {
     let res = [];
@@ -51,6 +67,7 @@ Page({
     });
   },
   tapFeedback({ currentTarget: { dataset: { id } } }) {
+    Store.dispatch(actions.toggleCouponDetail(id));
     if (!this.throttle[`${actions.TAP_FEEDBACK}$${id}`]) {
       this.throttle[`${actions.TAP_FEEDBACK}$${id}`] = debounce(() =>
         wx.vibrateShort()
@@ -59,9 +76,13 @@ Page({
     } else {
       this.throttle[`${actions.TAP_FEEDBACK}$${id}`]();
     }
+    this.setData({
+      context: QR.createQrCodeImg(`https://cuvita.relubwu.com/coupon/use?id=${id}`, Store.getState().global.systemInfo.screenWidth * 0.3)
+    });
   },
   onPullDownRefresh() {
     let that = this;
+    wx.vibrateShort({});
     app.request(FETCH_URL, 'GET', { openid: Store.getState().global.userInfo.openid }).then(res => {
       setTimeout(() => {
         wx.stopPullDownRefresh();

@@ -1,9 +1,10 @@
 <view class="body container fw d-flex-row" style="padding-bottom: {{ systemInfo.safeAreaInset ? '34' : '0' }}px">
-  <navigator class="coupon-container d-flex-column" wx:for="{{ coupons }}" bind:longpress="tapFeedback" data-id="coupon${{ index }}" hover-class="coupon-container-hover">
+  <navigator class="coupon-container {{ currentCoupon === item.id && 'coupon-container-expand' }} d-flex-column" wx:for="{{ coupons }}" wx:key="{{ item.id }}" bind:longpress="tapFeedback" data-id="{{ item.id }}" hover-class="coupon-container-hover">
     <image src="{{ item.thumbnail }}" class="coupon-background-image fw fh" lazy-load mode="aspectFill"/>
-    <view class="coupon-detail fw container d-flex-column justify-content-center">
+    <view class="coupon-detail  {{ currentCoupon === item.id && 'coupon-detail-expand' }} fw container d-flex-column align-items-center">
       <label class="coupon-detail-title">{{ item.displayName[locale] }}</label>
-      <label class="coupon-detail-description">{{ item.amount }}% Off</label>
+      <label class="coupon-detail-description">{{ item.amount }}% Off · {{ localepkg[locale].due }}: {{ item.due }}</label>
+      <image src="{{ context }}" class="coupon-detail-qrcode" mode="aspectFit" />
     </view>
   </navigator>
   <view class="description fw">{{ localepkg[locale].description }}</view>
