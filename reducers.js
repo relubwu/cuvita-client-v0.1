@@ -15,6 +15,7 @@ import {
 import PAGE_REDUCER_DISCOVERY from './pages/discovery/reducers';
 import PAGE_REDUCER_ME from './pages/me/reducers';
 import PAGE_REDUCER_QRCODE from './pages/qrcode/reducers';
+import PAGE_REDUCER_COUPON from './pages/coupon/reducers';
 const { detectSafeAreaInset } = require('./utils/util');
 
 /**
@@ -157,7 +158,8 @@ const GLOBAL_REDUCERS = combineReducers({
 const PAGE_REDUCERS = combineReducers({
   discovery: PAGE_REDUCER_DISCOVERY,
   me: PAGE_REDUCER_ME,
-  qrcode: PAGE_REDUCER_QRCODE
+  qrcode: PAGE_REDUCER_QRCODE,
+  coupon: PAGE_REDUCER_COUPON
 });
 
 /**
