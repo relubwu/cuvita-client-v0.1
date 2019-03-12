@@ -189,6 +189,11 @@ Component({
         title: localepkg[this.data.locale].pulldownrefresh,
         mask: true
       });
+      // 无网络状态处理
+      if (!Store.getState().global.userInfo)
+        app.login().then(res => {
+          app.getMemberInfo(res);
+        });
       setTimeout(() => {
         this.requestPageData();
         Store.dispatch(actions.stopPullDownRefresh());

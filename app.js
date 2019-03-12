@@ -58,22 +58,10 @@ App({
       title: localepkg[store.getState().global.locale].login,
       mask: true
     });
-    wx.login({
-      success: res => {
-        that.request('/dispatch', 'GET', {
-          code: res.code
-        }).then(data => {
-          store.dispatch(actions.setUserInfo(data.userInfo));
-          if (!!data.memberInfo) {
-            store.dispatch(actions.updateMemberInfo(data.memberInfo));
-            wx.setStorage({
-              key: 'memberInfo',
-              data: data.memberInfo
-            });
-          }
-          wx.hideLoading();
-        });
-      }
+    this.login().then(res => {
+      that.fetchMemberInfo(res).then(() => {
+        wx.hideLoading();
+      });
     });
   },
 
@@ -84,7 +72,7 @@ App({
   },
 
   /**
-   * 封装wx.request
+   * 封装wx.request()
    * @param directory, Object data, String method
    * @return Promise ? resolve() : reject()
    */
@@ -127,7 +115,39 @@ App({
   url(e) {
     return this.globalData.api.concat(e);
   },
+
+  /**
+   * 封装wx.login()
+   */
+  login(e) {
+    return new Promise((resolve, reject) => {
+      wx.login({
+        success(res) {
+          resolve(res);
+        } 
+      });
+    });
+  },
   
+  fetchMemberInfo(res) {
+    let that = this;
+    return new Promise((resolve, reject) => {
+      that.request('/dispatch', 'GET', {
+        code: res.code
+      }).then(data => {
+        store.dispatch(actions.setUserInfo(data.userInfo));
+        if (!!data.memberInfo) {
+          store.dispatch(actions.updateMemberInfo(data.memberInfo));
+          wx.setStorage({
+            key: 'memberInfo',
+            data: data.memberInfo
+          });
+        }
+        resolve();
+      });
+    });
+  },
+
   globalData: {
 
   }
