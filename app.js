@@ -54,6 +54,10 @@ App({
         store.dispatch(actions.setMemberInfo(res));
       }
     });
+    wx.showLoading({
+      title: localepkg[store.getState().global.locale].login,
+      mask: true
+    });
     wx.login({
       success: res => {
         that.request('/dispatch', 'GET', {
@@ -67,6 +71,7 @@ App({
               data: data.memberInfo
             });
           }
+          wx.hideLoading();
         });
       }
     });
