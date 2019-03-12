@@ -2,7 +2,7 @@
 <nav-bar background="bg-transparent" title="" />
 <!-- Body -->
 <scroll-view class="body fvw fvh">
-  <pane context="{{ context }}" instruction="{{ instruction }}" />
+  <pane context="{{ context }}" instruction="{{ instruction }}" brand="{{ brand }}" showdetail="{{ showDetail }}" bind:toggledetail="toggleDetail"/>
 </scroll-view>
 <!-- Background -->
 <background />

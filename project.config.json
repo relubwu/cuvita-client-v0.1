@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": 3,
 			"list": [
 				{
 					"id": -1,
@@ -58,6 +58,12 @@
 					"name": "history",
 					"pathName": "pages/history/index",
 					"query": "cardno=00000002",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "coupon",
+					"pathName": "pages/coupon/index",
 					"scene": null
 				}
 			]

@@ -9,10 +9,12 @@ import {
   SET_SYSTEM_INFO,
   SET_USER_INFO,
   SET_MEMBER_INFO,
+  UPDATE_MEMBER_INFO,
   SET_NETWORK_STATUS
 } from './actions';
 import PAGE_REDUCER_DISCOVERY from './pages/discovery/reducers';
 import PAGE_REDUCER_ME from './pages/me/reducers';
+import PAGE_REDUCER_QRCODE from './pages/qrcode/reducers';
 const { detectSafeAreaInset } = require('./utils/util');
 
 /**
@@ -114,6 +116,9 @@ function memberInfo (state = DEFAULT_MEMBER_INFO, action) {
     case SET_MEMBER_INFO:
       return { ...action.res };
       break;
+    case UPDATE_MEMBER_INFO:
+      return { ...action.res };
+      break;
     default:
       return state;
       break;
@@ -151,7 +156,8 @@ const GLOBAL_REDUCERS = combineReducers({
  */
 const PAGE_REDUCERS = combineReducers({
   discovery: PAGE_REDUCER_DISCOVERY,
-  me: PAGE_REDUCER_ME
+  me: PAGE_REDUCER_ME,
+  qrcode: PAGE_REDUCER_QRCODE
 });
 
 /**

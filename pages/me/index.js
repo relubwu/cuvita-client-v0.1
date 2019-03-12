@@ -1,7 +1,7 @@
-import * as actions from './actions';
+import * as actions from 'actions';
 const app = getApp();
 const Store = app.store;
-const localepkg = require('./localepkg');
+const localepkg = require('localepkg');
 
 /**
  * CUVita Client Side Implementations - index.js
@@ -37,9 +37,6 @@ Component({
       this.unsubscribe = Store.subscribe(() => {
         this.relaySubscription();
       });
-      console.group(` %cpageData %c/page/me %c@ ${new Date().toLocaleTimeString("en-US")}`, "font-weight: normal; color: #888888", "font-weight: bold", "font-weight: normal; color: #888888");
-      console.log(this.data);
-      console.groupEnd();
     },
     unattached() {
       this.unsubscribe();

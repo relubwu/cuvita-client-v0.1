@@ -41,6 +41,12 @@ App({
     wx.onNetworkStatusChange(({ networkType }) => {
       store.dispatch(actions.setNetworkStatus(networkType));
     });
+    wx.getStorage({
+      key: 'memberInfo',
+      success(res) {
+        store.dispatch(actions.setMemberInfo(res));
+      }
+    });
     wx.login({
       success: res => {
         that.request('/dispatch', 'GET', {
@@ -48,7 +54,11 @@ App({
         }).then(data => {
           store.dispatch(actions.setUserInfo(data.userInfo));
           if (!!data.memberInfo) {
-            store.dispatch(actions.setMemberInfo(data.memberInfo));
+            store.dispatch(actions.updateMemberInfo(data.memberInfo));
+            wx.setStorage({
+              key: 'memberInfo',
+              data: data.memberInfo
+            });
           }
         });
       }

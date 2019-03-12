@@ -100,9 +100,6 @@ Component({
         mask: !0
       });
       this.requestPageData();
-      console.group(` %cpageData %c/page/discovery %c@ ${new Date().toLocaleTimeString("en-US")}`, "font-weight: normal; color: #888888", "font-weight: bold", "font-weight: normal; color: #888888");
-      console.log(this.data);
-      console.groupEnd();
     },
     unattached() {
       this.unsubscribe();

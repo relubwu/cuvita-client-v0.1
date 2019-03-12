@@ -6,14 +6,14 @@ const { debounce } = require('../../utils/util');
 
 /**
  * CUVita Client Side Implementations - index.js
- * @scope /pages/index
+ * @scope /pages/coupon
  * @author relubwu
  * @version 0.1.5
  * @copyright  © CHINESE UNION 2019
  */
 
 const DEFAULT_THROTTLE_GROUP = {};
-const FETCH_URL = '/membership/fetchHistory';
+const FETCH_URL = '/membership/fetchCoupons';
 
 Page({
   data: {
@@ -28,26 +28,27 @@ Page({
     });
     wx.setNavigationBarTitle({ title: localepkg[that.data.locale].title });
     if (!!Store.getState().global.memberInfo) {
-      app.request(FETCH_URL, 'GET', { openid: Store.getState().global.userInfo.openid }).then(({ history }) => {
-        that.formatHistory(history);
+      app.request(FETCH_URL, 'GET', { openid: Store.getState().global.userInfo.openid }).then(({ coupons }) => {
+        that.formatCoupons(coupons);
       });
     } else {
       this.setData({
-        history: []
+        coupons: []
       });
     }
   },
-  formatHistory(history) {
+  formatCoupons(coupons) {
     let res = [];
-    for (let e of history) {
-      let time = new Date(e.time).toLocaleDateString('en-US', { month: "short", day: "numeric" });
-      let accredited = [...e.accredited.split('.')];
-      res.push({ ...e, time, accredited });
+    for (let e of coupons) {
+      let d = new Date(e.assigned);
+      let assigned = d.toLocaleDateString('en-US', { month: "short", day: "numeric" });
+      d.setDate(d.getDate() + e.due);
+      let due = d.toLocaleDateString('en-US', { month: "short", day: "numeric" });
+      res.push({ ...e, assigned, due });
     }
     this.setData({
-      history: res
+      coupons: res
     });
-    
   },
   tapFeedback({ currentTarget: { dataset: { id } } }) {
     if (!this.throttle[`${actions.TAP_FEEDBACK}$${id}`]) {
@@ -64,7 +65,7 @@ Page({
     app.request(FETCH_URL, 'GET', { openid: Store.getState().global.userInfo.openid }).then(res => {
       setTimeout(() => {
         wx.stopPullDownRefresh();
-        that.formatHistory();
+        that.formatCoupons();
       }, 500);
     });
   }

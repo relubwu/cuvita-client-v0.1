@@ -5,7 +5,8 @@
     "pages/license/index",
     "pages/qrcode/index",
     "pages/article/index",
-    "pages/history/index"
+    "pages/history/index",
+    "pages/coupon/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

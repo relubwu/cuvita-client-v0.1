@@ -34,9 +34,6 @@ Component({
       this.unsubscribe = Store.subscribe(() => {
         this.relaySubscription();
       });
-      console.group(` %cpageData %c/page/vitae %c@ ${new Date().toLocaleTimeString("en-US")}`, "font-weight: normal; color: #888888", "font-weight: bold", "font-weight: normal; color: #888888");
-      console.log(this.data);
-      console.groupEnd();
     },
     unattached() {
       this.unsubscribe();

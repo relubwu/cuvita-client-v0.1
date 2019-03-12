@@ -1,6 +1,7 @@
+import * as actions from 'actions';
 const app = getApp();
 const Store = app.store;
-const localepkg = require('./localepkg');
+const localepkg = require('localepkg');
 import QR from "../../miniprogram_npm/wx-base64-qrcode/index";
 
 /**
@@ -14,17 +15,29 @@ import QR from "../../miniprogram_npm/wx-base64-qrcode/index";
 Page({
   data: {
     systemInfo: Store.getState().global.systemInfo,
+    showDetail: !!0,
     localepkg: localepkg
   },
   onLoad(options) {
     let that = this;
+    this.unsubscribe = Store.subscribe(() => {
+      this.relaySubscription();
+    });
     this.setData({
       locale: Store.getState().global.locale,
       context: QR.createQrCodeImg(options.context || 'https://cuvita.relubwu.com', Store.getState().global.systemInfo.screenWidth * 0.7),
-      instruction: options.instruction || localepkg[Store.getState().global.locale].instruction
+      instruction: options.instruction || localepkg[Store.getState().global.locale].instruction,
+      brand: localepkg[Store.getState().global.locale].brand
     });
-    console.group(` %cpageData %c/page/qrcode %c@ ${new Date().toLocaleTimeString("en-US")}`, "font-weight: normal; color: #888888", "font-weight: bold", "font-weight: normal; color: #888888");
-    console.log(this.data);
-    console.groupEnd();
+  },
+  relaySubscription() {
+    let newState = Store.getState();
+    if (this.data.showDetail !== newState.pages.qrcode.showDetail)
+      this.setData({
+        showDetail: newState.pages.qrcode.showDetail,
+      });
+  },
+  toggleDetail() {
+    Store.dispatch(actions.toggleQRCodeDetails());
   }
 });
