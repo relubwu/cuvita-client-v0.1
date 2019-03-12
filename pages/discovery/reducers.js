@@ -85,6 +85,6 @@ const reducers = combineReducers({
   pageData,
   pullDownRefresh,
   scrollToUpper
-})
+});
 
 export default reducers;
