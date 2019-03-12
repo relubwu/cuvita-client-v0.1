@@ -16,6 +16,7 @@ export const SET_REGION = "SET_REGION";
 export const SET_SYSTEM_INFO = "SET_SYSTEM_INFO";
 export const SET_USER_INFO = "SET_USER_INFO";
 export const SET_MEMBER_INFO = "SET_MEMBER_INFO";
+export const UPDATE_MEMBER_INFO = "UPDATE_MEMBER_INFO";
 export const SET_NETWORK_STATUS = "SET_NETWORK_STATUS";
 
 /**
@@ -55,6 +56,10 @@ export function setUserInfo(res) {
 
 export function setMemberInfo(res) {
   return { type: SET_MEMBER_INFO, res };
+}
+
+export function updateMemberInfo(res) {
+  return { type: UPDATE_MEMBER_INFO, res };
 }
 
 export function setNetworkStatus(status) {
