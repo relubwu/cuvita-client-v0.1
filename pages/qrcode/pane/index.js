@@ -20,6 +20,13 @@ Component({
     instruction: {
       type: String,
       value: Store.getState().global.locale
+    },
+    brand: {
+      type: String
+    },
+    showdetail: {
+      type: Boolean,
+      value: false
     }
   },
   lifetimes: {
@@ -34,6 +41,9 @@ Component({
             });
           });
         }
+      });
+      this.setData({
+        name: Store.getState().global.memberInfo.name
       });
     },
     detached() {
@@ -50,6 +60,10 @@ Component({
       return {
         x, y, z
       }
+    },
+    tapFeedback() {
+      wx.vibrateShort({});
+      this.triggerEvent('toggledetail', {});
     }
   }
 })

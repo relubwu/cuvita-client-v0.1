@@ -1,6 +1,10 @@
 <view class="fw fh d-flex-column align-items-center justify-content-center">
-  <view class="qrcode-container d-flex-column align-items-center justify-content-center" style="{{ Layout.calc(orientation.x, orientation.y) }}">
+  <view class="qrcode-container d-flex-column align-items-center justify-content-center" style="{{ Layout.calc(orientation.x, orientation.y) }}" hover-class="qrcode-container-hover" bind:longpress="tapFeedback">
     <image src="{{ context }}" class="qrcode-canvas" />
+    <view class="qrcode-detail {{ showdetail && 'qrcode-detail-show' }} fw d-flex-column align-items-center">
+      <label class="qrcode-brand">{{ brand }}</label>
+      <label class="qrcode-name">{{ name }}</label>
+    </view>
     <label class="qrcode-label">{{ instruction }}</label>
   </view>
 </view>
