@@ -11,6 +11,7 @@
 .body-wrapper {
   box-sizing: border-box;
   padding: 7px 15px;
+  padding-top: 21px;
 }
 
 .entry {
@@ -35,11 +36,34 @@
 }
 
 .entry-left {
+  width: 65%;
   align-items: flex-start;
   justify-content: center;
 }
 
+.entry-left-title {
+  font-size: 12pt;
+  font-weight: bold;
+  text-transform: capitalize;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.entry-left-description {
+  font-size: 11pt;
+  color: #b2b2b2;
+}
+
 .entry-right {
+  width: 35%;
   align-items: flex-end;
   justify-content: center;
+}
+
+.description {
+  margin: 7px 15px;
+  font-size: 11pt;
+  color: #b2b2b2;
+  text-align: center;
 }

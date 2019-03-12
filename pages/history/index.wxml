@@ -1,15 +1,11 @@
-<view class="page__hd">
-  <view class="page__title">{{ localepkg[locale].title }}</view>
-  <view class="page__desc">{{ localepkg[locale].subtitle }}</view>
-</view>
 <view class="body-wrapper fw">
   <view wx:if="{{history.length == 0}}" class="fw d-flex-column" style="color: #b2b2b2; font-size 14px; align-items: center; justify-content: center;">
     {{ localepkg[locale].nodata }}
   </view>
   <view class="entry fw d-flex-row align-items-center justify-content-center" wx:for="{{ history }}" hover-class="entry-hover" bind:longpress="tapFeedback">
-    <view class="entry-left d-flex-column fw fh">
-      <view style="font-size: 12pt; font-weight: bold; text-transform: capitalize">{{item.vendor}}</view>
-      <view style="font-size: 11pt; color: #b2b2b2;">{{ item.time }}</view>
+    <view class="entry-left d-flex-column fh">
+      <view class="entry-left-title fw">{{ item.displayName[locale] }}</view>
+      <view class="entry-left-description fw">{{ item.time }}</view>
     </view>
     <view class="entry-right fw fh d-flex-column">
       <view>
@@ -18,4 +14,5 @@
       </view>
     </view>
   </view>
+  <view class="description fw">{{ localepkg[locale].description }}</view>
 </view>
