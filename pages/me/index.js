@@ -59,7 +59,8 @@ Component({
     },
     setLocale({ currentTarget: { dataset: { locale } } }) {
       wx.showLoading({
-        title: localepkg[this.data.locale].setlocale
+        title: localepkg[this.data.locale].setlocale,
+        mask: true
       });
       wx.setStorage({
         key: 'locale',
