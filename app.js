@@ -26,6 +26,13 @@ App({
   localepkg,
 
   onLaunch: function () {
+    if (wx.getStorageSync('version') !== '0.1.5') {
+      wx.clearStorageSync();
+      wx.setStorage({
+        key: 'version',
+        data: '0.1.5',
+      });
+    }
     let that = this;
     that.onAppRoute();
     wx.getSystemInfo({
