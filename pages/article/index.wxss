@@ -17,10 +17,6 @@ page {
   font-size: 14pt;
 }
 
-.footer {
-  padding-bottom: 16px;
-}
-
 .font-label {
   font-size: 11pt;
   text-align: center;
