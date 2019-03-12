@@ -1,0 +1,10 @@
+<view class="body container fw d-flex-row" style="padding-bottom: {{ systemInfo.safeAreaInset ? '34' : '0' }}px">
+  <navigator class="coupon-container d-flex-column" wx:for="{{ coupons }}" bind:longpress="tapFeedback" data-id="coupon${{ index }}" hover-class="coupon-container-hover">
+    <image src="{{ item.thumbnail }}" class="coupon-background-image fw fh" lazy-load mode="aspectFill"/>
+    <view class="coupon-detail fw container d-flex-column justify-content-center">
+      <label class="coupon-detail-title">{{ item.displayName[locale] }}</label>
+      <label class="coupon-detail-description">{{ item.amount }}% Off</label>
+    </view>
+  </navigator>
+  <view class="description fw">{{ localepkg[locale].description }}</view>
+</view>

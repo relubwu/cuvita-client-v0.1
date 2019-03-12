@@ -1,0 +1,72 @@
+/**
+ * CUVita Client Side Implementations - index.wxss
+ * @scope /pages/coupon
+ * @author relubwu
+ * @version 0.1.5
+ * @copyright  © CHINESE UNION 2019
+ */
+
+/**
+ * z-index table
+ * @1 :: .coupon-detail
+ * @0 :: .coupon-background-image
+ */
+
+.body {
+  flex-wrap: wrap;
+}
+
+.coupon-container {
+  position: relative;
+  background: white;
+  width: calc(50% - 14px);
+  height: 50vw;
+  box-sizing: border-box;
+  margin: 7px 7px;
+  border-radius: 5px;
+  box-shadow: 0 0 5px #b2b2b2b2;
+  overflow: hidden;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+}
+
+.coupon-container-hover {
+  -webkit-transform: scale(1.02);
+  transform: scale(1.02);
+}
+
+.coupon-background-image {
+  position: absolute;
+  background: #b2b2b2;
+}
+
+.coupon-detail {
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
+  background: white;
+  outline: dashed white;
+}
+
+.coupon-detail-title {
+  font-size: 14pt;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.coupon-detail-description {
+  font-size: 11pt;
+  color: #b2b2b2;
+  text-transform: capitalize;
+}
+
+.description {
+  margin: 7px 15px;
+  font-size: 11pt;
+  color: #b2b2b2;
+  text-align: center;
+}
