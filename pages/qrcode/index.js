@@ -15,7 +15,7 @@ import QR from "../../miniprogram_npm/wx-base64-qrcode/index";
 Page({
   data: {
     systemInfo: Store.getState().global.systemInfo,
-    showDetail: !!0,
+    showDetail: Store.getState().pages.qrcode.showDetail,
     localepkg: localepkg
   },
   onLoad(options) {
