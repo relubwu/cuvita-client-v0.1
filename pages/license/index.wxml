@@ -10,11 +10,6 @@
     <text class="license-body">Copyright 2016-present Youzan</text>
   </view>
   <view class="license d-flex-column align-items-center justify-content-center">
-    <image src="https://file.iviewui.com/weapp/dist/78ae42c6e59b2f1e84e3223365b9c7bc.png" mode="aspectFit" style="width: 50vw; height: 25vw;" />
-    <label class="license-title fw d-flex-column">iview-weapp</label>
-    <text class="license-body">Copyright (c) 2018-present iView</text>
-  </view>
-  <view class="license d-flex-column align-items-center justify-content-center">
     <image src="https://redux.js.org/img/redux.svg" mode="aspectFit" style="width: 50vw; height: 25vw;" />
     <label class="license-title fw d-flex-column">Redux</label>
     <text class="license-body">Copyright (c) 2015-present Dan Abramov</text>
