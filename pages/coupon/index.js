@@ -3,7 +3,6 @@ const app = getApp();
 const Store = app.store;
 const localepkg = require('localepkg');
 const { debounce } = require('../../utils/util');
-import QR from "../../miniprogram_npm/wx-base64-qrcode/index";
 
 /**
  * CUVita Client Side Implementations - index.js
@@ -29,6 +28,7 @@ Page({
     this.unsubscribe = Store.subscribe(() => {
       this.relaySubscription();
     });
+    this.worker = wx.createWorker('/async/drawqr/index.js');
     this.setData({
       locale: Store.getState().global.locale
     });
@@ -46,6 +46,7 @@ Page({
   onUnload() {
     Store.dispatch(actions.resetCouponDetail());
     this.unsubscribe();
+    this.worker.terminate();
   },
   relaySubscription() {
     let newState = Store.getState();
@@ -77,8 +78,40 @@ Page({
     } else {
       this.throttle[`${actions.TAP_FEEDBACK}$${id}`]();
     }
-    this.setData({
-      context: QR.createQrCodeImg(`https://cuvita.relubwu.com/coupon/use?id=${id}`, Store.getState().global.systemInfo.screenWidth * 0.3)
+    this.worker.postMessage({
+      context: `https://cuvita.relubwu.com/coupon/use?id=${id}`,
+      screenWidth: Store.getState().global.systemInfo.screenWidth
+    });
+    this.worker.onMessage(context => {
+      this.setData({
+        ...context
+      });
+    });
+  },
+  showActionList({ currentTarget: { dataset } }) {
+    let that = this;
+    let { id, vendorid, realm } = dataset;
+    if (!this.throttle[`${actions.TAP_FEEDBACK}$${id}`]) {
+      this.throttle[`${actions.TAP_FEEDBACK}$${id}`] = debounce(() =>
+        wx.vibrateShort()
+        , 250);
+      this.throttle[`${actions.TAP_FEEDBACK}$${id}`]();
+    } else {
+      this.throttle[`${actions.TAP_FEEDBACK}$${id}`]();
+    }
+    wx.showActionSheet({
+      itemList: [localepkg[that.data.locale].visitvendor],
+      success(res) {
+        switch (res.tapIndex) {
+          case 0:
+            wx.navigateTo({
+              url: `/pages/${realm}/detail/index?vendorid=${vendorid}`
+            });
+            break;
+          default:
+            break;
+        }
+      }
     });
   },
   onPullDownRefresh() {

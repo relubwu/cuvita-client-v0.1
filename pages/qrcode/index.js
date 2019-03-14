@@ -2,7 +2,6 @@ import * as actions from 'actions';
 const app = getApp();
 const Store = app.store;
 const localepkg = require('localepkg');
-import QR from "../../miniprogram_npm/wx-base64-qrcode/index";
 
 /**
  * CUVita Client Side Implementations - index.js
@@ -23,12 +22,23 @@ Page({
     this.unsubscribe = Store.subscribe(() => {
       this.relaySubscription();
     });
+    this.worker = wx.createWorker('/async/drawqr/index.js');
+    this.worker.postMessage({
+      context: options.context,
+      screenWidth: Store.getState().global.systemInfo.screenWidth
+    });
     this.setData({
       locale: Store.getState().global.locale,
-      context: QR.createQrCodeImg(options.context || 'https://cuvita.relubwu.com', Store.getState().global.systemInfo.screenWidth * 0.7),
       instruction: options.instruction || localepkg[Store.getState().global.locale].instruction,
       brand: localepkg[Store.getState().global.locale].brand
     });
+    this.worker.onMessage(context => {
+      // 单次渲染完成后直接detach
+      that.worker.terminate();
+      that.setData({
+        ...context
+      });
+    })
   },
   relaySubscription() {
     let newState = Store.getState();

@@ -7,7 +7,8 @@
     "pages/article/index",
     "pages/history/index",
     "pages/coupon/index",
-    "pages/gourmet/list/index"
+    "pages/gourmet/list/index",
+    "pages/gourmet/detail/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -16,5 +17,6 @@
     "navigationBarTextStyle": "white",
     "backgroundColorTop": "#d1233e",
     "backgroundColorBottom": "#fafafa"
-  }
+  },
+  "workers": "async"
 }
