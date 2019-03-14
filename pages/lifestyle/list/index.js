@@ -5,7 +5,7 @@ const localepkg = require('./localepkg');
 
 /**
  * CUVita Client Side Implementations - index.js
- * @scope /pages/gourmet/list
+ * @scope /pages/lifestyle/list
  * @author relubwu
  * @version 0.1.5
  * @copyright  © CHINESE UNION 2019
@@ -18,16 +18,13 @@ Page({
   data: {
     systemInfo: Store.getState().global.systemInfo,
     localepkg,
-    current: Store.getState().pages.gourmet.list.currentCategory,
+    current: Store.getState().pages.lifestyle.list.currentCategory,
     categories: [
-      "fastfood",
-      "boba",
-      "asia",
-      "hotpot",
-      "bbq",
-      "dimsum",
-      "chinese",
-      "western"
+      "salon",
+      "fitness",
+      "fashion",
+      "game",
+      "ktv"
     ]
   },
   onLoad() {
@@ -47,9 +44,9 @@ Page({
   },
   relaySubscription() {
     let newState = Store.getState();
-    if (this.data.current !== newState.pages.gourmet.list.currentCategory)
+    if (this.data.current !== newState.pages.lifestyle.list.currentCategory)
       this.setData({
-        current: newState.pages.gourmet.list.currentCategory
+        current: newState.pages.lifestyle.list.currentCategory
       });
   },
   onChange({ detail: { index } }) {
@@ -66,7 +63,7 @@ Page({
       title: localepkg[that.data.locale].loading
     });
     app.request(FETCH_URL, 'GET', {
-      realm: 'gourmet',
+      realm: 'lifestyle',
       categories: that.data.categories
     }).then(data => {
       that.setData({
@@ -80,7 +77,7 @@ Page({
     wx.vibrateShort({});
     wx.showNavigationBarLoading();
     app.request(FETCH_URL, 'GET', {
-      realm: 'gourmet',
+      realm: 'lifestyle',
       categories: that.data.categories
     }).then(data => {
       that.setData({

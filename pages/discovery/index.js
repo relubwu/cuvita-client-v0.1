@@ -85,7 +85,8 @@ Component({
         },
         {
           is: 'lifestyle',
-          icon: '/assets/icons/lifestyle.png'
+          icon: '/assets/icons/lifestyle.png',
+          url: '/pages/lifestyle/list/index'
         }
       ]
     }
