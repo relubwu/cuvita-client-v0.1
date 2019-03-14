@@ -17,5 +17,6 @@
     "navigationBarTextStyle": "white",
     "backgroundColorTop": "#d1233e",
     "backgroundColorBottom": "#fafafa"
-  }
+  },
+  "workers": "async"
 }

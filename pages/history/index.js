@@ -50,10 +50,9 @@ Page({
     });
     
   },
-  tapFeedback({ currentTarget: { dataset } }) {
+  showActionList({ currentTarget: { dataset } }) {
     let that = this;
-    let { id } = dataset;
-    let { vendorid } = dataset;
+    let { id, vendorid, realm } = dataset;
     if (!this.throttle[`${actions.TAP_FEEDBACK}$${id}`]) {
       this.throttle[`${actions.TAP_FEEDBACK}$${id}`] = debounce(() =>
         wx.vibrateShort()
@@ -67,6 +66,9 @@ Page({
       success(res) {
         switch(res.tapIndex) {
           case 0:
+            wx.navigateTo({
+              url: `/pages/${realm}/detail/index?vendorid=${vendorid}`
+            });
             break;
           default:
             break;

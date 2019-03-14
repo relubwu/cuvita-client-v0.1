@@ -2,7 +2,7 @@
   <view wx:if="{{history.length == 0}}" class="fw d-flex-column nodata">
     {{ localepkg[locale].nodata }}
   </view>
-  <view class="entry fw d-flex-row align-items-center justify-content-center" wx:for="{{ history }}" hover-class="entry-hover" bind:longpress="tapFeedback" data-id="{{ index }}" data-vendorid="{{ item.vendorid }}">
+  <view class="entry fw d-flex-row align-items-center justify-content-center" wx:for="{{ history }}" hover-class="entry-hover" bind:longpress="showActionList" data-id="{{ index }}" data-vendorid="{{ item.vendorid }}" data-realm="{{ item.realm }}">
     <view class="entry-left d-flex-column fh">
       <view class="entry-left-title fw">{{ item.displayName[locale] }}</view>
       <view class="entry-left-description fw">{{ item.time }}</view>

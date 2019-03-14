@@ -1,6 +1,6 @@
 module.exports = {
   zh_CN: {
-    title: "娱乐",
+    title: "生活",
     search: "周末去哪儿",
     loading: "加载中",
     salon: "美发沙龙",
