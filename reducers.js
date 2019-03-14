@@ -8,6 +8,7 @@ import {
   DEFAULT_REGION,
   SET_SYSTEM_INFO,
   SET_USER_INFO,
+  UPDATE_USER_INFO,
   SET_MEMBER_INFO,
   UPDATE_MEMBER_INFO,
   SET_NETWORK_STATUS
@@ -16,6 +17,7 @@ import PAGE_REDUCER_DISCOVERY from './pages/discovery/reducers';
 import PAGE_REDUCER_ME from './pages/me/reducers';
 import PAGE_REDUCER_QRCODE from './pages/qrcode/reducers';
 import PAGE_REDUCER_COUPON from './pages/coupon/reducers';
+import PAGE_REDUCER_GOURMET from './pages/gourmet/reducers';
 const { detectSafeAreaInset } = require('./utils/util');
 
 /**
@@ -106,6 +108,9 @@ function userInfo (state = DEFAULT_USER_INFO, action) {
     case SET_USER_INFO:
       return { ...action.res };
       break;
+    case UPDATE_USER_INFO:
+      return { ...action.res };
+      break;
     default: 
       return state;
       break;
@@ -159,7 +164,8 @@ const PAGE_REDUCERS = combineReducers({
   discovery: PAGE_REDUCER_DISCOVERY,
   me: PAGE_REDUCER_ME,
   qrcode: PAGE_REDUCER_QRCODE,
-  coupon: PAGE_REDUCER_COUPON
+  coupon: PAGE_REDUCER_COUPON,
+  gourmet: PAGE_REDUCER_GOURMET
 });
 
 /**

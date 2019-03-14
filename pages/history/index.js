@@ -18,7 +18,8 @@ const FETCH_URL = '/membership/fetchHistory';
 Page({
   data: {
     systemInfo: Store.getState().global.systemInfo,
-    localepkg: localepkg
+    localepkg: localepkg,
+    history: []
   },
   onLoad() {
     this.throttle = DEFAULT_THROTTLE_GROUP;

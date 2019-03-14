@@ -6,7 +6,8 @@
     "pages/qrcode/index",
     "pages/article/index",
     "pages/history/index",
-    "pages/coupon/index"
+    "pages/coupon/index",
+    "pages/gourmet/list/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

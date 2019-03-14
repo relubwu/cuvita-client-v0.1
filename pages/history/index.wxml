@@ -1,5 +1,5 @@
 <view class="body-wrapper fw">
-  <view wx:if="{{history.length == 0}}" class="fw d-flex-column" style="color: #b2b2b2; font-size 14px; align-items: center; justify-content: center;">
+  <view wx:if="{{history.length == 0}}" class="fw d-flex-column nodata">
     {{ localepkg[locale].nodata }}
   </view>
   <view class="entry fw d-flex-row align-items-center justify-content-center" wx:for="{{ history }}" hover-class="entry-hover" bind:longpress="tapFeedback" data-id="{{ index }}" data-vendorid="{{ item.vendorid }}">
@@ -14,5 +14,5 @@
       </view>
     </view>
   </view>
-  <view class="description fw">{{ localepkg[locale].description }}</view>
+  <view wx:if="{{ history.length != 0 }}" class="description fw">{{ localepkg[locale].description }}</view>
 </view>

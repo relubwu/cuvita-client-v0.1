@@ -49,6 +49,12 @@ App({
       store.dispatch(actions.setNetworkStatus(networkType));
     });
     wx.getStorage({
+      key: 'userInfo',
+      success(res) {
+        store.dispatch(actions.setUserInfo(res));
+      }
+    });
+    wx.getStorage({
       key: 'memberInfo',
       success(res) {
         store.dispatch(actions.setMemberInfo(res));
@@ -135,7 +141,11 @@ App({
       that.request('/dispatch', 'GET', {
         code: res.code
       }).then(data => {
-        store.dispatch(actions.setUserInfo(data.userInfo));
+        store.dispatch(actions.updateUserInfo(data.userInfo));
+        wx.setStorage({
+          key: 'userInfo',
+          data: data.userInfo.openid
+        });
         if (!!data.memberInfo) {
           store.dispatch(actions.updateMemberInfo(data.memberInfo));
           wx.setStorage({

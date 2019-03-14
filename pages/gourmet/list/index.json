@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "van-search": "/miniprogram_npm/vant-weapp/search/index",
+    "van-card": "/miniprogram_npm/vant-weapp/card/index",
+    "van-tag": "/miniprogram_npm/vant-weapp/tag/index",
+    "van-rate": "/miniprogram_npm/vant-weapp/rate/index",
+    "i-tabs": "/miniprogram_npm/iview-weapp/tabs/index",
+    "i-tab": "/miniprogram_npm/iview-weapp/tab/index"
+  }
+}

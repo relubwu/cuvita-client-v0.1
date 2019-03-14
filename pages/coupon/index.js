@@ -20,7 +20,8 @@ Page({
   data: {
     systemInfo: Store.getState().global.systemInfo,
     currentCoupon: Store.getState().pages.coupon.currentCoupon,
-    localepkg: localepkg
+    localepkg: localepkg,
+    coupons: []
   },
   onLoad() {
     this.throttle = DEFAULT_THROTTLE_GROUP;

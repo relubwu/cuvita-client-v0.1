@@ -80,7 +80,8 @@ Component({
         },
         {
           is: 'gourmet',
-          icon: '/assets/icons/gourmet.png'
+          icon: '/assets/icons/gourmet.png',
+          url: '/pages/gourmet/list/index'
         },
         {
           is: 'lifestyle',
@@ -189,11 +190,6 @@ Component({
         title: localepkg[this.data.locale].pulldownrefresh,
         mask: true
       });
-      // 无网络状态处理
-      if (!Store.getState().global.userInfo)
-        app.login().then(res => {
-          app.getMemberInfo(res);
-        });
       setTimeout(() => {
         this.requestPageData();
         Store.dispatch(actions.stopPullDownRefresh());

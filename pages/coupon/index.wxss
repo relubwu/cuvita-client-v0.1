@@ -16,6 +16,13 @@
   flex-wrap: wrap;
 }
 
+.nodata {
+  padding-top: 14px;
+  color: #b2b2b2; 
+  font-size: 11pt;
+  text-align: center;
+}
+
 .coupon-container {
   position: relative;
   background: white;
