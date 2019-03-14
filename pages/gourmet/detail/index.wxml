@@ -1,5 +1,3 @@
-<!-- NAV_BAR -->
-<nav-bar background="bg-transparent" title="" />
 <!-- MAP -->
 <view class="map fw">
   <map id="map" longitude="{{ geoLocation.long }}" latitude="{{ geoLocation.lat }}" scale="15" bindcontroltap="controltap" markers="{{ markers }}" show-location class="fw fh" />

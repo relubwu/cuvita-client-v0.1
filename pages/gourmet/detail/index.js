@@ -22,11 +22,24 @@ Page({
     this.setData({
       locale: Store.getState().global.locale,
     });
+    wx.setNavigationBarTitle({
+      title: localepkg[this.data.locale].title
+    });
     app.request(FETCH_URL, 'GET', {
       vendorid: options.vendorid
     }).then(res => {
       that.setData({
-        ...res
+        ...res,
+        markers: [
+          {
+            id: 0,
+            latitude: res.geoLocation.lat,
+            longitude: res.geoLocation.long,
+            iconPath: '/assets/icons/vendor-pin.png',
+            width: 75,
+            height: 75
+          }
+        ]
       });
     });
   },
@@ -52,6 +65,11 @@ Page({
     wx.previewImage({
       urls: that.data.gallery,
       current: that.data.gallery[currentTarget.dataset.index]
+    });
+  },
+  onNavigateBack() {
+    wx.navigateBack({
+      delta: 1
     });
   }
 })

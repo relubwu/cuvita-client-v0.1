@@ -4,7 +4,7 @@ module.exports = {
     arrival: "迎新",
     events: "活动",
     gourmet: "美食",
-    lifestyle: "娱乐",
+    lifestyle: "生活",
     pulldownrefresh: "刷新中",
     loading: "加载中",
     services: "生活服务",
