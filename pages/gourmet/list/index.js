@@ -12,6 +12,7 @@ const localepkg = require('./localepkg');
  */
 
 const FETCH_URL = "/vendor/fetch";
+const DISPLAY_THRESHOLD = 5;
 
 Page({
   data: {
@@ -51,21 +52,43 @@ Page({
         current: newState.pages.gourmet.list.currentCategory
       });
   },
-  handleChangeScroll({ detail: { key } }) {
-    Store.dispatch(actions.switchCategory(key));
-    this.fetchData(key);
-  },
-  fetchData(category) {
+  onChange({ detail: { index } }) {
     let that = this;
-    wx.showNavigationBarLoading();
+    this.tapFeedback();
+    Store.dispatch(actions.switchCategory(that.data.categories[index], index));
+  },
+  tapFeedback() {
+    wx.vibrateShort({});
+  },
+  fetchData() {
+    let that = this;
+    wx.showLoading({
+      title: localepkg[that.data.locale].loading
+    });
     app.request(FETCH_URL, 'GET', {
       realm: 'gourmet',
-      category: category
+      categories: that.data.categories
     }).then(data => {
       that.setData({
         vendors: data
       });
-      setTimeout(() => wx.hideNavigationBarLoading(), 1000);
+      setTimeout(() => wx.hideLoading(), 1000);
+    });
+  },
+  onPullDownRefresh() {
+    let that = this;
+    wx.vibrateShort({});
+    wx.showNavigationBarLoading();
+    app.request(FETCH_URL, 'GET', {
+      realm: 'gourmet',
+      categories: that.data.categories
+    }).then(data => {
+      that.setData({
+        vendors: data
+      });
+      setTimeout(() => {
+        wx.stopPullDownRefresh();
+      }, 500);
     });
   }
 })

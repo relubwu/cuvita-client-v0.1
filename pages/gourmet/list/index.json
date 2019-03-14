@@ -4,7 +4,8 @@
     "van-card": "/miniprogram_npm/vant-weapp/card/index",
     "van-tag": "/miniprogram_npm/vant-weapp/tag/index",
     "van-rate": "/miniprogram_npm/vant-weapp/rate/index",
-    "i-tabs": "/miniprogram_npm/iview-weapp/tabs/index",
-    "i-tab": "/miniprogram_npm/iview-weapp/tab/index"
-  }
+    "van-tab": "/miniprogram_npm/vant-weapp/tab/index",
+    "van-tabs": "/miniprogram_npm/vant-weapp/tabs/index"
+  },
+  "enablePullDownRefresh": true
 }

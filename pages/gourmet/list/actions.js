@@ -14,6 +14,6 @@ export const SWITCH_CATEGORY_GOURMET = "SWITCH_CATEGORY_GOURMET";
 /**
  * Action Constructors
  */
-export function switchCategory(current) {
-  return { type: SWITCH_CATEGORY_GOURMET, current };
+export function switchCategory(value, index) {
+  return { type: SWITCH_CATEGORY_GOURMET, current: { value, index } };
 }

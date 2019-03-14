@@ -5,13 +5,13 @@ import {
 
 /**
  * CUVita Client Side Implementations - reducers.js
- * @scope /pages/me
+ * @scope /pages/gourmet/list
  * @author relubwu
  * @version 0.1.5
  * @copyright  © CHINESE UNION 2019
  */
 
-export const DEFAULT_CATEGORY_GOURMET = "fastfood";
+export const DEFAULT_CATEGORY_GOURMET = { value: "fastfood", index: 0 };
 
 export function currentCategory(state = DEFAULT_CATEGORY_GOURMET, action) {
   switch (action.type) {

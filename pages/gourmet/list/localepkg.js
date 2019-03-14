@@ -2,6 +2,7 @@ module.exports = {
   zh_CN: {
     title: "美食",
     search: "发现美食",
+    loading: "加载中",
     fastfood: "快餐便当",
     boba: "珍珠奶茶",
     asia: "亚洲美食",
@@ -14,6 +15,7 @@ module.exports = {
   en_US: {
     title: "Gourmet",
     search: "Search Restaurant",
+    loading: "Loading",
     fastfood: "Fastfood",
     boba: "Boba",
     asia: "Asia",
