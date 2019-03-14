@@ -26,6 +26,13 @@ App({
   localepkg,
 
   onLaunch: function () {
+    if (wx.getStorageSync('version') !== '0.1.5') {
+      wx.clearStorageSync();
+      wx.setStorage({
+        key: 'version',
+        data: '0.1.5',
+      });
+    }
     let that = this;
     that.onAppRoute();
     wx.getSystemInfo({
@@ -42,26 +49,25 @@ App({
       store.dispatch(actions.setNetworkStatus(networkType));
     });
     wx.getStorage({
+      key: 'userInfo',
+      success(res) {
+        store.dispatch(actions.setUserInfo(res));
+      }
+    });
+    wx.getStorage({
       key: 'memberInfo',
       success(res) {
         store.dispatch(actions.setMemberInfo(res));
       }
     });
-    wx.login({
-      success: res => {
-        that.request('/dispatch', 'GET', {
-          code: res.code
-        }).then(data => {
-          store.dispatch(actions.setUserInfo(data.userInfo));
-          if (!!data.memberInfo) {
-            store.dispatch(actions.updateMemberInfo(data.memberInfo));
-            wx.setStorage({
-              key: 'memberInfo',
-              data: data.memberInfo
-            });
-          }
-        });
-      }
+    wx.showLoading({
+      title: localepkg[store.getState().global.locale].login,
+      mask: true
+    });
+    this.login().then(res => {
+      that.fetchMemberInfo(res).then(() => {
+        wx.hideLoading();
+      });
     });
   },
 
@@ -72,7 +78,7 @@ App({
   },
 
   /**
-   * 封装wx.request
+   * 封装wx.request()
    * @param directory, Object data, String method
    * @return Promise ? resolve() : reject()
    */
@@ -115,7 +121,43 @@ App({
   url(e) {
     return this.globalData.api.concat(e);
   },
+
+  /**
+   * 封装wx.login()
+   */
+  login(e) {
+    return new Promise((resolve, reject) => {
+      wx.login({
+        success(res) {
+          resolve(res);
+        } 
+      });
+    });
+  },
   
+  fetchMemberInfo(res) {
+    let that = this;
+    return new Promise((resolve, reject) => {
+      that.request('/dispatch', 'GET', {
+        code: res.code
+      }).then(data => {
+        store.dispatch(actions.updateUserInfo(data.userInfo));
+        wx.setStorage({
+          key: 'userInfo',
+          data: data.userInfo.openid
+        });
+        if (!!data.memberInfo) {
+          store.dispatch(actions.updateMemberInfo(data.memberInfo));
+          wx.setStorage({
+            key: 'memberInfo',
+            data: data.memberInfo
+          });
+        }
+        resolve();
+      });
+    });
+  },
+
   globalData: {
 
   }

@@ -1,6 +1,6 @@
 <!-- NAV_BAR -->
 <nav-bar title="{{ localepkg[locale].discovery }}" dynamic background="{{ Layout.banner_bg(scrollTop, systemInfo.screenWidth, systemInfo.navigationBarHeight) >= 1 ? 'bg-primary' : 'bg-transparent' }}" opacity="{{ Layout.banner_bg(scrollTop, systemInfo.screenWidth, systemInfo.navigationBarHeight) - 0.1 }}">
-  <van-search custom-class="nav-bar-search" field-class="nav-bar-search-field" background="none" placeholder="{{ pageData.search[locale] }}" />
+  <van-search custom-class="nav-bar-search" field-class="nav-bar-search-field" background="none" placeholder="{{ pageData.search[locale] }}" readonly />
 </nav-bar>
 <view class="refresh fw d-flex-column align-items-center justify-content-center" style="padding-top: {{ systemInfo.statusBarHeight }}px;">
 </view>
@@ -28,7 +28,7 @@
   <!-- FUNCTION_NAVIGATORS -->
   <view class="functions fw" style="top: {{ Layout.functions_top(systemInfo.screenWidth, systemInfo.statusBarHeight) }}px;">
     <view class="functions-container container fw fh d-flex-row align-items-center justify-content-between" style="opacity: {{ Layout.functions_container_opacity(scrollTop, systemInfo.screenWidth, systemInfo.navigationBarHeight) }};">
-      <navigator class="functions-items fw fh d-flex-column align-items-center justify-content-between" wx:for="{{ layout.functions }}" wx:key="{{ item.is }}" hover-class="functions-items-hover" hover-stay-time="300" bind:tap="tapFeedback" bind:longpress="tapFeedback"
+      <navigator url="{{ item.url }}" class="functions-items fw fh d-flex-column align-items-center justify-content-between" wx:for="{{ layout.functions }}" wx:key="{{ item.is }}" hover-class="functions-items-hover" hover-stay-time="300" bind:tap="tapFeedback" bind:longpress="tapFeedback"
         data-id="functions${{ item.is }}">
         <image class="functions-items-icon" src="{{ item.icon }}" mode="aspectFit"/>
         <label class="functions-items-label">{{ localepkg[locale][item.is] }}</label>
@@ -70,7 +70,9 @@
     <view class="feed fw">
       <view class="section-info fvw d-flex-row align-items-center justify-content-between">
         <label class="section-info-title">{{ pageData.feed.title[locale] }}</label>
-        <label class="section-info-description">{{ pageData.feed.description[locale] }}</label>
+        <navigator class="section-info-description d-flex-row align-items-center justify-content-center" hover-class="section-info-description-hover" bind:tap="tapFeedback" bind:longpress="tapFeedback" data-id="feedDescription">
+          {{ pageData.feed.action.description[locale] }}
+        </navigator>
       </view>
       <view class="feed-items-container container fw d-flex-column align-items-center">
         <navigator class="feed-item-article fw d-flex-column" wx:for="{{ pageData.feed.items }}" wx:key="id" hover-class="feed-item-article-hover" bind:longpress="tapFeedback" data-id="feedItem{{ index }}" url="/pages/article/index?id={{ item._id }}">

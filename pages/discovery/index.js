@@ -80,7 +80,8 @@ Component({
         },
         {
           is: 'gourmet',
-          icon: '/assets/icons/gourmet.png'
+          icon: '/assets/icons/gourmet.png',
+          url: '/pages/gourmet/list/index'
         },
         {
           is: 'lifestyle',

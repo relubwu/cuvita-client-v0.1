@@ -18,7 +18,8 @@ const FETCH_URL = '/membership/fetchHistory';
 Page({
   data: {
     systemInfo: Store.getState().global.systemInfo,
-    localepkg: localepkg
+    localepkg: localepkg,
+    history: []
   },
   onLoad() {
     this.throttle = DEFAULT_THROTTLE_GROUP;
@@ -49,7 +50,10 @@ Page({
     });
     
   },
-  tapFeedback({ currentTarget: { dataset: { id } } }) {
+  tapFeedback({ currentTarget: { dataset } }) {
+    let that = this;
+    let { id } = dataset;
+    let { vendorid } = dataset;
     if (!this.throttle[`${actions.TAP_FEEDBACK}$${id}`]) {
       this.throttle[`${actions.TAP_FEEDBACK}$${id}`] = debounce(() =>
         wx.vibrateShort()
@@ -58,9 +62,21 @@ Page({
     } else {
       this.throttle[`${actions.TAP_FEEDBACK}$${id}`]();
     }
+    wx.showActionSheet({
+      itemList: [localepkg[that.data.locale].visitvendor],
+      success(res) {
+        switch(res.tapIndex) {
+          case 0:
+            break;
+          default:
+            break;
+        }
+      }
+    });
   },
   onPullDownRefresh() {
     let that = this;
+    wx.vibrateShort({});
     app.request(FETCH_URL, 'GET', { openid: Store.getState().global.userInfo.openid }).then(res => {
       setTimeout(() => {
         wx.stopPullDownRefresh();

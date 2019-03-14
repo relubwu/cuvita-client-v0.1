@@ -1,0 +1,19 @@
+<!-- SEARCH -->
+<van-search custom-class="nav-bar-search" field-class="nav-bar-search-field" background="#d1233e" placeholder="{{ localepkg[locale].search }}" readonly />
+<!-- TABS -->
+<i-tabs current="{{ current }}" color="#d1233e" scroll bind:change="handleChangeScroll" i-class="tabs">
+  <i-tab key="{{ item }}" title="{{ localepkg[locale][item] }}" wx:for="{{ categories }}" i-class="tabs-item"></i-tab>
+</i-tabs>
+<!-- CARDS -->
+<van-card desc="{{ item.description[locale] }}" title="{{ item.displayName[locale] }}" thumb="{{ item.thumbnail }}" thumb-mode="aspectFill" custom-class="card {{ (systemInfo.safeAreaInset && index == vendors.length - 1) && 'card-inset' }}" title-class="card-title" desc-class="card-description" wx:for="{{ vendors }}" lazy-load>
+  <view slot="tags">
+    <van-tag color="#d1233e" custom-class="card-tag" wx:for="{{item.tag[locale]}}">{{item}}</van-tag>
+  </view>
+  <view slot="footer" class="card-footer fw d-flex-row align-items-center justify-content-between">
+    <view class="d-flex-row align-items-center justify-content-center">
+      <image src="/assets/icons/vendor-location.png" class="card-location-icon" />
+      <label>{{ item.location }}</label>
+    </view>
+    <van-rate value="{{ item.rating }}" readonly="true" />
+  </view>
+</van-card>

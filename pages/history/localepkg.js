@@ -1,12 +1,14 @@
 module.exports = {
   zh_CN: {
     title: "积分记录",
-    description: "* 仅展示近一个月的会员积分记录",
-    nodata: "暂无积分记录"
+    description: "仅展示近一个月的会员积分记录",
+    nodata: "暂无积分记录",
+    visitvendor: "查看商户详情"
   },
   en_US: {
     title: "Credit History",
-    description: "* Only records within a month will be displayed ",
-    nodata: "No availiable records"
+    description: "Only records within a month will be displayed ",
+    nodata: "No availiable records",
+    visitvendor: "Vendor Details"
   }
 }

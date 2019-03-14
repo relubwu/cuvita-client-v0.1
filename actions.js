@@ -15,6 +15,7 @@ export const SET_LOCALE = "SET_LOCALE";
 export const SET_REGION = "SET_REGION";
 export const SET_SYSTEM_INFO = "SET_SYSTEM_INFO";
 export const SET_USER_INFO = "SET_USER_INFO";
+export const UPDATE_USER_INFO = "UPDATE_USER_INFO";
 export const SET_MEMBER_INFO = "SET_MEMBER_INFO";
 export const UPDATE_MEMBER_INFO = "UPDATE_MEMBER_INFO";
 export const SET_NETWORK_STATUS = "SET_NETWORK_STATUS";
@@ -52,6 +53,10 @@ export function setSystemInfo(res) {
 
 export function setUserInfo(res) {
   return { type: SET_USER_INFO, res };
+}
+
+export function updateUserInfo(res) {
+  return { type: UPDATE_USER_INFO, res };
 }
 
 export function setMemberInfo(res) {

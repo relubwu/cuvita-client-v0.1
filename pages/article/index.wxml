@@ -24,7 +24,7 @@
     </view>
   </view>
   <!-- FOOTER -->
-  <view class="weui-footer {{ systemInfo.safeAreaInset && 'inset' }} footer">
+  <view class="weui-footer" style="{{ systemInfo.safeAreaInset && 'padding-bottom: 34px !important' }}">
       <view class="weui-footer__text">Copyright © 2019 Chinese Union</view>
     </view>
 </view>
