@@ -1,0 +1,12 @@
+{
+  "usingComponents": {
+    "nav-bar": "/custom-nav-bar/index",
+    "van-tag": "/miniprogram_npm/vant-weapp/tag/index",
+    "van-rate": "/miniprogram_npm/vant-weapp/rate/index",
+    "van-cell": "/miniprogram_npm/vant-weapp/cell/index",
+    "van-cell-group": "/miniprogram_npm/vant-weapp/cell-group/index"
+  },
+  "navigationStyle": "custom",
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": ""
+}
