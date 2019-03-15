@@ -52,12 +52,12 @@
     <view class="recommendation fw">
       <view class="section-info fvw d-flex-row align-items-center justify-content-between">
         <label class="section-info-title">{{ pageData.recommendation.title[locale] }}</label>
-        <navigator class="section-info-description d-flex-row align-items-center justify-content-center" hover-class="section-info-description-hover" bind:tap="tapFeedback" bind:longpress="tapFeedback" data-id="recommendationDescription">
+        <navigator url="{{ pageData.recommendation.action.url }}" class="section-info-description d-flex-row align-items-center justify-content-center" hover-class="section-info-description-hover" bind:tap="tapFeedback" bind:longpress="tapFeedback" data-id="recommendationDescription">
           {{ pageData.recommendation.action.description[locale] }}
         </navigator>
       </view>
       <scroll-view scroll-x="true" class="recommendation-items-container fw d-flex-column justify-content-center">
-        <navigator class="recommendation-item {{ (index == pageData.recommendation.items.length - 1) && 'recommendation-item-last'}}" wx:for="{{ pageData.recommendation.items }}" hover-class="recommendation-item-hover" bind:longpress="tapFeedback" data-id="recommendationItem${{ index }}">
+        <navigator class="recommendation-item {{ (index == pageData.recommendation.items.length - 1) && 'recommendation-item-last'}}" wx:for="{{ pageData.recommendation.items }}" hover-class="recommendation-item-hover" bind:longpress="tapFeedback" url="{{ item.url }}" data-id="recommendationItem${{ index }}">
           <image class="recommendation-item-image fw" src="{{ item.image.src }}" mode="{{ item.image.mode }}" lazy-load />
           <view class="recommendation-item-info fw d-flex-column align-items-start justify-content-start">
             <label class="recommendation-item-info-title fw">{{ item.title[locale] }}</label>
@@ -70,12 +70,12 @@
     <view class="feed fw">
       <view class="section-info fvw d-flex-row align-items-center justify-content-between">
         <label class="section-info-title">{{ pageData.feed.title[locale] }}</label>
-        <navigator class="section-info-description d-flex-row align-items-center justify-content-center" hover-class="section-info-description-hover" bind:tap="tapFeedback" bind:longpress="tapFeedback" data-id="feedDescription">
+        <navigator class="section-info-description d-flex-row align-items-center justify-content-center" hover-class="section-info-description-hover" bind:tap="tapFeedback" bind:longpress="tapFeedback" data-id="feedDescription" url="/pages/article/list/index">
           {{ pageData.feed.action.description[locale] }}
         </navigator>
       </view>
       <view class="feed-items-container container fw d-flex-column align-items-center">
-        <navigator class="feed-item-article fw d-flex-column" wx:for="{{ pageData.feed.items }}" wx:key="id" hover-class="feed-item-article-hover" bind:longpress="tapFeedback" data-id="feedItem{{ index }}" url="/pages/article/index?id={{ item._id }}">
+        <navigator class="feed-item-article fw d-flex-column" wx:for="{{ pageData.feed.items }}" wx:key="id" hover-class="feed-item-article-hover" bind:longpress="tapFeedback" data-id="feedItem{{ index }}" url="/pages/article/detail/index?id={{ item._id }}">
           <image class="feed-item-article-image fw" src="{{ item.thumbnail }}" mode="aspectFill" lazy-load />
           <view class="feed-item-article-info d-flex-column">
             <label class="feed-item-article-info-title fw">{{item.title}}</label>
