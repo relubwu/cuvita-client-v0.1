@@ -3,7 +3,7 @@ const Store = app.store;
 
 /**
  * CUVita Client Side Implementations - index.js
- * @scope /pages/article
+ * @scope /pages/article/detail
  * @author relubwu
  * @version 0.1.5
  * @copyright  © CHINESE UNION 2019

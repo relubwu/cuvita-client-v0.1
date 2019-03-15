@@ -1,0 +1,9 @@
+@import '/assets/stylesheets/weui.wxss';
+
+/**
+ * CUVita Client Side Implementations - index.wxss
+ * @scope /pages/article/list
+ * @author relubwu
+ * @version 0.1.5
+ * @copyright  © CHINESE UNION 2019
+ */
