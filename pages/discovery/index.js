@@ -3,7 +3,6 @@ const app = getApp();
 const { request, requestFailed } = app;
 const Store = app.store;
 const localepkg = require('./localepkg');
-const REQUEST_PAGEDATA_URL = "/debug/fetch";
 const { debounce } = require('../../utils/util');
 
 /**
@@ -14,6 +13,7 @@ const { debounce } = require('../../utils/util');
  * @copyright  © CHINESE UNION 2019
  */
 
+const REQUEST_PAGEDATA_URL = "/feed/fetch";
 const DEFAULT_THROTTLE_GROUP = {};
 
 Component({

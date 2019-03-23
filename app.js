@@ -65,7 +65,7 @@ App({
       mask: true
     });
     this.login().then(res => {
-      that.fetchMemberInfo(res).then(() => {
+      that.fetchUserInfo(res).then(() => {
         wx.hideLoading();
       });
     });
@@ -135,7 +135,7 @@ App({
     });
   },
   
-  fetchMemberInfo(res) {
+  fetchUserInfo(res) {
     let that = this;
     return new Promise((resolve, reject) => {
       that.request('/dispatch', 'GET', {
