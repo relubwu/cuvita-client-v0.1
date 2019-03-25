@@ -135,6 +135,10 @@ App({
     });
   },
   
+  /**
+   * 封装获取用户登陆态及会员信息的接口
+   * @param res wx.login()回调数据
+   */
   fetchUserInfo(res) {
     let that = this;
     return new Promise((resolve, reject) => {

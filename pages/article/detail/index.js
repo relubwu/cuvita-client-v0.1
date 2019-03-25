@@ -9,6 +9,8 @@ const Store = app.store;
  * @copyright  © CHINESE UNION 2019
  */
 
+const FETCH_URL = "/article/fetch";
+
 let imgPreviewList;
 const _generateImgPreviewList = (data) => {
   let resultArray = [];
@@ -26,7 +28,7 @@ Page({
   },
   onLoad: function (options) {
     let that = this;
-    app.request('/content/fetch', 'GET', { id: options.id }).then(res => {
+    app.request(FETCH_URL, 'GET', { id: options.id }).then(res => {
       this.setData(res);
       imgPreviewList = _generateImgPreviewList(res.data);
     });

@@ -13,7 +13,10 @@ const { debounce } = require('../../utils/util');
  * @copyright  © CHINESE UNION 2019
  */
 
-const REQUEST_PAGEDATA_URL = "/feed/fetch";
+const REQUEST_PAGEDATA_BANNER = "/feed/fetchBanner";
+const REQUEST_PAGEDATA_SEARCH = "/feed/fetchSearch";
+const REQUEST_PAGEDATA_RECOMMENDATION = "/feed/fetchRecommendation";
+const REQUEST_PAGEDATA_ARTICLES = "/feed/fetchArticles";
 const DEFAULT_THROTTLE_GROUP = {};
 
 Component({
@@ -119,10 +122,6 @@ Component({
           this.setData({
             network: Store.getState().global.network
           });
-          wx.showLoading({
-            title: localepkg[this.data.locale].loading,
-            mask: !0
-          });
           this.requestPageData();
         }
       if (this.data.pullDownRefresh !== newState.pages.discovery.pullDownRefresh)
@@ -139,14 +138,17 @@ Component({
         });
     },
     requestPageData() {
-      request(REQUEST_PAGEDATA_URL, 'GET', {
-        region: 'sd'
-      }, true).then(data => {
-        Store.dispatch(actions.setPageData({ ...data, ready: !0 }));
-        wx.hideLoading();
-      }).catch(e => {
-        wx.hideLoading();
-        app.requestFailed();
+      request(REQUEST_PAGEDATA_BANNER, 'GET', {}).then(data => {
+        Store.dispatch(actions.setPageData({ banner: data }));
+      });
+      request(REQUEST_PAGEDATA_SEARCH, 'GET', {}).then(data => {
+        Store.dispatch(actions.setPageData({ search: data }));
+      });
+      request(REQUEST_PAGEDATA_RECOMMENDATION, 'GET', {}).then(data => {
+        Store.dispatch(actions.setPageData({ recommendation: data }));
+      });
+      request(REQUEST_PAGEDATA_ARTICLES, 'GET', {}).then(data => {
+        Store.dispatch(actions.setPageData({ feed: data }));
       });
     },
     onScroll({ detail: { scrollTop } }) {
