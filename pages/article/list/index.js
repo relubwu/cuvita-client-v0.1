@@ -10,7 +10,7 @@ const localepkg = require('./localepkg');
  * @copyright  © CHINESE UNION 2019
  */
 
-const FETCH_URL = '/content/fetchList';
+const FETCH_URL = '/article/fetchList';
 
 Page({
   data: {
