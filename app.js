@@ -19,6 +19,9 @@ const localepkg = require('localepkg');
  * @copyright  © CHINESE UNION 2019
  */
 
+const DISPATCH_URL = '/dispatch';
+const MEMBERINFO_URL = '/member/fetchInfo';
+
 App({
 
   store,
@@ -33,8 +36,8 @@ App({
         data: '0.1.5',
       });
     }
-    let that = this;
-    that.onAppRoute();
+    let app = this;
+    app.onAppRoute();
     wx.getSystemInfo({
       success(res) {
         store.dispatch(actions.setSystemInfo(res));
@@ -48,27 +51,14 @@ App({
     wx.onNetworkStatusChange(({ networkType }) => {
       store.dispatch(actions.setNetworkStatus(networkType));
     });
-    wx.getStorage({
-      key: 'userInfo',
-      success(res) {
-        store.dispatch(actions.setUserInfo(res));
-      }
-    });
-    wx.getStorage({
-      key: 'memberInfo',
-      success(res) {
-        store.dispatch(actions.setMemberInfo(res));
-      }
-    });
     wx.showLoading({
       title: localepkg[store.getState().global.locale].login,
       mask: true
     });
-    this.login().then(res => {
-      that.fetchUserInfo(res).then(() => {
-        wx.hideLoading();
-      });
-    });
+    this.login()
+      .then(code => app.fetchUserInfo(code))
+      .then(openid => app.fetchMemberInfo(openid))
+      .then(wx.hideLoading);
   },
 
   onAppRoute() {
@@ -78,19 +68,36 @@ App({
   },
 
   /**
+   * 封装wx.login()
+   */
+  login(e) {
+    return new Promise((resolve, reject) => {
+      wx.login({
+        success({ code }) {
+          resolve(code);
+        }
+      });
+    });
+  },
+
+  /**
    * 封装wx.request()
    * @param directory, Object data, String method
    * @return Promise ? resolve() : reject()
    */
   request(directory, method, data) {
-    let that = this;
+    let app = this;
     return new Promise((resolve, reject) => {
       wx.request({
         url: API.concat(directory),
-        method: method,
-        data: data,
-        success(res) {
-          resolve(res.data);
+        method,
+        data,
+        success({ data, statusCode }) {
+          if (statusCode === 404)
+            reject(new Error(statusCode));
+          if (statusCode === 500)
+            reject(new Error(statusCode));
+          resolve(data);
         },
         fail(e) {
           wx.showToast({
@@ -102,57 +109,37 @@ App({
       });
     });
   },
-
-  /**
-   * 封装请求URL
-   * @param e 接口directory
-   * @return String request URL
-   */
-  url(e) {
-    return this.globalData.api.concat(e);
-  },
-
-  /**
-   * 封装wx.login()
-   */
-  login(e) {
-    return new Promise((resolve, reject) => {
-      wx.login({
-        success(res) {
-          resolve(res);
-        } 
-      });
-    });
-  },
   
   /**
-   * 封装获取用户登陆态及会员信息的接口
-   * @param res wx.login()回调数据
+   * 封装获取用户登陆态的接口
+   * 向服务端的dispatcher进行注册
+   * @param code wx.login()回调数据
    */
-  fetchUserInfo(res) {
-    let that = this;
+  fetchUserInfo(code) {
+    let app = this;
     return new Promise((resolve, reject) => {
-      that.request('/dispatch', 'GET', {
-        code: res.code
-      }).then(data => {
-        store.dispatch(actions.updateUserInfo(data.userInfo));
-        wx.setStorage({
-          key: 'userInfo',
-          data: data.userInfo.openid
-        });
-        if (!!data.memberInfo) {
-          store.dispatch(actions.updateMemberInfo(data.memberInfo));
-          wx.setStorage({
-            key: 'memberInfo',
-            data: data.memberInfo
-          });
-        }
-        resolve();
-      }).catch(e => console.error(e));
+      app.request(DISPATCH_URL, 'GET', { code })
+        .then(({ openid, session_key }) => {
+          store.dispatch(actions.setUserInfo({ openid, session_key }));
+          resolve(openid);
+        }).catch(e => console.error(e));
     });
   },
 
-  globalData: {
-
+  /**
+   * 封装获取会员信息的接口
+   * @param openid
+   */
+  fetchMemberInfo(openid) {
+    let app = this;
+    return new Promise((resolve, reject) => {
+      app.request(MEMBERINFO_URL, 'GET', { openid })
+        .then(memberInfo => 
+          resolve(store.dispatch(actions.setMemberInfo(memberInfo)))
+        ).catch(e => 
+          resolve(store.dispatch(actions.purgeMemberInfo()))
+        );
+    })
   }
+
 })

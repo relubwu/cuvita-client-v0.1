@@ -100,10 +100,6 @@ Component({
       this.unsubscribe = Store.subscribe(() => {
         this.relaySubscription();
       });
-      wx.showLoading({
-        title: localepkg[this.data.locale].loading,
-        mask: !0
-      });
       this.requestPageData();
     },
     unattached() {

@@ -18,6 +18,7 @@ export const SET_USER_INFO = "SET_USER_INFO";
 export const UPDATE_USER_INFO = "UPDATE_USER_INFO";
 export const SET_MEMBER_INFO = "SET_MEMBER_INFO";
 export const UPDATE_MEMBER_INFO = "UPDATE_MEMBER_INFO";
+export const PURGE_MEMBER_INFO = "PURGE_MEMBER_INFO";
 export const SET_NETWORK_STATUS = "SET_NETWORK_STATUS";
 
 /**
@@ -65,6 +66,10 @@ export function setMemberInfo(res) {
 
 export function updateMemberInfo(res) {
   return { type: UPDATE_MEMBER_INFO, res };
+}
+
+export function purgeMemberInfo() {
+  return { type: PURGE_MEMBER_INFO };
 }
 
 export function setNetworkStatus(status) {
