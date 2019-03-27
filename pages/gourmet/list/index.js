@@ -1,5 +1,6 @@
 import * as actions from './actions';
 const app = getApp();
+const { request } = app;
 const Store = app.store;
 const localepkg = require('./localepkg');
 
@@ -11,7 +12,7 @@ const localepkg = require('./localepkg');
  * @copyright  © CHINESE UNION 2019
  */
 
-const FETCH_URL = "/vendor/fetch";
+const FETCH_URL = "/vendor/fetchList";
 const DISPLAY_THRESHOLD = 5;
 
 Page({
@@ -65,7 +66,7 @@ Page({
     wx.showLoading({
       title: localepkg[that.data.locale].loading
     });
-    app.request(FETCH_URL, 'GET', {
+    request(FETCH_URL, 'GET', {
       realm: 'gourmet',
       categories: that.data.categories
     }).then(data => {
@@ -73,13 +74,13 @@ Page({
         vendors: data
       });
       setTimeout(() => wx.hideLoading(), 1000);
-    });
+    }).catch(e => console.error(e));
   },
   onPullDownRefresh() {
     let that = this;
     wx.vibrateShort({});
     wx.showNavigationBarLoading();
-    app.request(FETCH_URL, 'GET', {
+    request(FETCH_URL, 'GET', {
       realm: 'gourmet',
       categories: that.data.categories
     }).then(data => {
@@ -89,6 +90,6 @@ Page({
       setTimeout(() => {
         wx.stopPullDownRefresh();
       }, 500);
-    });
+    }).catch(e => console.error(e));
   }
 })

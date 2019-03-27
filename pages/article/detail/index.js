@@ -1,4 +1,5 @@
 const app = getApp();
+const { request } = app;
 const Store = app.store;
 
 /**
@@ -17,8 +18,8 @@ Page({
   },
   onLoad: function (options) {
     let that = this;
-    app.request(FETCH_URL, 'GET', { id: options.id }).then(res => {
+    request(FETCH_URL, 'GET', { id: options.id }).then(res => {
       this.setData(res);
-    });
+    }).catch(e => console.error(e));
   }
 })

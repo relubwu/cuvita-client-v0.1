@@ -82,7 +82,7 @@ App({
    * @param directory, Object data, String method
    * @return Promise ? resolve() : reject()
    */
-  request(directory, method, data, preventDefault = false) {
+  request(directory, method, data) {
     let that = this;
     return new Promise((resolve, reject) => {
       wx.request({
@@ -93,23 +93,13 @@ App({
           resolve(res.data);
         },
         fail(e) {
-          if (!preventDefault) {
-            that.requestFailed();
-          } else {
-            reject(e);
-          }
+          wx.showToast({
+            title: localepkg[store.getState().global.locale].requestfail,
+            image: '/assets/icons/request-fail.png'
+          });
+          reject(e);
         }
       });
-    });
-  },
-
-  /**
-   * 封装请求失败Toast
-   */
-  requestFailed() {
-    wx.showToast({
-      title: localepkg[store.getState().global.locale].requestfail,
-      image: '/assets/icons/request-fail.png'
     });
   },
 
@@ -158,7 +148,7 @@ App({
           });
         }
         resolve();
-      });
+      }).catch(e => console.error(e));
     });
   },
 

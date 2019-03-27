@@ -1,4 +1,5 @@
 const app = getApp();
+const { request } = app;
 const Store = app.store;
 const localepkg = require('./localepkg');
 
@@ -25,10 +26,10 @@ Page({
     wx.setNavigationBarTitle({
       title: localepkg[this.data.locale].title
     });
-    app.request(FETCH_URL, 'GET').then(res => {
+    request(FETCH_URL, 'GET').then(res => {
       that.setData({
         data: res
       });
-    })
+    }).catch(e => console.error(e));
   }
 })

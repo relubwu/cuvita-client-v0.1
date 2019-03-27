@@ -1,6 +1,6 @@
 import * as actions from 'actions';
 const app = getApp();
-const { request, requestFailed } = app;
+const { request } = app;
 const Store = app.store;
 const localepkg = require('./localepkg');
 const { debounce } = require('../../utils/util');
@@ -140,16 +140,16 @@ Component({
     requestPageData() {
       request(REQUEST_PAGEDATA_BANNER, 'GET', {}).then(data => {
         Store.dispatch(actions.setPageData({ banner: data }));
-      });
+      }).catch(e => console.error(e));
       request(REQUEST_PAGEDATA_SEARCH, 'GET', {}).then(data => {
         Store.dispatch(actions.setPageData({ search: data }));
-      });
+      }).catch(e => console.error(e));
       request(REQUEST_PAGEDATA_RECOMMENDATION, 'GET', {}).then(data => {
         Store.dispatch(actions.setPageData({ recommendation: data }));
-      });
+      }).catch(e => console.error(e));
       request(REQUEST_PAGEDATA_ARTICLES, 'GET', {}).then(data => {
         Store.dispatch(actions.setPageData({ feed: data }));
-      });
+      }).catch(e => console.error(e));
     },
     onScroll({ detail: { scrollTop } }) {
       this.setData({

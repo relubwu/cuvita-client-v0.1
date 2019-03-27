@@ -1,5 +1,6 @@
 import * as actions from 'actions';
 const app = getApp();
+const { request } = app;
 const Store = app.store;
 const localepkg = require('localepkg');
 const { debounce } = require('../../utils/util');
@@ -29,9 +30,9 @@ Page({
     });
     wx.setNavigationBarTitle({ title: localepkg[that.data.locale].title });
     if (!!Store.getState().global.memberInfo) {
-      app.request(FETCH_URL, 'GET', { openid: Store.getState().global.userInfo.openid }).then(({ history }) => {
+      request(FETCH_URL, 'GET', { openid: Store.getState().global.userInfo.openid }).then(({ history }) => {
         that.formatHistory(history);
-      });
+      }).catch(e => console.error(e));
     } else {
       this.setData({
         history: []
@@ -79,11 +80,11 @@ Page({
   onPullDownRefresh() {
     let that = this;
     wx.vibrateShort({});
-    app.request(FETCH_URL, 'GET', { openid: Store.getState().global.userInfo.openid }).then(res => {
+    request(FETCH_URL, 'GET', { openid: Store.getState().global.userInfo.openid }).then(res => {
       setTimeout(() => {
         wx.stopPullDownRefresh();
         that.formatHistory();
-      }, 500);
+      }, 500).catch(e => console.error(e));
     });
   }
 })

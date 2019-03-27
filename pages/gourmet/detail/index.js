@@ -1,4 +1,5 @@
 const app = getApp();
+const { request } = app;
 const Store = app.store;
 const localepkg = require('localepkg');
 
@@ -10,7 +11,7 @@ const localepkg = require('localepkg');
  * @copyright  © CHINESE UNION 2019
  */
 
-const FETCH_URL = '/vendor/detail';
+const FETCH_URL = '/vendor/fetchDetail';
 
 Page({
   data: {
@@ -25,7 +26,7 @@ Page({
     wx.setNavigationBarTitle({
       title: localepkg[this.data.locale].title
     });
-    app.request(FETCH_URL, 'GET', {
+    request(FETCH_URL, 'GET', {
       vendorid: options.vendorid
     }).then(res => {
       that.setData({
@@ -40,7 +41,7 @@ Page({
             height: 75
           }
         ]
-      });
+      }).catch(e => console.error(e));
     });
   },
   onUnload() {

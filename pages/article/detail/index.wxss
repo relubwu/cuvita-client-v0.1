@@ -41,7 +41,6 @@ rich-text {
 
 .article-paragraph {
   font-size: 12pt;
-  text-indent: 1em;
 }
 
 .article-list {
