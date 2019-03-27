@@ -67,10 +67,5 @@ Page({
       urls: that.data.gallery,
       current: that.data.gallery[currentTarget.dataset.index]
     });
-  },
-  onNavigateBack() {
-    wx.navigateBack({
-      delta: 1
-    });
   }
 })
