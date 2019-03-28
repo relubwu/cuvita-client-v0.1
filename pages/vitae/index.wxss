@@ -169,3 +169,8 @@
   font-size: 11pt;
   text-transform: capitalize;
 }
+
+.navigators-tag {
+  margin: 0 7px;
+  text-transform: capitalize;
+}
