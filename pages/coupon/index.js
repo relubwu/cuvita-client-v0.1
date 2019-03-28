@@ -74,7 +74,7 @@ Page({
       this.throttle[`${actions.TAP_FEEDBACK}$${id}`]();
     }
     this.worker.postMessage({
-      context: `https://cuvita.relubwu.com/coupon/use?id=${id}`,
+      context: `coupon://id=${id}`,
       screenWidth: Store.getState().global.systemInfo.screenWidth
     });
     this.worker.onMessage(context => {

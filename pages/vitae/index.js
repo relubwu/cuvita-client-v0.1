@@ -1,5 +1,6 @@
 import * as actions from './actions';
 const app = getApp();
+const { request } = app;
 const Store = app.store;
 const localepkg = require('./localepkg');
 const { debounce } = require('../../utils/util');
@@ -13,6 +14,7 @@ const { debounce } = require('../../utils/util');
  */
 
 const DEFAULT_THROTTLE_GROUP = {};
+const FETCH_URL = '/member/fetchCredit';
 
 Component({
   options: {
@@ -46,14 +48,32 @@ Component({
         this.setData({
           locale: newState.global.locale
         });
+      if (!!newState.global.memberInfo)
+        if (this.data.credit !== newState.global.memberInfo.credit) {
+          this.setData({
+            credit: newState.global.memberInfo.credit
+          })
+        }
     },
     onShowQr() {
+      this.tapFeedback({ currentTarget: { dataset: { id: "qrcode" } } });
+      let context = `accredit://cardno=${Store.getState().global.memberInfo.cardno}`;
+      wx.navigateTo({
+        url: `/pages/qrcode/index?context=${context}`
+      });
+    },
+    onUpdateCredit() {
+      let that = this;
       this.tapFeedback({ currentTarget: { dataset: { id: "card" } } });
-      setTimeout(() => {
-        wx.navigateTo({
-          url: '/pages/qrcode/index'
-        });
-      } , 250);
+      wx.showLoading({
+        title: localepkg[Store.getState().global.locale].loading,
+      });
+      request(FETCH_URL, 'GET', { openid: Store.getState().global.userInfo.openid })
+        .then(credit => {
+          Store.dispatch(actions.updateCredit(credit));
+          Store.dispatch(app.globalActions.updateMemberInfo(credit));
+          wx.hideLoading();
+        }).catch(e => console.error(e));
     },
     tapFeedback({ currentTarget: { dataset: { id } } }) {
       if (!this.throttle[`${actions.TAP_FEEDBACK}$${id}`]) {
@@ -64,6 +84,6 @@ Component({
       } else {
         this.throttle[`${actions.TAP_FEEDBACK}$${id}`]();
       }
-    },
+    }
   }
 })
