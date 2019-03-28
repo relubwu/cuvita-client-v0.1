@@ -14,7 +14,7 @@ const { debounce } = require('../../utils/util');
  */
 
 const DEFAULT_THROTTLE_GROUP = {};
-const FETCH_URL = '/membership/fetchHistory';
+const FETCH_URL = '/member/fetchHistory';
 
 Page({
   data: {
@@ -29,15 +29,9 @@ Page({
       locale: Store.getState().global.locale,
     });
     wx.setNavigationBarTitle({ title: localepkg[that.data.locale].title });
-    if (!!Store.getState().global.memberInfo) {
-      request(FETCH_URL, 'GET', { openid: Store.getState().global.userInfo.openid }).then(({ history }) => {
-        that.formatHistory(history);
-      }).catch(e => console.error(e));
-    } else {
-      this.setData({
-        history: []
-      });
-    }
+    request(FETCH_URL, 'GET', { openid: Store.getState().global.userInfo.openid }).then(history => {
+      that.formatHistory(history);
+    }).catch(e => console.error(e));
   },
   formatHistory(history) {
     let res = [];
@@ -80,10 +74,10 @@ Page({
   onPullDownRefresh() {
     let that = this;
     wx.vibrateShort({});
-    request(FETCH_URL, 'GET', { openid: Store.getState().global.userInfo.openid }).then(res => {
+    request(FETCH_URL, 'GET', { openid: Store.getState().global.userInfo.openid }).then(history => {
       setTimeout(() => {
         wx.stopPullDownRefresh();
-        that.formatHistory();
+        that.formatHistory(history);
       }, 500).catch(e => console.error(e));
     });
   }

@@ -14,14 +14,14 @@ const { debounce } = require('../../utils/util');
  */
 
 const DEFAULT_THROTTLE_GROUP = {};
-const FETCH_URL = '/membership/fetchCoupons';
+const FETCH_URL = '/member/fetchCoupon';
 
 Page({
   data: {
     systemInfo: Store.getState().global.systemInfo,
     currentCoupon: Store.getState().pages.coupon.currentCoupon,
     localepkg: localepkg,
-    coupons: []
+    coupon: []
   },
   onLoad() {
     this.throttle = DEFAULT_THROTTLE_GROUP;
@@ -34,15 +34,9 @@ Page({
       locale: Store.getState().global.locale
     });
     wx.setNavigationBarTitle({ title: localepkg[that.data.locale].title });
-    if (!!Store.getState().global.memberInfo) {
-      request(FETCH_URL, 'GET', { openid: Store.getState().global.userInfo.openid }).then(({ coupons }) => {
-        that.formatCoupons(coupons);
-      }).catch(e => console.error(e));
-    } else {
-      this.setData({
-        coupons: []
-      });
-    }
+    request(FETCH_URL, 'GET', { openid: Store.getState().global.userInfo.openid }).then( coupon => {
+      that.formatCoupon(coupon);
+    }).catch(e => console.error(e));
   },
   onUnload() {
     Store.dispatch(actions.resetCouponDetail());
@@ -56,9 +50,9 @@ Page({
         currentCoupon: newState.pages.coupon.currentCoupon,
       });
   },
-  formatCoupons(coupons) {
+  formatCoupon(coupon) {
     let res = [];
-    for (let e of coupons) {
+    for (let e of coupon) {
       let d = new Date(e.assigned);
       let assigned = d.toLocaleDateString('en-US', { month: "short", day: "numeric" });
       d.setDate(d.getDate() + e.due);
@@ -66,7 +60,7 @@ Page({
       res.push({ ...e, assigned, due });
     }
     this.setData({
-      coupons: res
+      coupon: res
     });
   },
   tapFeedback({ currentTarget: { dataset: { id } } }) {
@@ -118,10 +112,10 @@ Page({
   onPullDownRefresh() {
     let that = this;
     wx.vibrateShort({});
-    request(FETCH_URL, 'GET', { openid: Store.getState().global.userInfo.openid }).then(res => {
+    request(FETCH_URL, 'GET', { openid: Store.getState().global.userInfo.openid }).then(coupon => {
       setTimeout(() => {
         wx.stopPullDownRefresh();
-        that.formatCoupons();
+        that.formatCoupon(coupon);
       }, 500);
     }).catch(e => console.error(e));
   }

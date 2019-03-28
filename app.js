@@ -93,10 +93,8 @@ App({
         method,
         data,
         success({ data, statusCode }) {
-          if (statusCode === 404)
-            reject(new Error(statusCode));
-          if (statusCode === 500)
-            reject(new Error(statusCode));
+          if (statusCode === 404 || statusCode === 500)
+            reject(statusCode);
           resolve(data);
         },
         fail(e) {
