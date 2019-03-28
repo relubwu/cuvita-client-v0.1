@@ -11,6 +11,7 @@ import {
   UPDATE_USER_INFO,
   SET_MEMBER_INFO,
   UPDATE_MEMBER_INFO,
+  PURGE_MEMBER_INFO,
   SET_NETWORK_STATUS
 } from './actions';
 import PAGE_REDUCER_DISCOVERY from './pages/discovery/reducers';
@@ -110,7 +111,7 @@ function userInfo (state = DEFAULT_USER_INFO, action) {
       return { ...action.res };
       break;
     case UPDATE_USER_INFO:
-      return { ...action.res };
+      return { ...state, ...action.res };
       break;
     default: 
       return state;
@@ -124,7 +125,10 @@ function memberInfo (state = DEFAULT_MEMBER_INFO, action) {
       return { ...action.res };
       break;
     case UPDATE_MEMBER_INFO:
-      return { ...action.res };
+      return { ...state, ...action.res };
+      break;
+    case PURGE_MEMBER_INFO: 
+      return DEFAULT_MEMBER_INFO;
       break;
     default:
       return state;

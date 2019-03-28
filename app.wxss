@@ -120,13 +120,6 @@ nav-bar {
   color: #b2b2b2;
 }
 
-/**
- * Safe Area Responsive
- */
-.inset {
-  margin-bottom: 34px !important;
-}
-
 /** Implementing Notice **/
 .implementing-icon {
   width: 40px;

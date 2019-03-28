@@ -2,7 +2,7 @@
 <nav-bar dynamic background="bg-transparent">
   <view class="fvw d-flex-row align-items-center justify-content-between">
     <view class="fw d-flex-column justify-content-center">
-      <image src="/assets/icons/action-scanqr.png" class="nav-bar-scanqr" bind:tap="onScanQr" />
+      <image src="/assets/icons/action-showqr.png" class="nav-bar-scanqr" bind:tap="onShowQr" />
     </view>
     <label class="nav-bar-title fw" style="font-size: {{ systemInfo.fontSizeSetting }}px;" />
     <view class="fw" />
@@ -13,7 +13,7 @@
   <view class="card fw">
     <image class="card-background" src="/assets/images/vitae-banner.png" class="fw fh" mode="aspectFill" />
     <view class="card-container fw fh container d-flex-column align-items-center justify-content-center" style="padding-top: {{ systemInfo.navigationBarHeight }}px;">
-      <view class="card-body" hover-class="card-body-hover" bind:longpress="onShowQr">
+      <view class="card-body" hover-class="card-body-hover" bind:longpress="onUpdateCredit">
         <image src="/assets/images/card-white.jpg" class="card-body-background fw fh" />
         <view class="card-body-display fw fh d-flex-column align-items-center justify-content-center">
           <label class="card-body-display-brand">{{ localepkg[locale].brand }}</label>
@@ -34,31 +34,28 @@
     <view class="membership fw d-flex-column align-items-center justify-content-center">
       <view class="membership-info container fw fh d-flex-row align-items-center justify-content-center">
         <image src="/assets/icons/membership-star.png" class="membership-info-icon" mode="aspectFit" />
-        <label class="membership-info-credit-current">20/</label>
-        <label class="membership-info-credit-next">199</label>
+        <label class="membership-info-credit-current">{{ credit.tier }}/</label>
+        <label class="membership-info-credit-next">{{ credit.goal }}</label>
       </view>
       <view class="membership-progressbar-container fw container">
         <view class="membership-progressbar-base fh">
-          <view class="membership-progressbar fh" style="width: 20%;" />
+          <view class="membership-progressbar fh" style="width: {{ (credit.tier / credit.goal) * 100 }}%;" />
         </view>
       </view>
       <view class="membership-rubric fw d-flex-row">
         <label class="membership-rubric-label">0</label>
-        <label class="membership-rubric-label">距离下一级还有80分</label>
-        <label class="membership-rubric-label">199</label>
+        <label wx:if="{{ locale === 'zh_CN' }}" class="membership-rubric-label">再消费{{ credit.goal - credit.tier }}次即可获取好礼</label>
+        <label wx:if="{{ locale === 'en_US' }}" class="membership-rubric-label">{{ credit.goal - credit.tier }} More to Next Reward</label>
+        <label class="membership-rubric-label">{{ credit.goal }}</label>
       </view>
     </view>
     <!-- NAVIGATORS -->
     <view class="navigators fw">
       <van-group>
-        <van-cell title="{{ localepkg[locale].history }}" is-link icon="cash-back-record"
-        title-class="navigators-title" url="/pages/history/index" />
-        <van-cell title="{{ localepkg[locale].coupon }}" is-link icon="coupon"
-        title-class="navigators-title" url="/pages/coupon/index" />
-        <van-cell title="{{ localepkg[locale].gift }}" is-link icon="gift"
-        title-class="navigators-title" url="" />
-        <van-cell title="{{ localepkg[locale].roadmap }}" is-link icon="medel"
-        title-class="navigators-title" url="" />
+        <van-cell title="{{ localepkg[locale].history }}" is-link icon="cash-back-record" title-class="navigators-title" url="/pages/history/index" />
+        <van-cell title="{{ localepkg[locale].coupon }}" is-link icon="coupon" title-class="navigators-title" url="/pages/coupon/index" />
+        <van-cell title="{{ localepkg[locale].gift }}" is-link icon="gift" title-class="navigators-title" url="" />
+        <van-cell title="{{ localepkg[locale].roadmap }}" is-link icon="medel" title-class="navigators-title" url="" />
       </van-group>
     </view>
     <!-- INSET -->

@@ -68,7 +68,6 @@
 }
 
 .description {
-  margin: 7px 15px;
   font-size: 11pt;
   color: #b2b2b2;
   text-align: center;

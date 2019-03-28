@@ -1,4 +1,5 @@
 const app = getApp();
+const { request } = app;
 const Store = app.store;
 
 /**
@@ -9,16 +10,7 @@ const Store = app.store;
  * @copyright  © CHINESE UNION 2019
  */
 
-let imgPreviewList;
-const _generateImgPreviewList = (data) => {
-  let resultArray = [];
-  for (let i of data) {
-    if (i.nodeType == 'article__img' && i.previewable) {
-      resultArray.push(i.src);
-    }
-  }
-  return resultArray;
-}
+const FETCH_URL = "/article/fetchDetail";
 
 Page({
   data: {
@@ -26,20 +18,8 @@ Page({
   },
   onLoad: function (options) {
     let that = this;
-    app.request('/content/fetch', 'GET', { id: options.id }).then(res => {
+    request(FETCH_URL, 'GET', { id: options.id }).then(res => {
       this.setData(res);
-      imgPreviewList = _generateImgPreviewList(res.data);
-    });
-  },
-  onShareAppMessage: function () {
-
-  },
-  previewImage({ currentTarget: { dataset } }) {
-    if (dataset.previewable) {
-      wx.previewImage({
-        current: dataset.url,
-        urls: imgPreviewList
-      });
-    }
+    }).catch(e => console.error(e));
   }
 })

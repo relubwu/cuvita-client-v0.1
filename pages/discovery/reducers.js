@@ -33,7 +33,7 @@ export const DEFAULT_PAGEDATA = {
     },
     items: [{}, {}, {}, {}]
   },
-  feed: {
+  articles: {
     items: [{}, {}]
   },
   ready: !!0

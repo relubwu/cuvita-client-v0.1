@@ -75,7 +75,7 @@
         </navigator>
       </view>
       <view class="feed-items-container container fw d-flex-column align-items-center">
-        <navigator class="feed-item-article fw d-flex-column" wx:for="{{ pageData.feed.items }}" wx:key="id" hover-class="feed-item-article-hover" bind:longpress="tapFeedback" data-id="feedItem{{ index }}" url="/pages/article/detail/index?id={{ item._id }}">
+        <navigator class="feed-item-article fw d-flex-column" wx:for="{{ pageData.feed.articles }}" wx:key="id" hover-class="feed-item-article-hover" bind:longpress="tapFeedback" data-id="feedItem{{ index }}" url="/pages/article/detail/index?id={{ item._id }}">
           <image class="feed-item-article-image fw" src="{{ item.thumbnail }}" mode="aspectFill" lazy-load />
           <view class="feed-item-article-info d-flex-column">
             <label class="feed-item-article-info-title fw">{{item.title}}</label>

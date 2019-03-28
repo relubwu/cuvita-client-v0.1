@@ -12,18 +12,46 @@ page {
   background-color: #fff;
 }
 
-.local__h1 {
-  font-weight: bold;
+.meta {
+  padding-top: 1em;
+}
+
+.title {
   font-size: 14pt;
+  font-weight: bold;
 }
 
-.font-label {
-  font-size: 11pt;
+.author {
+  font-size: 12pt;
+  color: #b2b2b2;
+}
+
+/**
+ * Rich Text
+ */
+
+rich-text {
+  line-height: 1.7;
+}
+
+.article-header {
+  font-size: 14pt;
+  padding: 1em 0;
+}
+
+.article-paragraph {
+  font-size: 12pt;
+}
+
+.article-list {
+  font-size: 12pt;
+}
+
+.article-image {
+  width: 100%;
+  padding: 7px 0;
+}
+
+.ql-align-center {
   text-align: center;
-  color: #b2b2b2;
-}
-
-.font-author {
-  font-size: 11pt;
-  color: #b2b2b2;
 }

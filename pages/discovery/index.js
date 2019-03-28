@@ -1,9 +1,8 @@
 import * as actions from 'actions';
 const app = getApp();
-const { request, requestFailed } = app;
+const { request } = app;
 const Store = app.store;
 const localepkg = require('./localepkg');
-const REQUEST_PAGEDATA_URL = "/debug/fetch";
 const { debounce } = require('../../utils/util');
 
 /**
@@ -14,6 +13,10 @@ const { debounce } = require('../../utils/util');
  * @copyright  © CHINESE UNION 2019
  */
 
+const REQUEST_PAGEDATA_BANNER = "/feed/fetchBanner";
+const REQUEST_PAGEDATA_SEARCH = "/feed/fetchSearch";
+const REQUEST_PAGEDATA_RECOMMENDATION = "/feed/fetchRecommendation";
+const REQUEST_PAGEDATA_ARTICLES = "/feed/fetchArticles";
 const DEFAULT_THROTTLE_GROUP = {};
 
 Component({
@@ -97,10 +100,6 @@ Component({
       this.unsubscribe = Store.subscribe(() => {
         this.relaySubscription();
       });
-      wx.showLoading({
-        title: localepkg[this.data.locale].loading,
-        mask: !0
-      });
       this.requestPageData();
     },
     unattached() {
@@ -119,10 +118,6 @@ Component({
           this.setData({
             network: Store.getState().global.network
           });
-          wx.showLoading({
-            title: localepkg[this.data.locale].loading,
-            mask: !0
-          });
           this.requestPageData();
         }
       if (this.data.pullDownRefresh !== newState.pages.discovery.pullDownRefresh)
@@ -139,15 +134,18 @@ Component({
         });
     },
     requestPageData() {
-      request(REQUEST_PAGEDATA_URL, 'GET', {
-        region: 'sd'
-      }, true).then(data => {
-        Store.dispatch(actions.setPageData({ ...data, ready: !0 }));
-        wx.hideLoading();
-      }).catch(e => {
-        wx.hideLoading();
-        app.requestFailed();
-      });
+      request(REQUEST_PAGEDATA_BANNER, 'GET', {}).then(data => {
+        Store.dispatch(actions.setPageData({ banner: data }));
+      }).catch(e => console.error(e));
+      request(REQUEST_PAGEDATA_SEARCH, 'GET', {}).then(data => {
+        Store.dispatch(actions.setPageData({ search: data }));
+      }).catch(e => console.error(e));
+      request(REQUEST_PAGEDATA_RECOMMENDATION, 'GET', {}).then(data => {
+        Store.dispatch(actions.setPageData({ recommendation: data }));
+      }).catch(e => console.error(e));
+      request(REQUEST_PAGEDATA_ARTICLES, 'GET', {}).then(data => {
+        Store.dispatch(actions.setPageData({ feed: data }));
+      }).catch(e => console.error(e));
     },
     onScroll({ detail: { scrollTop } }) {
       this.setData({
