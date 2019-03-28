@@ -111,7 +111,7 @@ function userInfo (state = DEFAULT_USER_INFO, action) {
       return { ...action.res };
       break;
     case UPDATE_USER_INFO:
-      return { ...action.res };
+      return { ...state, ...action.res };
       break;
     default: 
       return state;
@@ -125,7 +125,7 @@ function memberInfo (state = DEFAULT_MEMBER_INFO, action) {
       return { ...action.res };
       break;
     case UPDATE_MEMBER_INFO:
-      return { ...action.res };
+      return { ...state, ...action.res };
       break;
     case PURGE_MEMBER_INFO: 
       return DEFAULT_MEMBER_INFO;
