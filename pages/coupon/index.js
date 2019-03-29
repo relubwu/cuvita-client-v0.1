@@ -15,6 +15,7 @@ const { debounce } = require('../../utils/util');
 
 const DEFAULT_THROTTLE_GROUP = {};
 const FETCH_URL = '/member/fetchCoupon';
+const COUPON_URL = 'api.relubwu.com/cpn';
 
 Page({
   data: {
@@ -74,7 +75,7 @@ Page({
       this.throttle[`${actions.TAP_FEEDBACK}$${id}`]();
     }
     this.worker.postMessage({
-      context: `coupon://id=${id}`,
+      context: COUPON_URL.concat(`?p=${id}`),
       screenWidth: Store.getState().global.systemInfo.screenWidth
     });
     this.worker.onMessage(context => {

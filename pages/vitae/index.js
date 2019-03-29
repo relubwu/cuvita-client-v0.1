@@ -15,6 +15,7 @@ const { debounce } = require('../../utils/util');
 
 const DEFAULT_THROTTLE_GROUP = {};
 const FETCH_URL = '/member/fetchCredit';
+const ACCREDIT_URL = 'api.relubwu.com/acc';
 
 Component({
   options: {
@@ -57,7 +58,10 @@ Component({
     },
     onShowQr() {
       this.tapFeedback({ currentTarget: { dataset: { id: "qrcode" } } });
-      let context = `accredit://cardno=${Store.getState().global.memberInfo.cardno}`;
+      let context = 
+        encodeURIComponent(
+          ACCREDIT_URL.concat(`?p=${Store.getState().global.memberInfo.cardno}`)
+        );
       wx.navigateTo({
         url: `/pages/qrcode/index?context=${context}`
       });
