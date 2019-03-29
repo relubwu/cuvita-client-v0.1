@@ -26,7 +26,8 @@ Page({
       "fashion",
       "game",
       "ktv"
-    ]
+    ],
+    vendors: {}
   },
   onLoad() {
     this.setData({
@@ -38,7 +39,7 @@ Page({
     this.unsubscribe = Store.subscribe(() => {
       this.relaySubscription();
     });
-    this.fetchData(this.data.current);
+    this.fetchData();
   },
   onUnload() {
     this.unsubscribe();
@@ -54,35 +55,40 @@ Page({
     let that = this;
     this.tapFeedback();
     Store.dispatch(actions.switchCategory(that.data.categories[index], index));
+    this.fetchData();
   },
   tapFeedback() {
     wx.vibrateShort({});
   },
   fetchData() {
     let that = this;
+    let category = Store.getState().pages.lifestyle.list.currentCategory.value;
+    if (!!this.data.vendors[category])
+      return;
     wx.showLoading({
-      title: localepkg[that.data.locale].loading
+      title: localepkg[that.data.locale].loading,
+      mask: !0
     });
     request(FETCH_URL, 'GET', {
       realm: 'lifestyle',
-      categories: that.data.categories
+      category
     }).then(data => {
       that.setData({
-        vendors: data
+        vendors: { ...that.data.vendors, [category]: data }
       });
       setTimeout(() => wx.hideLoading(), 1000);
     }).catch(e => console.error(e));
   },
   onPullDownRefresh() {
     let that = this;
-    wx.vibrateShort({});
-    wx.showNavigationBarLoading();
+    this.tapFeedback();
+    let category = Store.getState().pages.lifestyle.list.currentCategory.value;
     request(FETCH_URL, 'GET', {
       realm: 'lifestyle',
-      categories: that.data.categories
+      category
     }).then(data => {
       that.setData({
-        vendors: data
+        vendors: { ...that.data.vendors, [category]: data }
       });
       setTimeout(() => {
         wx.stopPullDownRefresh();
