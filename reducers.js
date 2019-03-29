@@ -119,13 +119,13 @@ function userInfo (state = DEFAULT_USER_INFO, action) {
   }
 }
 
-function memberInfo (state = DEFAULT_MEMBER_INFO, action) {
-  switch (action.type) {
+function memberInfo (state = DEFAULT_MEMBER_INFO, { res, type }) {
+  switch (type) {
     case SET_MEMBER_INFO:
-      return { ...action.res };
+      return { ...res };
       break;
     case UPDATE_MEMBER_INFO:
-      return { ...state, ...action.res };
+      return { ...state, ...res };
       break;
     case PURGE_MEMBER_INFO: 
       return DEFAULT_MEMBER_INFO;

@@ -49,12 +49,13 @@ Component({
         this.setData({
           locale: newState.global.locale
         });
-      if (!!newState.global.memberInfo)
-        if (this.data.credit !== newState.global.memberInfo.credit) {
+      if (!!newState.global.memberInfo) {
+        if (this.data.credit != newState.global.memberInfo.credit) {
           this.setData({
             credit: newState.global.memberInfo.credit
           })
         }
+      }
     },
     onShowQr() {
       this.tapFeedback({ currentTarget: { dataset: { id: "qrcode" } } });
@@ -73,9 +74,8 @@ Component({
         title: localepkg[Store.getState().global.locale].loading,
       });
       request(FETCH_URL, 'GET', { openid: Store.getState().global.userInfo.openid })
-        .then(credit => {
-          Store.dispatch(actions.updateCredit(credit));
-          Store.dispatch(app.globalActions.updateMemberInfo(credit));
+        .then(data => {
+          Store.dispatch(app.globalActions.updateMemberInfo({ credit: data }));
           wx.hideLoading();
         }).catch(e => console.error(e));
     },
