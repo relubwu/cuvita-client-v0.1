@@ -189,8 +189,9 @@ Component({
         title: localepkg[this.data.locale].pulldownrefresh,
         mask: true
       });
+      this.requestPageData();
       setTimeout(() => {
-        this.requestPageData();
+        wx.hideLoading();
         Store.dispatch(actions.stopPullDownRefresh());
       }, 1000);
     }
