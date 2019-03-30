@@ -29,8 +29,10 @@ Page({
       locale: Store.getState().global.locale,
     });
     wx.setNavigationBarTitle({ title: localepkg[that.data.locale].title });
+    wx.showNavigationBarLoading();
     request(FETCH_URL, 'GET', { openid: Store.getState().global.userInfo.openid }).then(history => {
       that.formatHistory(history);
+      wx.hideNavigationBarLoading();
     }).catch(e => console.error(e));
   },
   formatHistory(history) {

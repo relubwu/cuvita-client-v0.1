@@ -3,7 +3,7 @@ module.exports = {
     preauth: "加入CU会员，轻享留学生活",
     bind: "绑定",
     register: "注册",
-    history: "消费记录",
+    history: "积分记录",
     coupon: "优惠券",
     gift: "会员好礼",
     roadmap: "会员权益",

@@ -15,7 +15,7 @@ const { debounce } = require('../../utils/util');
 
 const DEFAULT_THROTTLE_GROUP = {};
 const FETCH_URL = '/member/fetchCredit';
-const ACCREDIT_URL = 'api.relubwu.com/acc';
+const ACCREDIT_URL = 'api.relubwu.com/qr';
 
 Component({
   options: {

@@ -15,7 +15,7 @@ const { debounce } = require('../../utils/util');
 
 const DEFAULT_THROTTLE_GROUP = {};
 const FETCH_URL = '/member/fetchCoupon';
-const COUPON_URL = 'api.relubwu.com/cpn';
+const COUPON_URL = 'api.relubwu.com/coupon';
 
 Page({
   data: {
@@ -35,8 +35,10 @@ Page({
       locale: Store.getState().global.locale
     });
     wx.setNavigationBarTitle({ title: localepkg[that.data.locale].title });
+    wx.showNavigationBarLoading();
     request(FETCH_URL, 'GET', { openid: Store.getState().global.userInfo.openid }).then( coupon => {
       that.formatCoupon(coupon);
+      wx.hideNavigationBarLoading();
     }).catch(e => console.error(e));
   },
   onUnload() {
