@@ -39,7 +39,7 @@ Page({
     let res = [];
     for (let e of history) {
       let time = new Date(e.time).toLocaleDateString('en-US', { month: "short", day: "numeric" });
-      let accredited = [...e.accredited.split('.')];
+      let accredited = [...(e.accredited).split('.')];
       res.push({ ...e, time, accredited });
     }
     this.setData({

@@ -9,7 +9,8 @@
     "pages/history/index",
     "pages/coupon/index",
     "pages/gourmet/list/index",
-    "pages/gourmet/detail/index"
+    "pages/gourmet/detail/index",
+    "pages/search/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
