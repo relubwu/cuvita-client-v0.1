@@ -1,0 +1,21 @@
+<view class="banner fvw d-flex-column align-items-center justify-content-center">
+  <image src="/assets/images/arrival-banner.png" class="banner-image fw" mode="widthFix" />
+  <image src="/assets/images/arrival-banner-typo.png" class="banner-typo" mode="aspectFit" />
+</view>
+<scroll-view class="body fvw fvh">
+  <view class="body-inset fw" />
+  <view class="container fw">
+    <view class="service">
+      <view class="service-banner fw container d-flex-column justify-content-center">
+        <label class="service-banner-label">attend</label>
+        <label class="service-banner-title">迎新见面会</label>
+      </view>
+      <view class="service-detail fw container d-flex-column">
+        <text class="service-detail-text fw"></text>
+        <view class="service-detail-action fw">
+          <label class="service-detail-action-label"></label>
+        </view>
+      </view>
+    </view>
+  </view>
+</scroll-view>

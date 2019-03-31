@@ -5,3 +5,68 @@
  * @version 0.1.5
  * @copyright  © CHINESE UNION 2019
  */
+
+/**
+ * z-index table
+ * @-1 :: .banner
+ * @-4 :: .banner-typo
+ * @-5 :: .banner-image
+ */
+
+.banner {
+  position: absolute;
+  top: 0;
+  height: 75vw;
+  z-index: -1;
+}
+
+.banner-image {
+  position: absolute;
+  z-index: -5;
+}
+
+.banner-typo {
+  position: absolute;
+  z-index: -4;
+  width: 60vw;
+}
+
+.body {
+  position: absolute;
+  top: 0;
+  z-index: 0;
+}
+
+.body-inset {
+  height: 75vw;
+  margin-bottom: 28px;
+}
+
+.service {
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.service-banner {
+  height: 30vw;
+  background-image: -webkit-linear-gradient(rgba(209, 35, 62, 0.75), rgba(209, 35, 62, 0.75)), url('https://cuvita-1254391499.cos.na-siliconvalley.myqcloud.com/arrival/banner-meeting.jpg');
+  background-size: cover;
+}
+
+.service-banner-label {
+  color: white;
+  font-size: 11pt;
+  text-transform: uppercase;
+}
+
+.service-banner-title {
+  color: white;
+  font-size: 24pt;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.service-detail {
+  background: white;
+  height: 35vw;
+}

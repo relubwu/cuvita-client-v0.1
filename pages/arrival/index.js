@@ -13,7 +13,7 @@ const localepkg = require('./localepkg');
 
 Page({
   data: {
-
+    systemInfo: Store.getState().global.systemInfo
   },
   onLoad(options) {
 
