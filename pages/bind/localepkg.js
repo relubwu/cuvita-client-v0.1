@@ -8,8 +8,17 @@ module.exports = {
     button: "绑定",
     name: "姓名",
     nameplaceholder: "请输入姓名",
+    nameerrempty: "姓名不能为空",
+    nameerrillegalchar: "姓名包含非法字符",
     cardno: "卡号",
-    cardnoplaceholder: "请输入卡号"
+    cardnoplaceholder: "请输入卡号",
+    cardnoerrempty: "卡号不能为空",
+    cardnoerrnondigit: "卡号只能为数字",
+    loading: "核验中",
+    successtitle: "绑定成功",
+    success: "欢迎回来，尊贵的CU会员",
+    failtitle: "绑定失败",
+    fail: "无法查询到匹配的会员信息，请重试"
   },
   en_US: {
     title: "Member Login",
@@ -20,7 +29,15 @@ module.exports = {
     button: "bind",
     name: "Name",
     nameplaceholder: "John Appleseed",
+    nameerrempty: "Name is required",
+    nameerrillegalchar: "Don't even try to use injection",
     cardno: "Card No.",
-    cardnoplaceholder: "00000000"
+    cardnoplaceholder: "00000000",
+    cardnoerrempty: "Card number is required",
+    loading: "Verifying",
+    successtitle: "Success",
+    success: "Welcome back, it's time to enjoy your membership benefits. ",
+    failtitle: "Fail",
+    fail: "Unable to match your record, please try again. "
   }
 }

@@ -2,12 +2,12 @@
       <view class="form-title">{{ localepkg[locale].header }}</view>
       <view class="form-description">{{ localepkg[locale].description }}</view>
     </view>
-<form>
+<form bind:submit="onSubmit">
   <van-cell-group custom-class="form-group">
-    <van-field type="number" required clearable label="{{ localepkg[locale].cardno }}" icon="question-o" placeholder="{{ localepkg[locale].cardnoplaceholder }}" bind:click-icon="explainCardNo" />
-    <van-field type="text" label="{{ localepkg[locale].name }}" placeholder="{{ localepkg[locale].nameplaceholder }}" required border="{{ false }}" />
+    <van-field name="cardno" type="number" required clearable label="{{ localepkg[locale].cardno }}" icon="question-o" placeholder="{{ localepkg[locale].cardnoplaceholder }}" bind:click-icon="explainCardNo" error-message="{{ errorMessage.cardno }}"/>
+    <van-field name="name" type="text" label="{{ localepkg[locale].name }}" placeholder="{{ localepkg[locale].nameplaceholder }}" required border="{{ false }}" error-message="{{ errorMessage.name }}"/>
   </van-cell-group>
   <view class="button-wrapper">
-    <van-button size="large" custom-class="button" catch:click="onBindActionClicked">{{localepkg[locale].button}}</van-button>
+    <button size="large" class="button" form-type="submit">{{localepkg[locale].button}}</button>
   </view>
 </form>

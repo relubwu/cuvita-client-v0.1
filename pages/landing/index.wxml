@@ -1,10 +1,8 @@
-<view class="fvw bg-primary" style="height: {{ systemInfo.statusBarHeight }}px;" />
 <view class="fvw fvh body d-flex-column align-items-center justify-content-center">
-  
   <view class="swiper-wrapper fw">
     <swiper class="fw" indicator-dots="{{ true }}" autoplay="{{ true }}" circular="{{ true }}">
       <swiper-item wx:for="{{ layout }}" class="fw fh d-flex-column align-items-center justify-content-center">
-        <image src="{{ item }}" mode="aspectFit"/>
+        <image src="{{ item }}" mode="aspectFit" lazy-load />
       </swiper-item>
     </swiper>
   </view>

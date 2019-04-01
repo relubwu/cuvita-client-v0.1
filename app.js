@@ -99,7 +99,7 @@ App({
         method,
         data,
         success({ data, statusCode }) {
-          if (statusCode === 404 || statusCode === 500)
+          if (statusCode === 400 || statusCode === 404 || statusCode === 500)
             reject(statusCode);
           resolve(data);
         },
