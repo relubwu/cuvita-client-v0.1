@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 7,
+			"current": 9,
 			"list": [
 				{
 					"id": -1,
@@ -93,6 +93,19 @@
 					"name": "arrival",
 					"pathName": "pages/arrival/index",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "bind",
+					"pathName": "pages/bind/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "landing",
+					"pathName": "pages/landing/index",
 					"scene": null
 				}
 			]

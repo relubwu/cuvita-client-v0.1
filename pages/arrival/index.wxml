@@ -1,14 +1,14 @@
 <!-- NAV_BAR -->
 <nav-bar background="bg-transparent" title="" />
 <!-- BANNER -->
-<view class="banner fvw d-flex-column align-items-center justify-content-center" style="opacity: {{ Layout.banner(scrollTop, systemInfo.screenWidth) }};">
+<view class="banner fvw d-flex-column align-items-center justify-content-center" style="opacity: {{ Layout.banner_opacity(scrollTop, systemInfo.screenWidth) }};">
   <image src="/assets/images/arrival-banner.png" class="banner-image fw" mode="widthFix" />
   <image src="/assets/images/arrival-banner-typo.png" class="banner-typo" mode="aspectFit" />
 </view>
 <!-- BODY -->
 <scroll-view class="body fvw fvh" scroll-y bind:scroll="onScroll">
   <view class="body-inset fw" />
-  <view class="service-container container fw" wx:for="{{ services }}" wx:key="{{ item.is }}">
+  <view class="service-container container fw" wx:for="{{ services }}" wx:key="{{ item.is }}" style="{{ index == services.length - 1 && 'padding-bottom:' + (systemInfo.safeAreaInset ? 'calc(44px + 24px);' : '24px;') }}">
     <view class="service" bind:tap="tapFeedback" data-is="{{ item.is }}" hover-class="service-hover">
       <view class="service-banner {{ currentBanner == item.is && 'service-banner-expand' }} fw container d-flex-column justify-content-center" style="background-image: {{ item.background }};">
         <label class="service-banner-label">{{ item.label[locale] }}</label>

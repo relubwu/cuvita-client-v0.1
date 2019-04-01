@@ -11,7 +11,9 @@
     "pages/gourmet/list/index",
     "pages/gourmet/detail/index",
     "pages/search/index",
-    "pages/arrival/index"
+    "pages/arrival/index",
+    "pages/bind/index",
+    "pages/landing/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
