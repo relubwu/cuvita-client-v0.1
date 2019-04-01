@@ -1,7 +1,7 @@
 <!-- NAV_BAR -->
 <nav-bar background="bg-transparent" title="" />
 <!-- BANNER -->
-<view class="banner fvw d-flex-column align-items-center justify-content-center" style="opacity: {{ Layout.banner(scrollTop, systemInfo.screenWidth) }};">
+<view class="banner fvw d-flex-column align-items-center justify-content-center" style="opacity: {{ Layout.banner_opacity(scrollTop, systemInfo.screenWidth) }};">
   <image src="/assets/images/arrival-banner.png" class="banner-image fw" mode="widthFix" />
   <image src="/assets/images/arrival-banner-typo.png" class="banner-typo" mode="aspectFit" />
 </view>
