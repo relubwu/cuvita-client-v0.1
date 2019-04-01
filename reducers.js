@@ -20,6 +20,7 @@ import PAGE_REDUCER_QRCODE from './pages/qrcode/reducers';
 import PAGE_REDUCER_COUPON from './pages/coupon/reducers';
 import PAGE_REDUCER_GOURMET from './pages/gourmet/reducers';
 import PAGE_REDUCER_LIFESTYLE from './pages/lifestyle/reducers';
+import PAGE_REDUCER_ARRIVAL from './pages/arrival/reducers';
 const { detectSafeAreaInset } = require('./utils/util');
 
 /**
@@ -171,7 +172,8 @@ const PAGE_REDUCERS = combineReducers({
   qrcode: PAGE_REDUCER_QRCODE,
   coupon: PAGE_REDUCER_COUPON,
   gourmet: PAGE_REDUCER_GOURMET,
-  lifestyle: PAGE_REDUCER_LIFESTYLE
+  lifestyle: PAGE_REDUCER_LIFESTYLE,
+  arrival: PAGE_REDUCER_ARRIVAL
 });
 
 /**
