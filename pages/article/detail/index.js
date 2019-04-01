@@ -18,8 +18,10 @@ Page({
   },
   onLoad: function (options) {
     let that = this;
+    wx.showNavigationBarLoading();
     request(FETCH_URL, 'GET', { id: options.id }).then(res => {
       this.setData(res);
+      wx.hideNavigationBarLoading();
     }).catch(e => console.error(e));
   }
 })

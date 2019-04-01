@@ -26,10 +26,12 @@ Page({
     wx.setNavigationBarTitle({
       title: localepkg[this.data.locale].title
     });
+    wx.showNavigationBarLoading();
     request(FETCH_URL, 'GET').then(res => {
       that.setData({
         data: res
       });
+      wx.hideNavigationBarLoading();
     }).catch(e => console.error(e));
   }
 })
