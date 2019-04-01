@@ -6,6 +6,7 @@ const DEFAULT_PAGE_PATH = [
   "/pages/card",
   "/pages/me"
 ];
+const LANDING_PAGE_PATH = '/pages/landing/index';
 
 /**
  * CUVita Client Side Implementations - custom-tab-bar.js
@@ -67,7 +68,7 @@ Component({
     onSwitch({ currentTarget: { dataset } }) {
       if(dataset.index == 1 && !Store.getState().global.memberInfo)
         wx.navigateTo({
-          url: '/pages/bind/index'
+          url: LANDING_PAGE_PATH
         });
       else
         app.store.dispatch(app.globalActions.switchTabBar(dataset.index));
