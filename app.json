@@ -12,7 +12,8 @@
     "pages/gourmet/detail/index",
     "pages/search/index",
     "pages/arrival/index",
-    "pages/bind/index"
+    "pages/bind/index",
+    "pages/landing/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
