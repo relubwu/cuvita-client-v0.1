@@ -144,9 +144,12 @@ App({
             data: memberInfo
           })
           resolve(store.dispatch(actions.updateMemberInfo(memberInfo)))
-        }).catch(e => 
-          resolve(store.dispatch(actions.purgeMemberInfo()))
-        );
+        }).catch(e => {
+          wx.removeStorage({
+            key: 'memberInfo'
+          })
+          resolve(store.dispatch(actions.purgeMemberInfo()));
+        });
     })
   }
 
