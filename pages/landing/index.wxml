@@ -1,0 +1,20 @@
+<view class="fvw bg-primary" style="height: {{ systemInfo.statusBarHeight }}px;" />
+<view class="fvw fvh body d-flex-column align-items-center justify-content-center">
+  
+  <view class="swiper-wrapper fw">
+    <swiper class="fw" indicator-dots="{{ true }}" autoplay="{{ true }}" circular="{{ true }}">
+      <swiper-item wx:for="{{ layout }}" class="fw fh d-flex-column align-items-center justify-content-center">
+        <image src="{{ item }}" mode="aspectFit"/>
+      </swiper-item>
+    </swiper>
+  </view>
+  <view class="button-wrapper fw">
+    <van-button size="large" custom-class="button button-bind" catch:click="onBind">{{localepkg[locale].bind}}</van-button>
+    <van-button size="large" custom-class="button button-register" catch:click="onRegister">{{localepkg[locale].register}}</van-button>
+  </view>
+  <view class="footer-wrapper">
+    <view class="weui-footer">
+      <view class="weui-footer__text">{{ localepkg[locale].disclaimer }}</view>
+    </view>
+  </view>
+</view>
