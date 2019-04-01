@@ -41,8 +41,8 @@ Page({
             height: 75
           }
         ]
-      }).catch(e => console.error(e));
-    });
+      })
+    }).catch(e => console.error(e));;
   },
   onUnload() {
 
@@ -55,10 +55,11 @@ Page({
     });
   },
   navigate() {
+    let that = this;
     wx.vibrateShort();
     wx.openLocation({
-      latitude: that.data.latitude,
-      longitude: that.data.longitude
+      latitude: that.data.geoLocation.lat,
+      longitude: that.data.geoLocation.long
     });
   },
   preview({ currentTarget }) {

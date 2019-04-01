@@ -20,6 +20,7 @@ import PAGE_REDUCER_QRCODE from './pages/qrcode/reducers';
 import PAGE_REDUCER_COUPON from './pages/coupon/reducers';
 import PAGE_REDUCER_GOURMET from './pages/gourmet/reducers';
 import PAGE_REDUCER_LIFESTYLE from './pages/lifestyle/reducers';
+import PAGE_REDUCER_ARRIVAL from './pages/arrival/reducers';
 const { detectSafeAreaInset } = require('./utils/util');
 
 /**
@@ -119,13 +120,13 @@ function userInfo (state = DEFAULT_USER_INFO, action) {
   }
 }
 
-function memberInfo (state = DEFAULT_MEMBER_INFO, action) {
-  switch (action.type) {
+function memberInfo (state = DEFAULT_MEMBER_INFO, { res, type }) {
+  switch (type) {
     case SET_MEMBER_INFO:
-      return { ...action.res };
+      return { ...res };
       break;
     case UPDATE_MEMBER_INFO:
-      return { ...state, ...action.res };
+      return { ...state, ...res };
       break;
     case PURGE_MEMBER_INFO: 
       return DEFAULT_MEMBER_INFO;
@@ -171,7 +172,8 @@ const PAGE_REDUCERS = combineReducers({
   qrcode: PAGE_REDUCER_QRCODE,
   coupon: PAGE_REDUCER_COUPON,
   gourmet: PAGE_REDUCER_GOURMET,
-  lifestyle: PAGE_REDUCER_LIFESTYLE
+  lifestyle: PAGE_REDUCER_LIFESTYLE,
+  arrival: PAGE_REDUCER_ARRIVAL
 });
 
 /**

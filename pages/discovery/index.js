@@ -75,7 +75,8 @@ Component({
       functions: [
         {
           is: 'arrival',
-          icon: '/assets/icons/arrival.png'
+          icon: '/assets/icons/arrival.png',
+          url: '/pages/arrival/index'
         },
         {
           is: 'events',

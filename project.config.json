@@ -12,7 +12,7 @@
 		"autoAudits": false
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.6.2",
+	"libVersion": "2.6.4",
 	"appid": "wx5e319a45afc2ebd2",
 	"projectname": "CUVita",
 	"debugOptions": {
@@ -37,7 +37,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 7,
 			"list": [
 				{
 					"id": -1,
@@ -85,6 +85,13 @@
 					"id": -1,
 					"name": "article-list",
 					"pathName": "pages/article/list/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "arrival",
+					"pathName": "pages/arrival/index",
 					"query": "",
 					"scene": null
 				}

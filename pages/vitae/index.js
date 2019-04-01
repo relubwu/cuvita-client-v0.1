@@ -15,6 +15,7 @@ const { debounce } = require('../../utils/util');
 
 const DEFAULT_THROTTLE_GROUP = {};
 const FETCH_URL = '/member/fetchCredit';
+const ACCREDIT_URL = 'api.relubwu.com/qr';
 
 Component({
   options: {
@@ -48,16 +49,20 @@ Component({
         this.setData({
           locale: newState.global.locale
         });
-      if (!!newState.global.memberInfo)
-        if (this.data.credit !== newState.global.memberInfo.credit) {
+      if (!!newState.global.memberInfo) {
+        if (this.data.credit != newState.global.memberInfo.credit) {
           this.setData({
             credit: newState.global.memberInfo.credit
           })
         }
+      }
     },
     onShowQr() {
       this.tapFeedback({ currentTarget: { dataset: { id: "qrcode" } } });
-      let context = `accredit://cardno=${Store.getState().global.memberInfo.cardno}`;
+      let context = 
+        encodeURIComponent(
+          ACCREDIT_URL.concat(`?p=${Store.getState().global.memberInfo.cardno}`)
+        );
       wx.navigateTo({
         url: `/pages/qrcode/index?context=${context}`
       });
@@ -69,9 +74,8 @@ Component({
         title: localepkg[Store.getState().global.locale].loading,
       });
       request(FETCH_URL, 'GET', { openid: Store.getState().global.userInfo.openid })
-        .then(credit => {
-          Store.dispatch(actions.updateCredit(credit));
-          Store.dispatch(app.globalActions.updateMemberInfo(credit));
+        .then(data => {
+          Store.dispatch(app.globalActions.updateMemberInfo({ credit: data }));
           wx.hideLoading();
         }).catch(e => console.error(e));
     },

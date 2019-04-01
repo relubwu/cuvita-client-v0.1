@@ -29,15 +29,17 @@ Page({
       locale: Store.getState().global.locale,
     });
     wx.setNavigationBarTitle({ title: localepkg[that.data.locale].title });
+    wx.showNavigationBarLoading();
     request(FETCH_URL, 'GET', { openid: Store.getState().global.userInfo.openid }).then(history => {
       that.formatHistory(history);
+      wx.hideNavigationBarLoading();
     }).catch(e => console.error(e));
   },
   formatHistory(history) {
     let res = [];
     for (let e of history) {
       let time = new Date(e.time).toLocaleDateString('en-US', { month: "short", day: "numeric" });
-      let accredited = [...e.accredited.split('.')];
+      let accredited = [...(e.accredited).split('.')];
       res.push({ ...e, time, accredited });
     }
     this.setData({

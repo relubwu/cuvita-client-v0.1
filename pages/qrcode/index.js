@@ -22,9 +22,12 @@ Page({
     this.unsubscribe = Store.subscribe(() => {
       this.relaySubscription();
     });
+    let context = decodeURIComponent(
+      options.context
+    )
     this.worker = wx.createWorker('/async/drawqr/index.js');
     this.worker.postMessage({
-      context: options.context,
+      context,
       screenWidth: Store.getState().global.systemInfo.screenWidth
     });
     this.setData({

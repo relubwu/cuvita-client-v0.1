@@ -55,10 +55,11 @@ Page({
     });
   },
   navigate() {
+    let that = this;
     wx.vibrateShort();
     wx.openLocation({
-      latitude: that.data.latitude,
-      longitude: that.data.longitude
+      latitude: that.data.geoLocation.lat,
+      longitude: that.data.geoLocation.long
     });
   },
   preview({ currentTarget }) {
