@@ -43,6 +43,12 @@ App({
         store.dispatch(actions.setSystemInfo(res));
       },
     });
+    wx.getStorage({
+      key: 'memberInfo',
+      success({ data }) {
+        store.dispatch(actions.setMemberInfo(data));
+      }
+    })
     wx.getNetworkType({
       success({ networkType }) {
         store.dispatch(actions.setNetworkStatus(networkType));
@@ -132,9 +138,13 @@ App({
     let app = this;
     return new Promise((resolve, reject) => {
       app.request(MEMBERINFO_URL, 'GET', { openid })
-        .then(memberInfo => 
-          resolve(store.dispatch(actions.setMemberInfo(memberInfo)))
-        ).catch(e => 
+        .then(memberInfo => {
+          wx.setStorage({
+            key: 'memberInfo',
+            data: memberInfo
+          })
+          resolve(store.dispatch(actions.updateMemberInfo(memberInfo)))
+        }).catch(e => 
           resolve(store.dispatch(actions.purgeMemberInfo()))
         );
     })

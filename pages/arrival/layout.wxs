@@ -1,3 +1,7 @@
 module.exports.banner = function (scrollTop, screenWidth) {
-  return (1 - (scrollTop - 20) / (screenWidth * 0.6));
+  var opacity = (1 - (scrollTop - 40) / (screenWidth * 0.6));
+  if (opacity < 0.2)
+    return 0.2;
+  else
+    return opacity;
 }
