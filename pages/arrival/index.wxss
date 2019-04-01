@@ -45,12 +45,34 @@
 .service {
   overflow: hidden;
   border-radius: 10px;
+  box-shadow: 0 3px 15px #b2b2b2b2;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  -webkit-transition-duration: 0.2s;
+  transition-duration: 0.2s;
+  -webkit-transition-property: all;
+  transition-property: all;
+}
+
+.service-container {
+  padding: 12px 15px;
+}
+
+.service-hover {
+  -webkit-transform: scale(1.02);
+  transform: scale(1.02);
 }
 
 .service-banner {
   height: 30vw;
-  background-image: -webkit-linear-gradient(rgba(209, 35, 62, 0.75), rgba(209, 35, 62, 0.75)), url('https://cuvita-1254391499.cos.na-siliconvalley.myqcloud.com/arrival/banner-meeting.jpg');
   background-size: cover;
+  transition: height 0.2s ease;
+  -webkit-transition: height 0.2s ease;
+  -webkit-backdrop-filter: blur(3px);
+}
+
+.service-banner-expand {
+  height: 35vw;
 }
 
 .service-banner-label {
@@ -68,5 +90,19 @@
 
 .service-detail {
   background: white;
-  height: 35vw;
+  height: 0;
+  font-size: 11pt;
+  padding-bottom: 0;
+  transition: height 0.2s ease;
+  -webkit-transition: height 0.2s ease;
+}
+
+.service-detail-expand {
+  height: 50vw;
+}
+
+.service-detail-action {
+  padding-bottom: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
 }

@@ -1,21 +1,30 @@
-<view class="banner fvw d-flex-column align-items-center justify-content-center">
+<!-- NAV_BAR -->
+<nav-bar background="bg-transparent" title="" />
+<!-- BANNER -->
+<view class="banner fvw d-flex-column align-items-center justify-content-center" style="opacity: {{ Layout.banner(scrollTop, systemInfo.screenWidth) }};">
   <image src="/assets/images/arrival-banner.png" class="banner-image fw" mode="widthFix" />
   <image src="/assets/images/arrival-banner-typo.png" class="banner-typo" mode="aspectFit" />
 </view>
-<scroll-view class="body fvw fvh">
+<!-- BODY -->
+<scroll-view class="body fvw fvh" scroll-y bind:scroll="onScroll">
   <view class="body-inset fw" />
-  <view class="container fw">
-    <view class="service">
-      <view class="service-banner fw container d-flex-column justify-content-center">
-        <label class="service-banner-label">attend</label>
-        <label class="service-banner-title">迎新见面会</label>
+  <view class="service-container container fw" wx:for="{{ services }}" wx:key="{{ item.is }}">
+    <view class="service" bind:tap="tapFeedback" data-is="{{ item.is }}" hover-class="service-hover">
+      <view class="service-banner {{ currentBanner == item.is && 'service-banner-expand' }} fw container d-flex-column justify-content-center" style="background-image: {{ item.background }};">
+        <label class="service-banner-label">{{ item.label[locale] }}</label>
+        <label class="service-banner-title">{{ item.title[locale] }}</label>
       </view>
-      <view class="service-detail fw container d-flex-column">
-        <text class="service-detail-text fw"></text>
-        <view class="service-detail-action fw">
-          <label class="service-detail-action-label"></label>
+      <view class="service-detail {{ currentBanner == item.is && 'service-detail-expand' }} fw d-flex-column justify-content-between">
+        <text class="service-detail-text fw container ">{{ item.detail[locale] }}</text>
+        <view class="service-detail-action fw container d-flex-row justify-content-end">
+          <navigator src="{{ item.action.url }}" class="service-detail-action-label d-flex-row">
+            <label>{{ item.action.description[locale] }}</label>
+            <van-icon name="arrow" size="9pt" />
+          </navigator>
         </view>
       </view>
     </view>
   </view>
 </scroll-view>
+<!-- WXS MODULES -->
+<wxs module="Layout" src="layout.wxs"></wxs>

@@ -1,3 +1,4 @@
+import * as actions from './actions';
 const app = getApp();
 const { request } = app;
 const Store = app.store;
@@ -11,11 +12,48 @@ const localepkg = require('./localepkg');
  * @copyright  © CHINESE UNION 2019
  */
 
+const FETCH_URL = '/arrival/layout';
+
 Page({
   data: {
-    systemInfo: Store.getState().global.systemInfo
+    systemInfo: Store.getState().global.systemInfo,
+    services: []
   },
   onLoad(options) {
-
-  }
+    let that = this;
+    this.unsubscribe = Store.subscribe(() => {
+      this.relaySubscription();
+    });
+    this.setData({
+      locale: Store.getState().global.locale
+    });
+    wx.showLoading({
+      title: localepkg[that.data.locale].loading,
+      mask: !0
+    });
+    request(FETCH_URL, {}).then(services => {
+      this.setData({ services });
+      wx.hideLoading();
+    });
+  },
+  relaySubscription() {
+    let newState = Store.getState();
+    if (this.data.currentBanner !== newState.pages.arrival.index.currentBanner)
+      this.setData({
+        currentBanner: newState.pages.arrival.index.currentBanner
+      });
+  },
+  onScroll({ detail: { scrollTop } }) {
+    this.setData({
+      scrollTop: scrollTop
+    });
+  },
+  tapFeedback({ currentTarget: { dataset: { is } } }) {
+    wx.vibrateShort({});
+    Store.dispatch(actions.toggleArrivalBannerDetail(is));
+  },
+  onUnload() {
+    Store.dispatch(actions.resetArrivalBannerDetail());
+    this.unsubscribe();
+  },
 })
