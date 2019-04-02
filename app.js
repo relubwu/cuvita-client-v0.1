@@ -29,11 +29,11 @@ App({
   localepkg,
 
   onLaunch: function () {
-    if (wx.getStorageSync('version') !== '0.1.5') {
+    if (wx.getStorageSync('version') !== '0.1.5.2') {
       wx.clearStorageSync();
       wx.setStorage({
         key: 'version',
-        data: '0.1.5',
+        data: '0.1.5.2',
       });
     }
     let app = this;

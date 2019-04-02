@@ -13,7 +13,8 @@
     "pages/search/index",
     "pages/arrival/index",
     "pages/bind/index",
-    "pages/landing/index"
+    "pages/landing/index",
+    "pages/register/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
