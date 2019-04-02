@@ -12,6 +12,7 @@ const localepkg = require('./localepkg');
  */
 
 const BIND_URL = '/pages/bind/index';
+const REGISTER_URL = '/pages/register/index';
 
 Page({
   data: {
@@ -31,6 +32,8 @@ Page({
     });
   },
   onRegister() {
-    
+    wx.navigateTo({
+      url: REGISTER_URL
+    });
   }
 })

@@ -1,0 +1,18 @@
+<view class="steps-wrapper">
+  <i-steps current="{{ currentStep }}">
+    <i-step wx:for="{{ steps }}">
+      <view class="steps-description" slot="title">
+        {{item[locale]}}
+      </view>
+    </i-step>
+  </i-steps>
+</view>
+<form bind:submit="onSubmit">
+  <van-cell-group custom-class="form-group">
+    <van-field name="cardno" type="number" required clearable label="{{ localepkg[locale].cardno }}" icon="question-o" placeholder="{{ localepkg[locale].cardnoplaceholder }}" bind:click-icon="explainCardNo" error-message="{{ errorMessage.cardno }}" />
+    <van-field name="name" type="text" label="{{ localepkg[locale].name }}" placeholder="{{ localepkg[locale].nameplaceholder }}" required border="{{ false }}" error-message="{{ errorMessage.name }}" />
+  </van-cell-group>
+  <view class="button-wrapper">
+    <button size="large" class="button" form-type="submit">{{localepkg[locale].button}}</button>
+  </view>
+</form>
