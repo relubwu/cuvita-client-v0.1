@@ -5,24 +5,3 @@
  * @version 0.1.5
  * @copyright  © CHINESE UNION 2019
  */
-
-.form-group {
-  padding: 7px 0;
-}
-
-.button-wrapper {
-  box-sizing: border-box;
-  padding: 42px 30px;
-}
-
-.button {
-  background-color: #d1233e !important;
-  color: white !important;
-  overflow: hidden !important;
-  border-radius: 5px !important;
-}
-
-.steps-wrapper {
-  box-sizing: border-box;
-  padding: 40px;
-}

@@ -154,3 +154,32 @@ nav-bar {
     text-align: left;
     font-size: 11pt;
 }
+
+.form-group {
+  padding: 7px 0;
+}
+
+.form-button-wrapper {
+  box-sizing: border-box;
+  padding: 42px 30px;
+}
+
+.form-button {
+  background-color: #d1233e !important;
+  color: white !important;
+  overflow: hidden !important;
+  border-radius: 5px !important;
+  text-transform: capitalize;
+}
+
+.form-steps-wrapper {
+  box-sizing: border-box;
+  padding: 40px;
+}
+
+.form-cell-group-title {
+  font-size: 11pt;
+  color: #b2b2b2;
+  padding: 0 15px;
+  margin: 7px 0;
+}
