@@ -32,8 +32,8 @@ Page({
   explainCardNo() {
     let that = this;
     wx.showModal({
-      title: localepkg[that.data.locale].cardnotitle,
-      content: localepkg[that.data.locale].cardnodescription,
+      title: localepkg[that.data.locale].cardnoTitle,
+      content: localepkg[that.data.locale].cardnoDescription,
       showCancel: !!0,
       confirmColor: '#d1233e'
     });
@@ -43,11 +43,11 @@ Page({
     let sanity = { cardno: !!0, name: !!0 }
     if (!cardno) {
       this.setData({
-        'errorMessage.cardno': localepkg[that.data.locale].cardnoerrempty
+        'errorMessage.cardno': localepkg[that.data.locale].cardnoErrEmpty
       });
     } else if (!!cardno.match(/\D/g)) {
       this.setData({
-        'errorMessage.cardno': localepkg[that.data.locale].cardnoerrnondigit
+        'errorMessage.cardno': localepkg[that.data.locale].cardnoErrNonDigit
       });
     } else {
       this.setData({
@@ -57,11 +57,11 @@ Page({
     }
     if (!name) {
       this.setData({
-        'errorMessage.name': localepkg[that.data.locale].nameerrempty
+        'errorMessage.name': localepkg[that.data.locale].nameErrEmpty
       });
     } else if (!!name.match(/[\$\*]/g)) {
       this.setData({
-        'errorMessage.name': localepkg[that.data.locale].nameerrillegalchar
+        'errorMessage.name': localepkg[that.data.locale].nameErrIllegalChar
       });
     } else {
       this.setData({
@@ -87,7 +87,7 @@ Page({
       });
       Store.dispatch(app.globalActions.updateMemberInfo(memberInfo));
       wx.showModal({
-        title: localepkg[that.data.locale].successtitle,
+        title: localepkg[that.data.locale].successTitle,
         content: localepkg[that.data.locale].success,
         showCancel: !!0,
         confirmColor: '#d1233e',
@@ -104,7 +104,7 @@ Page({
       });
       Store.dispatch(app.globalActions.purgeMemberInfo());
       wx.showModal({
-        title: localepkg[that.data.locale].failtitle,
+        title: localepkg[that.data.locale].failTitle,
         content: localepkg[that.data.locale].fail,
         showCancel: !!0,
         confirmColor: '#d1233e'
