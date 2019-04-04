@@ -21,6 +21,7 @@ import PAGE_REDUCER_COUPON from './pages/coupon/reducers';
 import PAGE_REDUCER_GOURMET from './pages/gourmet/reducers';
 import PAGE_REDUCER_LIFESTYLE from './pages/lifestyle/reducers';
 import PAGE_REDUCER_ARRIVAL from './pages/arrival/reducers';
+import PAGE_REDUCER_REGISTER from './pages/register/reducers';
 const { detectSafeAreaInset } = require('./utils/util');
 
 /**
@@ -173,7 +174,8 @@ const PAGE_REDUCERS = combineReducers({
   coupon: PAGE_REDUCER_COUPON,
   gourmet: PAGE_REDUCER_GOURMET,
   lifestyle: PAGE_REDUCER_LIFESTYLE,
-  arrival: PAGE_REDUCER_ARRIVAL
+  arrival: PAGE_REDUCER_ARRIVAL,
+  register: PAGE_REDUCER_REGISTER
 });
 
 /**

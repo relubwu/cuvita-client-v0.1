@@ -1,18 +1,23 @@
-<view class="steps-wrapper">
+<view class="form-steps-wrapper">
   <i-steps current="{{ currentStep }}">
     <i-step wx:for="{{ steps }}">
-      <view class="steps-description" slot="title">
+      <view slot="title">
         {{item[locale]}}
       </view>
     </i-step>
   </i-steps>
 </view>
-<form bind:submit="onSubmit">
-  <van-cell-group custom-class="form-group">
-    <van-field name="cardno" type="number" required clearable label="{{ localepkg[locale].cardno }}" icon="question-o" placeholder="{{ localepkg[locale].cardnoplaceholder }}" bind:click-icon="explainCardNo" error-message="{{ errorMessage.cardno }}" />
-    <van-field name="name" type="text" label="{{ localepkg[locale].name }}" placeholder="{{ localepkg[locale].nameplaceholder }}" required border="{{ false }}" error-message="{{ errorMessage.name }}" />
+<form bind:submit="onSubmit" hidden="{{ currentStep != 0 }}">
+  <label class="form-cell-group-title">{{ localepkg[locale].biography }}</label>
+  <van-cell-group custom-class="form-group" border="{{ false }}">
+    <van-field name="name" type="text" label="{{ localepkg[locale].name }}" placeholder="{{ localepkg[locale].namePlaceholder }}" required border="{{ false }}" error-message="{{ errorMessage.name }}" />
   </van-cell-group>
-  <view class="button-wrapper">
-    <button size="large" class="button" form-type="submit">{{localepkg[locale].button}}</button>
+  <label class="form-cell-group-title">{{ localepkg[locale].contacts }}</label>
+  <van-cell-group custom-class="form-group" border="{{ false }}">
+    <van-field name="email" type="text" label="{{ localepkg[locale].email }}" placeholder="{{ localepkg[locale].emailPlaceholder }}" required error-message="{{ errorMessage.email }}" />
+    <van-field name="tel" type="number" label="{{ localepkg[locale].tel }}" placeholder="{{ localepkg[locale].telPlaceholder }}" border="{{ false }}" error-message="{{ errorMessage.tel }}" />
+  </van-cell-group>
+  <view class="form-button-wrapper">
+    <button size="large" class="form-button" form-type="submit">{{localepkg[locale].button}}</button>
   </view>
 </form>
