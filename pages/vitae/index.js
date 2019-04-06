@@ -71,7 +71,7 @@ Component({
       let that = this;
       this.tapFeedback({ currentTarget: { dataset: { id: "card" } } });
       wx.showLoading({
-        title: localepkg[Store.getState().global.locale].loading,
+        title: app.localepkg[Store.getState().global.locale].loading,
       });
       request(FETCH_URL, 'GET', { openid: Store.getState().global.userInfo.openid })
         .then(data => {
