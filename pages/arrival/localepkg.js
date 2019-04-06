@@ -1,8 +1,8 @@
 module.exports = {
   zh_CN: {
-    loading: '加载中'
+    title: '迎新服务'
   },
   en_US: {
-    loading: 'Loading'
+    title: 'Arrival'
   }
 }

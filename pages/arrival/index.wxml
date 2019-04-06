@@ -1,30 +1,25 @@
 <!-- NAV_BAR -->
-<nav-bar background="bg-transparent" title="" />
-<!-- BANNER -->
-<view class="banner fvw d-flex-column align-items-center justify-content-center" style="opacity: {{ Layout.banner_opacity(scrollTop, systemInfo.screenWidth) }};">
-  <image src="/assets/images/arrival-banner.png" class="banner-image fw" mode="widthFix" />
-  <image src="/assets/images/arrival-banner-typo.png" class="banner-typo" mode="aspectFit" />
-</view>
+<nav-bar background="bg-transparent" title="{{ localepkg[locale].title }}" />
 <!-- BODY -->
-<scroll-view class="body fvw fvh" scroll-y bind:scroll="onScroll">
-  <view class="body-inset fw" />
-  <view class="service-container container fw" wx:for="{{ services }}" wx:key="{{ item.is }}" style="{{ index == services.length - 1 && 'padding-bottom:' + (systemInfo.safeAreaInset ? 'calc(44px + 24px);' : '24px;') }}">
-    <view class="service" bind:tap="tapFeedback" data-is="{{ item.is }}" hover-class="service-hover">
-      <view class="service-banner {{ currentBanner == item.is && 'service-banner-expand' }} fw container d-flex-column justify-content-center" style="background-image: {{ item.background }};">
-        <label class="service-banner-label">{{ item.label[locale] }}</label>
-        <label class="service-banner-title">{{ item.title[locale] }}</label>
-      </view>
-      <view class="service-detail {{ currentBanner == item.is && 'service-detail-expand' }} fw d-flex-column justify-content-between">
-        <text class="service-detail-text fw container ">{{ item.detail[locale] }}</text>
-        <view class="service-detail-action fw container d-flex-row justify-content-end">
-          <navigator src="{{ item.action.url }}" class="service-detail-action-label d-flex-row">
-            <label>{{ item.action.description[locale] }}</label>
-            <van-icon name="arrow" size="9pt" />
-          </navigator>
+<image src="/assets/images/arrival-banner.jpg" class="fw fh background" mode="aspectFill"/>
+<view class="fvw fvh body">
+  <swiper class="fvw fvh body-swiper" style="padding-top: calc({{ systemInfo.navigationBarHeight }}px + 14px); padding-bottom: calc({{ systemInfo.navigationBarHeight }}px);" indicator-dots indicator-color="rgba(255, 255, 255, 0.3)" indicator-active-color="#ffffff" circular previous-margin="30px" next-margin="30px">
+    <swiper-item wx:for="{{ services }}">
+      <view class="fw card">
+        <view class="fw fh card-container container" style="background: white;">
+          <view class="fw card-title d-flex-column align-items-center justify-content-center">
+            <label class="card-title-label">#0{{ index + 1 }}</label>
+          </view>
+          <image src="{{ item.banner }}" class="fw card-banner" mode="aspectFit"/>
+          <view class="card-content-container">
+            <view class="card-header">{{ item.header[locale] }}</view>
+            <rich-text class="card-content" nodes="{{ item.detail[locale] }}"></rich-text>
+          </view>
+          <view class="card-navigator-container d-flex-column align-items-center justify-content-center">
+            <navigator url="{{ action.url }}" class="card-navigator fw d-flex-column align-items-center justify-content-center"><label>{{ item.action.description[locale] }}</label></navigator>
+          </view>
         </view>
       </view>
-    </view>
-  </view>
-</scroll-view>
-<!-- WXS MODULES -->
-<wxs module="Layout" src="layout.wxs"></wxs>
+    </swiper-item>
+  </swiper>
+</view>
