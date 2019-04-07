@@ -12,7 +12,7 @@ import {
  * @copyright  © CHINESE UNION 2019
  */
 
-const DEFAULT_STEP = 0;
+const DEFAULT_STEP = 1;
 
 export function currentStep(state = DEFAULT_STEP, action) {
   switch (action.type) {

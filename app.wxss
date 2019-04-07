@@ -47,12 +47,12 @@ nav-bar {
  */
 
 .d-flex-column {
-  display: flex;
+  display: flex !important;
   flex-direction: column;
 }
 
 .d-flex-row {
-  display: flex;
+  display: flex !important;
   flex-direction: row;
 }
 

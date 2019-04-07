@@ -7,7 +7,7 @@
     </i-step>
   </i-steps>
 </view>
-<form bind:submit="onSubmit" hidden="{{ currentStep != 0 }}">
+<form bind:submit="onSubmit" hidden="{{ currentStep != 0 }}" class="fvw">
   <label class="form-cell-group-title">{{ localepkg[locale].biography }}</label>
   <van-cell-group custom-class="form-group" border="{{ false }}">
     <van-field name="name" type="text" label="{{ localepkg[locale].name }}" placeholder="{{ localepkg[locale].namePlaceholder }}" required border="{{ false }}" error-message="{{ errorMessage.name }}" />
@@ -17,7 +17,26 @@
     <van-field name="email" type="text" label="{{ localepkg[locale].email }}" placeholder="{{ localepkg[locale].emailPlaceholder }}" required error-message="{{ errorMessage.email }}" />
     <van-field name="tel" type="number" label="{{ localepkg[locale].tel }}" placeholder="{{ localepkg[locale].telPlaceholder }}" border="{{ false }}" error-message="{{ errorMessage.tel }}" />
   </van-cell-group>
-  <view class="form-button-wrapper">
+  <view class="form-button-wrapper fw">
     <button size="large" class="form-button" form-type="submit">{{localepkg[locale].button}}</button>
   </view>
 </form>
+<!--支付页-->
+<view class="payment fvw d-flex-column align-items-center justify-content-center" hidden="{{ currentStep != 1 }}">
+  <!--标价牌-->
+  <view class="payment-pricetag">
+    <text class="payment-pricetag-unit">{{ payment[locale].unit }}</text>
+    <text class="payment-pricetag-amount">{{ payment[locale].amount }}</text>
+  </view>
+  <!--支付信息-->
+  <text class="payment-title">{{ payment[locale].title }}</text>
+  <!--支付提交按钮-->
+  <view class="form-button-wrapper fw">
+    <button class="form-button d-flex-row align-items-center justify-content-center" loading="{{control.payment$confirm$loading}}"><van-icon name="wechat" custom-class="d-flex-column align-items-center justify-content-center" custom-style="padding: 0 5px;" />{{localepkg[locale].confirmPayment}}</button>
+  </view>
+  <view class="footer-wrapper">
+    <view class="weui-footer">
+      <navigator class="weui-footer__text"><van-icon name="arrow-left" color="#b2b2b2" custom-class="d-flex-row align-items-center justify-content-center" />{{ localepkg[locale].fallback }}</navigator>
+    </view>
+  </view>
+</view>

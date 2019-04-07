@@ -28,7 +28,19 @@ Page({
     }, {
       zh_CN: '完成注册',
       en_US: 'Success'
-    }]
+    }],
+    payment: {
+      zh_CN: {
+        unit: "¥",
+        amount: "238.00",
+        title: "中国同学联合会会员费"
+      },
+      en_US: {
+        unit: "$",
+        amount: "35.00",
+        title: "Chinese Union Membership"
+      }
+    }
   },
   onLoad(options) {
     let that = this;

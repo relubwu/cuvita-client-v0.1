@@ -15,6 +15,8 @@ module.exports = {
     emailPlaceholder: "example@email.com",
     emailErrEmpty: "电子邮箱不能为空",
     emailErrIllegalChar: "电子邮箱格式不正确",
+    confirmPayment: '微信支付',
+    fallback: "返回上一步"
   },
   en_US: {
     title: "Register",
@@ -32,5 +34,7 @@ module.exports = {
     emailPlaceholder: "example@email.com",
     emailErrEmpty: "E-mail is required",
     emailErrIllegalChar: "Incorrect format",
+    confirmPayment: 'WeChat Pay',
+    fallback: "Back"
   }
 }
