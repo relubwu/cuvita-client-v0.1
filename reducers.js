@@ -12,7 +12,8 @@ import {
   SET_MEMBER_INFO,
   UPDATE_MEMBER_INFO,
   PURGE_MEMBER_INFO,
-  SET_NETWORK_STATUS
+  SET_NETWORK_STATUS,
+  SET_GEO_LOCATION
 } from './actions';
 import PAGE_REDUCER_DISCOVERY from './pages/discovery/reducers';
 import PAGE_REDUCER_ME from './pages/me/reducers';
@@ -38,6 +39,7 @@ const DEFAULT_SYSTEM_INFO = null;
 const DEFAULT_USER_INFO = null;
 const DEFAULT_MEMBER_INFO = null;
 const DEFAULT_NETWORK = { connected: true, type: null };
+const DEFAULT_GEO_LOCATION = null;
 
 /**
  * Global Reducers
@@ -154,6 +156,17 @@ function network (state = DEFAULT_NETWORK, action) {
   }
 }
 
+function geoLocation (state = DEFAULT_GEO_LOCATION, action) {
+  switch (action.type) {
+    case SET_GEO_LOCATION: 
+      return { ...state, ...action.res };
+      break;
+    default: 
+      return state;
+      break;
+  }
+}
+
 const GLOBAL_REDUCERS = combineReducers({
   tabBar,
   router,
@@ -161,7 +174,8 @@ const GLOBAL_REDUCERS = combineReducers({
   systemInfo,
   userInfo,
   memberInfo,
-  network
+  network,
+  geoLocation
 });
 
 /**

@@ -65,6 +65,11 @@ App({
       .then(code => app.fetchUserInfo(code))
       .then(openid => app.fetchMemberInfo(openid))
       .then(wx.hideLoading);
+    wx.getLocation({
+      success({ latitude, longitude, accuracy, horizontalAccuracy }) {
+        store.dispatch(actions.setGeoLocation({ latitude, longitude, accuracy, horizontalAccuracy }));
+      }
+    });
   },
 
   onAppRoute() {
