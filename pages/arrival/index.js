@@ -1,6 +1,6 @@
 import * as actions from './actions';
 const app = getApp();
-const { request } = app;
+const { request, API } = app;
 const Store = app.store;
 const localepkg = require('./localepkg');
 
@@ -11,8 +11,6 @@ const localepkg = require('./localepkg');
  * @version 0.1.5
  * @copyright  © CHINESE UNION 2019
  */
-
-const FETCH_URL = '/arrival/layout';
 
 Page({
   data: {
@@ -32,7 +30,7 @@ Page({
       title: app.localepkg[Store.getState().global.locale].loading,
       mask: !0
     });
-    request(FETCH_URL, {}).then(services => {
+    request(API.URL_ARRIVAL_LAYOUT, {}).then(services => {
       this.setData({ services });
       wx.hideLoading();
     });

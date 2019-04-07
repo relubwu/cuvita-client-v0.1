@@ -1,6 +1,6 @@
 import * as actions from './actions';
 const app = getApp();
-const { request } = app;
+const { request, API } = app;
 const Store = app.store;
 const localepkg = require('./localepkg');
 
@@ -12,7 +12,6 @@ const localepkg = require('./localepkg');
  * @copyright  © CHINESE UNION 2019
  */
 
-const FETCH_URL = "/vendor/fetchList";
 const DISPLAY_THRESHOLD = 5;
 
 Page({
@@ -69,7 +68,7 @@ Page({
       title: localepkg[that.data.locale].loading,
       mask: !0
     });
-    request(FETCH_URL, 'GET', {
+    request(API.URL_VENDOR_LIST, 'GET', {
       realm: 'lifestyle',
       category
     }).then(data => {
@@ -83,7 +82,7 @@ Page({
     let that = this;
     this.tapFeedback();
     let category = Store.getState().pages.lifestyle.list.currentCategory.value;
-    request(FETCH_URL, 'GET', {
+    request(PI.URL_VENDOR_LIST, 'GET', {
       realm: 'lifestyle',
       category
     }).then(data => {

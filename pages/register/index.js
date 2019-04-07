@@ -1,6 +1,6 @@
 import * as actions from 'actions.js';
 const app = getApp();
-const { request, requestPayment } = app;
+const { request, requestPayment, API } = app;
 const Store = app.store;
 const localepkg = require('./localepkg');
 
@@ -11,9 +11,6 @@ const localepkg = require('./localepkg');
  * @version 0.1.5
  * @copyright  © CHINESE UNION 2019
  */
-
-const POST_URL = '/member/register';
-const PAGE_INDEX = '/pages/index/index';
 
 Page({
   data: {
@@ -99,7 +96,7 @@ Page({
     wx.showLoading({
       title: app.localepkg[Store.getState().global.locale].loading
     });
-    request(POST_URL, 'POST', {
+    request(API.URL_MEMBER_REGISTER, 'POST', {
       procedure: 'handshake',
       openid: Store.getState().global.userInfo.openid,
       payload: {
@@ -126,7 +123,7 @@ Page({
   },
   exit() {
     wx.reLaunch({
-      url: PAGE_INDEX
+      url: API.URL_PAGE_INDEX
     });
   }
 })

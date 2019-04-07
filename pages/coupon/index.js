@@ -1,6 +1,6 @@
 import * as actions from 'actions';
 const app = getApp();
-const { request } = app;
+const { request, API } = app;
 const Store = app.store;
 const localepkg = require('localepkg');
 const { debounce } = require('../../utils/util');
@@ -14,8 +14,6 @@ const { debounce } = require('../../utils/util');
  */
 
 const DEFAULT_THROTTLE_GROUP = {};
-const FETCH_URL = '/member/fetchCoupon';
-const COUPON_URL = 'api.relubwu.com/coupon';
 
 Page({
   data: {
@@ -36,7 +34,7 @@ Page({
     });
     wx.setNavigationBarTitle({ title: localepkg[that.data.locale].title });
     wx.showNavigationBarLoading();
-    request(FETCH_URL, 'GET', { openid: Store.getState().global.userInfo.openid }).then( coupon => {
+    request(API.URL_COUPON_FETCH, 'GET', { openid: Store.getState().global.userInfo.openid }).then( coupon => {
       that.formatCoupon(coupon);
       wx.hideNavigationBarLoading();
     }).catch(e => console.error(e));
@@ -77,7 +75,7 @@ Page({
       this.throttle[`${actions.TAP_FEEDBACK}$${id}`]();
     }
     this.worker.postMessage({
-      context: COUPON_URL.concat(`?p=${id}`),
+      context: API.URL_COUPON_SPEND.concat(`?p=${id}`),
       screenWidth: Store.getState().global.systemInfo.screenWidth
     });
     this.worker.onMessage(context => {
@@ -115,7 +113,7 @@ Page({
   onPullDownRefresh() {
     let that = this;
     wx.vibrateShort({});
-    request(FETCH_URL, 'GET', { openid: Store.getState().global.userInfo.openid }).then(coupon => {
+    request(API.URL_COUPON_FETCH, 'GET', { openid: Store.getState().global.userInfo.openid }).then(coupon => {
       setTimeout(() => {
         wx.stopPullDownRefresh();
         that.formatCoupon(coupon);

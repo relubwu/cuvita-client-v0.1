@@ -1,5 +1,5 @@
 const app = getApp();
-const { request } = app;
+const { request, API } = app;
 const Store = app.store;
 const localepkg = require('./localepkg');
 
@@ -10,8 +10,6 @@ const localepkg = require('./localepkg');
  * @version 0.1.5
  * @copyright  © CHINESE UNION 2019
  */
-
-const FETCH_URL = '/article/fetchList';
 
 Page({
   data: {
@@ -27,7 +25,7 @@ Page({
       title: localepkg[this.data.locale].title
     });
     wx.showNavigationBarLoading();
-    request(FETCH_URL, 'GET').then(res => {
+    request(API.URL_ARTICLE_LIST, 'GET').then(res => {
       that.setData({
         data: res
       });

@@ -2,13 +2,13 @@
   <view wx:if="{{coupons.length == 0}}" class="fw d-flex-column nodata">
     {{ localepkg[locale].nodata }}
   </view>
-  <navigator class="coupon-container {{ currentCoupon === item.id && 'coupon-container-expand' }} d-flex-column" wx:for="{{ coupon }}" wx:key="{{ item.id }}" bind:tap="tapFeedback" bind:longpress="showActionList" data-id="{{ item.id }}" data-vendorid="{{ item.vendorid }}" data-realm="{{ item.realm }}" hover-class="coupon-container-hover">
+  <view class="coupon-container {{ currentCoupon === item.id && 'coupon-container-expand' }} d-flex-column" wx:for="{{ coupon }}" wx:key="{{ item.id }}" bind:tap="tapFeedback" bind:longpress="showActionList" data-id="{{ item.id }}" data-vendorid="{{ item.vendorid }}" data-realm="{{ item.realm }}" hover-class="coupon-container-hover">
     <image src="{{ item.thumbnail }}" class="coupon-background-image fw fh" lazy-load mode="aspectFill"/>
     <view class="coupon-detail  {{ currentCoupon === item.id && 'coupon-detail-expand' }} fw container d-flex-column align-items-center">
       <label class="coupon-detail-title">{{ item.displayName[locale] }}</label>
       <label class="coupon-detail-description">{{ item.amount }}% Off · {{ localepkg[locale].due }}: {{ item.due }}</label>
       <image src="{{ context }}" class="coupon-detail-qrcode" mode="aspectFit" />
     </view>
-  </navigator>
+  </view>
   <view wx:if="{{ coupons.length != 0 }}" class="description fw">{{ localepkg[locale].description }}</view>
 </view>

@@ -1,6 +1,6 @@
 import * as actions from './actions';
 const app = getApp();
-const { request } = app;
+const { request, API } = app;
 const Store = app.store;
 const localepkg = require('./localepkg');
 const { debounce } = require('../../utils/util');
@@ -14,8 +14,6 @@ const { debounce } = require('../../utils/util');
  */
 
 const DEFAULT_THROTTLE_GROUP = {};
-const FETCH_URL = '/member/fetchCredit';
-const ACCREDIT_URL = 'api.relubwu.com/qr';
 
 Component({
   options: {
@@ -61,7 +59,7 @@ Component({
       this.tapFeedback({ currentTarget: { dataset: { id: "qrcode" } } });
       let context = 
         encodeURIComponent(
-          ACCREDIT_URL.concat(`?p=${Store.getState().global.memberInfo.cardno}`)
+          API.URL_ACCREDIT.concat(`?p=${Store.getState().global.memberInfo.cardno}`)
         );
       wx.navigateTo({
         url: `/pages/qrcode/index?context=${context}`
@@ -73,7 +71,7 @@ Component({
       wx.showLoading({
         title: app.localepkg[Store.getState().global.locale].loading,
       });
-      request(FETCH_URL, 'GET', { openid: Store.getState().global.userInfo.openid })
+      request(API.URL_CREDIT_FETCH, 'GET', { openid: Store.getState().global.userInfo.openid })
         .then(data => {
           Store.dispatch(app.globalActions.updateMemberInfo({ credit: data }));
           wx.hideLoading();

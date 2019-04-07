@@ -1,5 +1,5 @@
 const app = getApp();
-const { request } = app;
+const { request, API } = app;
 const Store = app.store;
 const localepkg = require('./localepkg');
 
@@ -10,9 +10,6 @@ const localepkg = require('./localepkg');
  * @version 0.1.5
  * @copyright  © CHINESE UNION 2019
  */
-
-const BIND_URL = '/pages/bind/index';
-const REGISTER_URL = '/pages/register/index';
 
 Page({
   data: {
@@ -28,12 +25,12 @@ Page({
   },
   onBind() {
     wx.navigateTo({
-      url: BIND_URL
+      url: API.URL_PAGE_BIND
     });
   },
   onRegister() {
     wx.navigateTo({
-      url: REGISTER_URL
+      url: API.URL_PAGE_REGISTER
     });
   }
 })
