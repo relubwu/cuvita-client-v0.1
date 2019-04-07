@@ -113,6 +113,28 @@ App({
       });
     });
   },
+
+  /**
+   * 封装wx.requestPayment()
+   * @param package, paySign
+   */
+  requestPayment(prepayId, paySign) {
+    return new Promise((resolve, reject) => {
+      wx.requestPayment({
+        timeStamp: Date.now().toString(),
+        nonceStr: Math.random().toString(32).substring(2, 15) + Math.random().toString(32).substring(2, 15),
+        "package": prepayId,
+        signType: 'MD5',
+        paySign,
+        success(res) {
+          resolve(res);
+        },
+        fail(e) {
+          reject(e);
+        }
+      })
+    })
+  },
   
   /**
    * 封装获取用户登陆态的接口
