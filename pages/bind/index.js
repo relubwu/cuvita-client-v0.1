@@ -92,7 +92,7 @@ Page({
         showCancel: !!0,
         confirmColor: '#d1233e',
         success() {
-          wx.redirectTo({
+          wx.reLaunch({
             url: PAGE_INDEX
           });
         }
