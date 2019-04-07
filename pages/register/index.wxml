@@ -1,0 +1,56 @@
+<view class="form-steps-wrapper">
+  <i-steps current="{{ currentStep.index }}">
+    <i-step wx:for="{{ steps }}">
+      <view slot="title">
+        {{item[locale]}}
+      </view>
+    </i-step>
+  </i-steps>
+</view>
+<!-- 表单页 -->
+<form bind:submit="onSubmit" hidden="{{ currentStep.index != 0 }}" class="fvw">
+  <label class="form-cell-group-title">{{ localepkg[locale].biography }}</label>
+  <van-cell-group custom-class="form-group" border="{{ false }}">
+    <van-field name="name" type="text" label="{{ localepkg[locale].name }}" placeholder="{{ localepkg[locale].namePlaceholder }}" required border="{{ false }}" error-message="{{ errorMessage.name }}" />
+  </van-cell-group>
+  <label class="form-cell-group-title">{{ localepkg[locale].contacts }}</label>
+  <van-cell-group custom-class="form-group" border="{{ false }}">
+    <van-field name="email" type="text" label="{{ localepkg[locale].email }}" placeholder="{{ localepkg[locale].emailPlaceholder }}" required error-message="{{ errorMessage.email }}" />
+    <van-field name="tel" type="number" label="{{ localepkg[locale].tel }}" placeholder="{{ localepkg[locale].telPlaceholder }}" border="{{ false }}" error-message="{{ errorMessage.tel }}" />
+  </van-cell-group>
+  <view class="form-button-wrapper fw">
+    <button size="large" class="form-button" form-type="submit">{{localepkg[locale].button}}</button>
+  </view>
+</form>
+<!--支付页-->
+<view class="fvw" hidden="{{ currentStep.index != 1 }}">
+  <view class="checkout fw d-flex-column align-items-center justify-content-center">
+    <!--标价牌-->
+    <view class="checkout-pricetag">
+      <text class="checkout-pricetag-unit">{{ checkout[locale].unit }}</text>
+      <text class="checkout-pricetag-amount">{{ checkout[locale].amount }}</text>
+    </view>
+    <!--支付信息-->
+    <text class="checkout-title">{{ checkout[locale].title }}</text>
+    <!--支付提交按钮-->
+    <view class="form-button-wrapper fw">
+      <button class="form-button d-flex-row align-items-center justify-content-center" bind:tap="requestPayment"><van-icon name="wechat" custom-class="d-flex-column align-items-center justify-content-center" custom-style="padding: 0 5px;" />{{ localepkg[locale].confirmPayment }}</button>
+    </view>
+    <view class="footer-wrapper fw">
+      <view class="weui-footer fw d-flex-column align-items-center justify-content-center">
+        <view class="weui-footer__text d-flex-row align-items-center justify-content-center" bind:tap="onFallBack"><van-icon name="arrow-left" color="#b2b2b2" custom-class="d-flex-row align-items-center justify-content-center" />{{ localepkg[locale].fallback }}</view>
+      </view>
+    </view>
+  </view>
+</view>
+<!--结果页-->
+<view class="fvw" hidden="{{ currentStep.index != 2 }}">
+  <view class="result fw d-flex-column align-items-center justify-content-center">
+    <icon type="success" class="success-icon" size="56px" color="#d1233e" />
+    <text class="success-header">{{ localepkg[locale].success }}</text>
+    <text class="success-direction">{{ localepkg[locale].direction }}</text>
+    <view class="form-button-wrapper" style="width: 50vw;">
+      <button class="form-button d-flex-row align-items-center justify-content-center" bind:tap="exit">{{ localepkg[locale].exit }}</button>
+    </view>
+  </view>
+</view>

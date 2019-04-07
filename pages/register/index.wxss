@@ -1,0 +1,55 @@
+@import '/assets/stylesheets/weui.wxss';
+
+/**
+ * CUVita Client Side Implementations - index.wxss
+ * @scope /pages/bind
+ * @author relubwu
+ * @version 0.1.5
+ * @copyright  © CHINESE UNION 2019
+ */
+
+.checkout-pricetag {
+  font-weight: bold;
+}
+
+.checkout-pricetag-unit {
+  font-size: 20pt;
+  padding-right: 7px;
+}
+
+.checkout-pricetag-amount {
+  font-size: 32pt;
+}
+
+.checkout-title {
+  font-size: 12pt;
+  color: #88888888;
+}
+
+.checkout-method {
+  padding-top: 45px;
+  margin-bottom: 15px;
+}
+
+.checkout-card-detail {
+  overflow: hidden;
+  margin-bottom: 30px;
+  max-height: 0;
+  transition: .5s ease-in-out;
+  -webkit-transition: .5s ease-in-out;
+}
+
+.success-icon {
+  padding: 40px;
+}
+
+.success-header {
+  font-size: 16pt;
+  color: black;
+  font-weight: bold;
+}
+
+.success-direction {
+  font-size: 11pt;
+  color: #b2b2b2;
+}

@@ -17,6 +17,7 @@ const FETCH_URL = '/arrival/layout';
 Page({
   data: {
     systemInfo: Store.getState().global.systemInfo,
+    localepkg,
     services: []
   },
   onLoad(options) {
@@ -28,7 +29,7 @@ Page({
       locale: Store.getState().global.locale
     });
     wx.showLoading({
-      title: localepkg[that.data.locale].loading,
+      title: app.localepkg[Store.getState().global.locale].loading,
       mask: !0
     });
     request(FETCH_URL, {}).then(services => {
@@ -50,10 +51,8 @@ Page({
   },
   tapFeedback({ currentTarget: { dataset: { is } } }) {
     wx.vibrateShort({});
-    Store.dispatch(actions.toggleArrivalBannerDetail(is));
   },
   onUnload() {
-    Store.dispatch(actions.resetArrivalBannerDetail());
     this.unsubscribe();
   },
 })

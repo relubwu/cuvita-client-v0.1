@@ -9,16 +9,7 @@
 /**
  * Action Types
  */
-export const TOGGLE_ARRIVAL_BANNER_DETAIL = 'TOGGLE_ARRIVAL_BANNER_DETAIL';
-export const RESET_ARRIVAL_BANNER_DETAIL = 'RESET_ARRIVAL_BANNER_DETAIL';
 
 /**
  * Action Constructors
  */
-export function toggleArrivalBannerDetail(is) {
-  return { type: TOGGLE_ARRIVAL_BANNER_DETAIL, is };
-}
-
-export function resetArrivalBannerDetail() {
-  return { type: RESET_ARRIVAL_BANNER_DETAIL };
-}

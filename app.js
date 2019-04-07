@@ -29,11 +29,11 @@ App({
   localepkg,
 
   onLaunch: function () {
-    if (wx.getStorageSync('version') !== '0.1.5') {
+    if (wx.getStorageSync('version') !== '0.1.5.2') {
       wx.clearStorageSync();
       wx.setStorage({
         key: 'version',
-        data: '0.1.5',
+        data: '0.1.5.2',
       });
     }
     let app = this;
@@ -99,7 +99,7 @@ App({
         method,
         data,
         success({ data, statusCode }) {
-          if (statusCode === 404 || statusCode === 500)
+          if (statusCode === 400 || statusCode === 404 || statusCode === 500)
             reject(statusCode);
           resolve(data);
         },
@@ -112,6 +112,28 @@ App({
         }
       });
     });
+  },
+
+  /**
+   * 封装wx.requestPayment()
+   * @param package, paySign
+   */
+  requestPayment(prepayId, paySign) {
+    return new Promise((resolve, reject) => {
+      wx.requestPayment({
+        timeStamp: Date.now().toString(),
+        nonceStr: Math.random().toString(32).substring(2, 15) + Math.random().toString(32).substring(2, 15),
+        "package": prepayId,
+        signType: 'MD5',
+        paySign,
+        success(res) {
+          resolve(res);
+        },
+        fail(e) {
+          reject(e);
+        }
+      })
+    })
   },
   
   /**

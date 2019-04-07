@@ -8,101 +8,83 @@
 
 /**
  * z-index table
- * @-1 :: .banner
- * @-4 :: .banner-typo
- * @-5 :: .banner-image
+ * @ -1 :: .body-background
  */
-
-.banner {
-  position: absolute;
-  top: 0;
-  height: 75vw;
-  z-index: -1;
-}
-
-.banner-image {
-  position: absolute;
-  z-index: -5;
-}
-
-.banner-typo {
-  position: absolute;
-  z-index: -4;
-  width: 60vw;
-}
 
 .body {
   position: absolute;
   top: 0;
-  z-index: 0;
-}
-
-.body-inset {
-  height: 75vw;
-  margin-bottom: 28px;
-}
-
-.service {
   overflow: hidden;
-  border-radius: 10px;
-  box-shadow: 0 3px 15px #b2b2b2b2;
-  -webkit-transform: perspective(1px) translateZ(0);
-  transform: perspective(1px) translateZ(0);
-  -webkit-transition-duration: 0.2s;
-  transition-duration: 0.2s;
-  -webkit-transition-property: all;
-  transition-property: all;
 }
 
-.service-container {
-  padding: 12px 15px;
+.background {
+  position: absolute;
+  z-index: -1;
 }
 
-.service-hover {
-  -webkit-transform: scale(1.02);
-  transform: scale(1.02);
+.body-swiper {
+  box-sizing: border-box;
 }
 
-.service-banner {
-  height: 30vw;
-  background-size: cover;
-  transition: height 0.2s ease;
-  -webkit-transition: height 0.2s ease;
-  -webkit-backdrop-filter: blur(3px);
+.card {
+  height: calc(100% - 32px);
+  padding: 7px 7.5px;
+  box-sizing: border-box;
+  position: absolute;
 }
 
-.service-banner-expand {
-  height: 35vw;
-}
-
-.service-banner-label {
-  color: white;
-  font-size: 11pt;
-  text-transform: uppercase;
-}
-
-.service-banner-title {
-  color: white;
-  font-size: 24pt;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-.service-detail {
+.card-container {
   background: white;
-  height: 0;
-  font-size: 11pt;
-  padding-bottom: 0;
-  transition: height 0.2s ease;
-  -webkit-transition: height 0.2s ease;
+  border-radius: 10px;
+  box-shadow: 0px 3px 16px rgba(0, 0, 0, 0.16);
+  overflow: hidden;
 }
 
-.service-detail-expand {
-  height: 50vw;
+.card-title {
+  height: 10%;
+  border-bottom: 1px solid #b2b2b22b;
 }
 
-.service-detail-action {
-  padding-bottom: 14px;
+.card-banner {
+  height: 36%;
+}
+
+.card-title-label {
+  color: #b2b2b2;
   font-weight: bold;
-  text-transform: uppercase;
+  font-style: italic;
+}
+
+.card-content-container {
+  padding: 0 15px;
+  height: calc(100% - 14px - 10% - 36% - 32px - 42px);
+  overflow: hidden;
+}
+
+.card-header {
+  color: black;
+  font-size: 14pt;
+  font-weight: bold;
+  margin-bottom: 7px;
+}
+
+.card-content {
+  font-size: 11pt;
+}
+
+.card-navigator-container {
+  position: absolute;
+  bottom: 32px;
+  left: 0;
+  width: calc(100% - 50px);
+  margin: 0 25px;
+}
+
+.card-navigator {
+  height: 42px;
+  background: linear-gradient(#ff6b3b, #ff2555);
+  border-radius: 10px;
+  color: white;
+  font-size: 11pt;
+  font-weight: bold;
 }
