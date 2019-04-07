@@ -1,0 +1,46 @@
+<!--表头-->
+<view class="form-header">
+  <view class="form-title">{{ localepkg[locale].header }}</view>
+  <view class="form-description">{{ localepkg[locale].description }}</view>
+</view>
+<!-- 表单页 -->
+<form bind:submit="onSubmit" hidden="{{ currentStep.index != 0 }}" class="fvw">
+  <van-cell-group custom-class="form-group" border="{{ false }}">
+    <van-field name="name" type="text" label="{{ localepkg[locale].name }}" placeholder="{{ localepkg[locale].namePlaceholder }}" required border="{{ false }}" error-message="{{ errorMessage.name }}" />
+  </van-cell-group>
+  <view class="form-button-wrapper fw">
+    <button size="large" class="form-button" form-type="submit">{{localepkg[locale].button}}</button>
+  </view>
+</form>
+<!--支付页-->
+<view class="fvw" hidden="{{ currentStep.index != 1 }}">
+  <view class="form-checkout fw d-flex-column align-items-center justify-content-center">
+    <!--标价牌-->
+    <view class="form-checkout-pricetag">
+      <text class="form-checkout-pricetag-unit">{{ checkout[locale].unit }}</text>
+      <text class="form-checkout-pricetag-amount">{{ checkout[locale].amount }}</text>
+    </view>
+    <!--支付信息-->
+    <text class="form-checkout-title">{{ checkout[locale].title }}</text>
+    <!--支付提交按钮-->
+    <view class="form-button-wrapper fw">
+      <button class="form-button d-flex-row align-items-center justify-content-center" bind:tap="requestPayment"><van-icon name="wechat" custom-class="d-flex-column align-items-center justify-content-center" custom-style="padding: 0 5px;" />{{ localepkg[locale].confirmPayment }}</button>
+    </view>
+    <view class="footer-wrapper fw">
+      <view class="weui-footer fw d-flex-column align-items-center justify-content-center">
+        <view class="weui-footer__text d-flex-row align-items-center justify-content-center" bind:tap="onFallBack"><van-icon name="arrow-left" color="#b2b2b2" custom-class="d-flex-row align-items-center justify-content-center" />{{ localepkg[locale].fallback }}</view>
+      </view>
+    </view>
+  </view>
+</view>
+<!--结果页-->
+<view class="fvw" hidden="{{ currentStep.index != 2 }}">
+  <view class="form-result fw d-flex-column align-items-center justify-content-center">
+    <icon type="form-success" class="form-success-icon" size="56px" color="#d1233e" />
+    <text class="form-success-header">{{ localepkg[locale].success }}</text>
+    <text class="form-success-direction">{{ localepkg[locale].direction }}</text>
+    <view class="form-button-wrapper" style="width: 50vw;">
+      <button class="form-button d-flex-row align-items-center justify-content-center" bind:tap="exit">{{ localepkg[locale].exit }}</button>
+    </view>
+  </view>
+</view>
