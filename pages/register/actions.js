@@ -1,6 +1,6 @@
 /**
  * CUVita Client Side Implementations - action.js
- * @scope /pages/me
+ * @scope /pages/register
  * @author relubwu
  * @version 0.1.5
  * @copyright  © CHINESE UNION 2019
