@@ -1,5 +1,5 @@
 const app = getApp();
-const { request } = app;
+const { request, API } = app;
 const Store = app.store;
 const localepkg = require('./localepkg');
 
@@ -10,9 +10,6 @@ const localepkg = require('./localepkg');
  * @version 0.1.5
  * @copyright  © CHINESE UNION 2019
  */
-
-const POST_URL = '/member/bind';
-const PAGE_INDEX = '/pages/index/index';
 
 Page({
   data: {
@@ -75,7 +72,7 @@ Page({
       title: localepkg[that.data.locale].loading,
       mask: !0
     });
-    request(POST_URL, 'POST', {
+    request(API.URL_MEMBER_BIND, 'POST', {
       cardno,
       name,
       openid: Store.getState().global.userInfo.openid
@@ -92,8 +89,8 @@ Page({
         showCancel: !!0,
         confirmColor: '#d1233e',
         success() {
-          wx.redirectTo({
-            url: PAGE_INDEX
+          wx.reLaunch({
+            url: API.URL_PAGE_INDEX
           });
         }
       });

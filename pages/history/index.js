@@ -1,6 +1,6 @@
 import * as actions from 'actions';
 const app = getApp();
-const { request } = app;
+const { request, API } = app;
 const Store = app.store;
 const localepkg = require('localepkg');
 const { debounce } = require('../../utils/util');
@@ -14,7 +14,6 @@ const { debounce } = require('../../utils/util');
  */
 
 const DEFAULT_THROTTLE_GROUP = {};
-const FETCH_URL = '/member/fetchHistory';
 
 Page({
   data: {
@@ -30,7 +29,7 @@ Page({
     });
     wx.setNavigationBarTitle({ title: localepkg[that.data.locale].title });
     wx.showNavigationBarLoading();
-    request(FETCH_URL, 'GET', { openid: Store.getState().global.userInfo.openid }).then(history => {
+    request(API.URL_HISTORY_FETCH, 'GET', { openid: Store.getState().global.userInfo.openid }).then(history => {
       that.formatHistory(history);
       wx.hideNavigationBarLoading();
     }).catch(e => console.error(e));
@@ -76,11 +75,11 @@ Page({
   onPullDownRefresh() {
     let that = this;
     wx.vibrateShort({});
-    request(FETCH_URL, 'GET', { openid: Store.getState().global.userInfo.openid }).then(history => {
+    request(API.URL_HISTORY_FETCH, 'GET', { openid: Store.getState().global.userInfo.openid }).then(history => {
       setTimeout(() => {
         wx.stopPullDownRefresh();
         that.formatHistory(history);
-      }, 500).catch(e => console.error(e));
-    });
+      }, 500);
+    }).catch(e => console.error(e));
   }
 })

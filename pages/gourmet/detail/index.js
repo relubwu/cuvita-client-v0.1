@@ -1,5 +1,5 @@
 const app = getApp();
-const { request } = app;
+const { request, API } = app;
 const Store = app.store;
 const localepkg = require('localepkg');
 
@@ -10,8 +10,6 @@ const localepkg = require('localepkg');
  * @version 0.1.5
  * @copyright  © CHINESE UNION 2019
  */
-
-const FETCH_URL = '/vendor/fetchDetail';
 
 Page({
   data: {
@@ -26,7 +24,7 @@ Page({
     wx.setNavigationBarTitle({
       title: localepkg[this.data.locale].title
     });
-    request(FETCH_URL, 'GET', {
+    request(API.URL_VENDOR_DETAIL, 'GET', {
       vendorid: options.vendorid
     }).then(res => {
       that.setData({

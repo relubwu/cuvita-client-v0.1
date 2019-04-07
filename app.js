@@ -7,8 +7,8 @@ import ReduxThunk from 'redux-thunk';
 import reducers from '/reducers';
 import * as actions from '/actions';
 import logger from 'redux-logger';
+import * as API from '/api.config';
 const store = createStore(reducers, applyMiddleware(logger, ReduxThunk));
-const API = "https://cuvita.relubwu.com";
 const localepkg = require('localepkg');
 
 /**
@@ -19,14 +19,12 @@ const localepkg = require('localepkg');
  * @copyright  © CHINESE UNION 2019
  */
 
-const DISPATCH_URL = '/dispatch';
-const MEMBERINFO_URL = '/member/fetchInfo';
-
 App({
 
   store,
   globalActions: actions,
   localepkg,
+  API,
 
   onLaunch: function () {
     if (wx.getStorageSync('version') !== '0.1.5.2') {
@@ -65,6 +63,11 @@ App({
       .then(code => app.fetchUserInfo(code))
       .then(openid => app.fetchMemberInfo(openid))
       .then(wx.hideLoading);
+    wx.getLocation({
+      success({ latitude, longitude, accuracy, horizontalAccuracy }) {
+        store.dispatch(actions.setGeoLocation({ latitude, longitude, accuracy, horizontalAccuracy }));
+      }
+    });
   },
 
   onAppRoute() {
@@ -95,7 +98,7 @@ App({
     let app = this;
     return new Promise((resolve, reject) => {
       wx.request({
-        url: API.concat(directory),
+        url: API.URL.concat(directory),
         method,
         data,
         success({ data, statusCode }) {
@@ -144,7 +147,7 @@ App({
   fetchUserInfo(code) {
     let app = this;
     return new Promise((resolve, reject) => {
-      app.request(DISPATCH_URL, 'GET', { code })
+      app.request(API.URL_DISPATCH, 'GET', { code })
         .then(({ openid, session_key }) => {
           store.dispatch(actions.setUserInfo({ openid, session_key }));
           resolve(openid);
@@ -159,7 +162,7 @@ App({
   fetchMemberInfo(openid) {
     let app = this;
     return new Promise((resolve, reject) => {
-      app.request(MEMBERINFO_URL, 'GET', { openid })
+      app.request(API.URL_MEMBERINFO, 'GET', { openid })
         .then(memberInfo => {
           wx.setStorage({
             key: 'memberInfo',

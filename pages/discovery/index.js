@@ -1,6 +1,6 @@
 import * as actions from 'actions';
 const app = getApp();
-const { request } = app;
+const { request, API } = app;
 const Store = app.store;
 const localepkg = require('./localepkg');
 const { debounce } = require('../../utils/util');
@@ -13,10 +13,6 @@ const { debounce } = require('../../utils/util');
  * @copyright  © CHINESE UNION 2019
  */
 
-const REQUEST_PAGEDATA_BANNER = "/feed/fetchBanner";
-const REQUEST_PAGEDATA_SEARCH = "/feed/fetchSearch";
-const REQUEST_PAGEDATA_RECOMMENDATION = "/feed/fetchRecommendation";
-const REQUEST_PAGEDATA_ARTICLES = "/feed/fetchArticles";
 const DEFAULT_THROTTLE_GROUP = {};
 
 Component({
@@ -76,7 +72,7 @@ Component({
         {
           is: 'arrival',
           icon: '/assets/icons/arrival.png',
-          url: '/pages/arrival/index'
+          url: API.URL_PAGE_ARRIVAL
         },
         {
           is: 'events',
@@ -85,12 +81,12 @@ Component({
         {
           is: 'gourmet',
           icon: '/assets/icons/gourmet.png',
-          url: '/pages/gourmet/list/index'
+          url: API.URL_PAGE_GOURMET_LIST
         },
         {
           is: 'lifestyle',
           icon: '/assets/icons/lifestyle.png',
-          url: '/pages/lifestyle/list/index'
+          url: API.URL_PAGE_LIFESTYLE_LIST
         }
       ]
     }
@@ -135,16 +131,16 @@ Component({
         });
     },
     requestPageData() {
-      request(REQUEST_PAGEDATA_BANNER, 'GET', {}).then(data => {
+      request(API.URL_DISCOVERY_BANNER, 'GET', {}).then(data => {
         Store.dispatch(actions.setPageData({ banner: data }));
       }).catch(e => console.error(e));
-      request(REQUEST_PAGEDATA_SEARCH, 'GET', {}).then(data => {
+      request(API.URL_DISCOVERY_SEARCH, 'GET', {}).then(data => {
         Store.dispatch(actions.setPageData({ search: data }));
       }).catch(e => console.error(e));
-      request(REQUEST_PAGEDATA_RECOMMENDATION, 'GET', {}).then(data => {
+      request(API.URL_DISCOVERY_RECOMMENDATION, 'GET', {}).then(data => {
         Store.dispatch(actions.setPageData({ recommendation: data }));
       }).catch(e => console.error(e));
-      request(REQUEST_PAGEDATA_ARTICLES, 'GET', {}).then(data => {
+      request(API.URL_DISCOVERY_ARTICLES, 'GET', {}).then(data => {
         Store.dispatch(actions.setPageData({ feed: data }));
       }).catch(e => console.error(e));
     },
