@@ -51,10 +51,8 @@ Page({
   },
   tapFeedback({ currentTarget: { dataset: { is } } }) {
     wx.vibrateShort({});
-    Store.dispatch(actions.toggleArrivalBannerDetail(is));
   },
   onUnload() {
-    Store.dispatch(actions.resetArrivalBannerDetail());
     this.unsubscribe();
   },
 })
