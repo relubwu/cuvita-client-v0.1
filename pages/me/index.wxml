@@ -9,13 +9,13 @@
 <view class="body fw">
   <!-- BASE -->
   <label class="body-cell-group-title">{{ localepkg[locale].mine }}</label>
-  <van-cell-group custom-class="body-cell-group">
+  <van-cell-group custom-class="body-cell-group" border="{{ false }}">
     <van-cell title="{{ localepkg[locale].services }}" icon="bars" is-link />
     <van-cell title="{{ localepkg[locale].tickets }}" icon="label" is-link />
   </van-cell-group>
   <!-- SETTINGS -->
   <label class="body-cell-group-title">{{ localepkg[locale].settings }}</label>
-  <van-collapse custom-class="body-cell-group" value="{{ activeSetting }}" bind:change="toggleSettings" accordion>
+  <van-collapse custom-class="body-cell-group" value="{{ activeSetting }}" bind:change="toggleSettings" accordion border="{{ false }}">
     <van-collapse-item title="{{ localepkg[locale].region }}" icon="location" name="region">
       <view class="fw d-flex-column align-items-center justify-content-center">
         <image class="implementing-icon" src="/assets/icons/implementing.png" />
@@ -37,7 +37,7 @@
     </van-collapse-item>
   </van-collapse>
   <label class="body-cell-group-title">{{ localepkg[locale].dev }}</label>
-  <van-cell-group custom-class="body-cell-group">
+  <van-cell-group custom-class="body-cell-group" border="{{ false }}">
     <van-cell title="{{ localepkg[locale].license }}" icon="info-o" is-link url="/pages/license/index" />
   </van-cell-group>
 </view>
