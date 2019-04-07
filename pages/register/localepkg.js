@@ -16,7 +16,10 @@ module.exports = {
     emailErrEmpty: "电子邮箱不能为空",
     emailErrIllegalChar: "电子邮箱格式不正确",
     confirmPayment: '微信支付',
-    fallback: "返回上一步"
+    fallback: "返回上一步",
+    success: "CU欢迎你",
+    direction: "欢迎加入中国同学联合会",
+    exit: "返回CUVita"
   },
   en_US: {
     title: "Register",
@@ -35,6 +38,9 @@ module.exports = {
     emailErrEmpty: "E-mail is required",
     emailErrIllegalChar: "Incorrect format",
     confirmPayment: 'WeChat Pay',
-    fallback: "Back"
+    fallback: "Back",
+    success: "All Set!",
+    direction: "Welcome to Chinese Union",
+    exit: "Explore CUVita"
   }
 }

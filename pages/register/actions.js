@@ -7,10 +7,15 @@
  */
 
 /**
+ * Constants
+ */
+export const STEP_ALIAS = ['information', 'checkout', 'success'];
+
+/**
  * Action Types
  */
 export const REGISTER_STEP_PROCEED = 'REGISTER_STEP_PROCEED';
-export const REGISTER_STEP_ROLLBACK = 'REGISTER_STEP_ROLLBACK';
+export const REGISTER_STEP_FALLBACK = 'REGISTER_STEP_FALLBACK';
 
 /**
  * Action Constructors
@@ -19,6 +24,6 @@ export function proceedStep() {
   return { type: REGISTER_STEP_PROCEED };
 }
 
-export function rollBackStep() {
-  return { type: REGISTER_STEP_ROLLBACK };
+export function fallBackStep() {
+  return { type: REGISTER_STEP_FALLBACK };
 }

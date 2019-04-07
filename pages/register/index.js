@@ -1,5 +1,6 @@
+import * as actions from 'actions.js';
 const app = getApp();
-const { request } = app;
+const { request, requestPayment } = app;
 const Store = app.store;
 const localepkg = require('./localepkg');
 
@@ -11,7 +12,7 @@ const localepkg = require('./localepkg');
  * @copyright  © CHINESE UNION 2019
  */
 
-const POST_URL = '/member/bind';
+const POST_URL = '/member/register';
 const PAGE_INDEX = '/pages/index/index';
 
 Page({
@@ -21,26 +22,14 @@ Page({
     localepkg,
     steps: [{
       zh_CN: '填写信息',
-      en_US: 'Informations'
+      en_US: 'Information'
     }, {
       zh_CN: '支付',
       en_US: 'Payment'
     }, {
       zh_CN: '完成注册',
       en_US: 'Success'
-    }],
-    payment: {
-      zh_CN: {
-        unit: "¥",
-        amount: "238.00",
-        title: "中国同学联合会会员费"
-      },
-      en_US: {
-        unit: "$",
-        amount: "35.00",
-        title: "Chinese Union Membership"
-      }
-    }
+    }]
   },
   onLoad(options) {
     let that = this;
@@ -65,6 +54,7 @@ Page({
       });
   },
   onSubmit({ detail: { value: { name, email, tel } } }) {
+    let that = this;
     let sanity = !!0;
     if (!name) {
       sanity = !!0;
@@ -77,10 +67,10 @@ Page({
         ['errorMessage.name']: localepkg[this.data.locale].nameErrIllegalChar
       });
     } else {
+      sanity = !0;
       this.setData({
         ['errorMessage.name']: ''
       });
-      sanity = !0;
     }
     if (!email) {
       sanity = !!0;
@@ -93,10 +83,10 @@ Page({
         ['errorMessage.email']: localepkg[this.data.locale].emailErrIllegalChar
       });
     } else {
+      sanity = !0;
       this.setData({
         ['errorMessage.name']: ''
       });
-      sanity = !0;
     }
     if (!!tel && !!tel.match(/\$/g)) {
       sanity = !!0;
@@ -104,5 +94,39 @@ Page({
         ['errorMessage.tel']: localepkg[this.data.locale].telErrIllegalChar
       });
     }
+    if (!sanity)
+      return;
+    wx.showLoading({
+      title: app.localepkg[Store.getState().global.locale].loading
+    });
+    request(POST_URL, 'POST', {
+      procedure: 'handshake',
+      openid: Store.getState().global.userInfo.openid,
+      payload: {
+        name, email, tel
+      }
+    }).then(data => {
+      Store.dispatch(actions.proceedStep());
+      that.setData({
+        ...data
+      });
+      wx.hideLoading();
+    }).catch(e => console.error(e));
+  },
+  onFallBack() {
+    Store.dispatch(actions.fallBackStep());
+  },
+  requestPayment() {
+    let that = this;
+    requestPayment(that.data.package, '')
+      .then(() => {})
+      .catch(e => {
+        Store.dispatch(actions.proceedStep());
+      });
+  },
+  exit() {
+    wx.redirectTo({
+      url: '/pages/index/index'
+    });
   }
 })
