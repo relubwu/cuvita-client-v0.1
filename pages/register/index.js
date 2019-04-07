@@ -125,8 +125,8 @@ Page({
       });
   },
   exit() {
-    wx.redirectTo({
-      url: '/pages/index/index'
+    wx.reLaunch({
+      url: PAGE_INDEX
     });
   }
 })
