@@ -14,7 +14,8 @@
     "pages/arrival/index",
     "pages/bind/index",
     "pages/landing/index",
-    "pages/register/index"
+    "pages/register/index",
+    "pages/arrival/pickup/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
