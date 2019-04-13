@@ -15,7 +15,8 @@
     "pages/bind/index",
     "pages/landing/index",
     "pages/register/index",
-    "pages/arrival/pickup/index"
+    "pages/arrival/pickup/index",
+    "pages/arrival/meeting/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
