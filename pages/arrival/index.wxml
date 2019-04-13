@@ -16,7 +16,7 @@
             <rich-text class="card-content" nodes="{{ item.detail[locale] }}"></rich-text>
           </view>
           <view class="card-navigator-container d-flex-column align-items-center justify-content-center">
-            <navigator url="{{ action.url }}" class="card-navigator fw d-flex-column align-items-center justify-content-center"><label>{{ item.action.description[locale] }}</label></navigator>
+            <navigator url="{{ item.action.url }}" class="card-navigator fw d-flex-column align-items-center justify-content-center"><label>{{ item.action.description[locale] }}</label></navigator>
           </view>
         </view>
       </view>
