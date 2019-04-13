@@ -3,7 +3,6 @@ const app = getApp();
 const { request, API } = app;
 const Store = app.store;
 const localepkg = require('./localepkg');
-const { debounce } = require('../../utils/util');
 
 /**
  * CUVita Client Side Implementations - index.js
@@ -171,14 +170,7 @@ Component({
       }
     },
     tapFeedback({ currentTarget: { dataset: { id } } }) {
-      if (!this.throttle[`${actions.TAP_FEEDBACK}$${id}`]) {
-        this.throttle[`${actions.TAP_FEEDBACK}$${id}`] = debounce(() =>
-          wx.vibrateShort()
-        , 250);
-        this.throttle[`${actions.TAP_FEEDBACK}$${id}`]();
-      } else {
-        this.throttle[`${actions.TAP_FEEDBACK}$${id}`]();
-      }
+      wx.vibrateShort({});
     },
     pullDownRefresh() {
       Store.dispatch(actions.startPullDownRefresh());
