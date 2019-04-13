@@ -5,13 +5,31 @@
 </view>
 <!-- 表单页 -->
 <form bind:submit="onSubmit" hidden="{{ currentStep.index != 0 }}" class="fvw">
+  <!-- 基础信息 -->
   <van-cell-group custom-class="form-group" border="{{ false }}">
-    <van-field name="name" type="text" label="{{ localepkg[locale].name }}" placeholder="{{ localepkg[locale].namePlaceholder }}" required border="{{ false }}" error-message="{{ errorMessage.name }}" />
+    <van-field name="name" type="text" label="{{ localepkg[locale].name }}" placeholder="{{ localepkg[locale].namePlaceholder }}" required error-message="{{ errorMessage.name }}" />
+    <van-field name="tel" type="number" label="{{ localepkg[locale].tel }}" placeholder="{{ localepkg[locale].telPlaceholder }}" required border="{{ false }}" error-message="{{ errorMessage.tel }}" />
+  </van-cell-group>
+  <!-- 接机信息 -->
+  <label class="form-cell-group-title">{{ localepkg[locale].labelItinerary }}</label>
+  <van-cell-group custom-class="form-group" border="{{ false }}">
+    <!-- 航班号 -->
+    <van-field name="flight" type="text" label="{{ localepkg[locale].flight }}" placeholder="{{ localepkg[locale].flightPlaceholder }}" required error-message="{{ errorMessage.flight }}" icon="question-o" bind:click-icon="explainFlight" />
+    <!-- 出发日期 -->
+    <van-cell title="{{ localepkg[locale].departure }}" required value="{{ departure }}" is-link bind:click="popupShow" data-id="departure" />
+    <input hidden name="startDate" value="{{ startDate }}" />
+    <!-- 行李件数 -->
+    <van-cell title="{{ localepkg[locale].luggage }}" required bind:click="popupShow">
+      <van-stepper name="luggage" value="{{ 1 }}" />
+    </van-cell>
   </van-cell-group>
   <view class="form-button-wrapper fw">
-    <button size="large" class="form-button" form-type="submit">{{localepkg[locale].button}}</button>
+    <button size="large" class="form-button" form-type="submit">{{ localepkg[locale].next }}</button>
   </view>
 </form>
+<van-popup show="{{ popup.departure }}" bind:close="popupClose" data-id="departure" position="bottom">
+  <van-datetime-picker type="date" value="{{ startDate }}" min-date="{{ minDate }}" max-date="{{ maxDate }}" bind:input="onInput" bind:cancel="popupClose" data-id="departure" bind:confirm="departureDatePickerConfirm" />
+</van-popup>
 <!--支付页-->
 <view class="fvw" hidden="{{ currentStep.index != 1 }}">
   <view class="form-checkout fw d-flex-column align-items-center justify-content-center">
@@ -24,11 +42,13 @@
     <text class="form-checkout-title">{{ checkout[locale].title }}</text>
     <!--支付提交按钮-->
     <view class="form-button-wrapper fw">
-      <button class="form-button d-flex-row align-items-center justify-content-center" bind:tap="requestPayment"><van-icon name="wechat" custom-class="d-flex-column align-items-center justify-content-center" custom-style="padding: 0 5px;" />{{ localepkg[locale].confirmPayment }}</button>
+      <button class="form-button d-flex-row align-items-center justify-content-center" bind:tap="requestPayment">
+        <van-icon name="wechat" custom-class="d-flex-column align-items-center justify-content-center" custom-style="padding: 0 5px;" />{{ localepkg[locale].confirmPayment }}</button>
     </view>
     <view class="footer-wrapper fw">
       <view class="weui-footer fw d-flex-column align-items-center justify-content-center">
-        <view class="weui-footer__text d-flex-row align-items-center justify-content-center" bind:tap="onFallBack"><van-icon name="arrow-left" color="#b2b2b2" custom-class="d-flex-row align-items-center justify-content-center" />{{ localepkg[locale].fallback }}</view>
+        <view class="weui-footer__text d-flex-row align-items-center justify-content-center" bind:tap="onFallBack">
+          <van-icon name="arrow-left" color="#b2b2b2" custom-class="d-flex-row align-items-center justify-content-center" />{{ localepkg[locale].fallback }}</view>
       </view>
     </view>
   </view>
