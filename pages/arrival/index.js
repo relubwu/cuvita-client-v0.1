@@ -20,9 +20,6 @@ Page({
   },
   onLoad(options) {
     let that = this;
-    this.unsubscribe = Store.subscribe(() => {
-      this.relaySubscription();
-    });
     this.setData({
       locale: Store.getState().global.locale
     });
@@ -35,13 +32,6 @@ Page({
       wx.hideLoading();
     });
   },
-  relaySubscription() {
-    let newState = Store.getState();
-    if (this.data.currentBanner !== newState.pages.arrival.index.currentBanner)
-      this.setData({
-        currentBanner: newState.pages.arrival.index.currentBanner
-      });
-  },
   onScroll({ detail: { scrollTop } }) {
     this.setData({
       scrollTop: scrollTop
@@ -49,8 +39,5 @@ Page({
   },
   tapFeedback({ currentTarget: { dataset: { is } } }) {
     wx.vibrateShort({});
-  },
-  onUnload() {
-    this.unsubscribe();
-  },
+  }
 })

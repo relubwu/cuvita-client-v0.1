@@ -183,3 +183,49 @@ nav-bar {
   padding: 0 15px;
   margin: 7px 0;
 }
+
+.form-checkout-pricetag {
+  font-weight: bold;
+}
+
+.form-checkout-pricetag-unit {
+  font-size: 20pt;
+  padding-right: 7px;
+}
+
+.form-checkout-pricetag-amount {
+  font-size: 32pt;
+}
+
+.form-checkout-title {
+  font-size: 12pt;
+  color: #88888888;
+}
+
+.form-checkout-method {
+  padding-top: 45px;
+  margin-bottom: 15px;
+}
+
+.form-checkout-card-detail {
+  overflow: hidden;
+  margin-bottom: 30px;
+  max-height: 0;
+  transition: .5s ease-in-out;
+  -webkit-transition: .5s ease-in-out;
+}
+
+.form-success-icon {
+  padding: 40px;
+}
+
+.form-success-header {
+  font-size: 16pt;
+  color: black;
+  font-weight: bold;
+}
+
+.form-success-direction {
+  font-size: 11pt;
+  color: #b2b2b2;
+}

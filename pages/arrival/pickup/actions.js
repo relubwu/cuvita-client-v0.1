@@ -1,6 +1,6 @@
 /**
  * CUVita Client Side Implementations - action.js
- * @scope /pages/register
+ * @scope /pages/arrival/pickup
  * @author relubwu
  * @version 0.1.5
  * @copyright  © CHINESE UNION 2019
@@ -14,16 +14,16 @@ export const STEP_ALIAS = ['information', 'checkout', 'success'];
 /**
  * Action Types
  */
-export const REGISTER_STEP_PROCEED = 'REGISTER_STEP_PROCEED';
-export const REGISTER_STEP_FALLBACK = 'REGISTER_STEP_FALLBACK';
+export const ARRIVAL_PICKUP_STEP_PROCEED = 'ARRIVAL_PICKUP_STEP_PROCEED';
+export const ARRIVAL_PICKUP_STEP_FALLBACK = 'ARRIVAL_PICKUP_STEP_FALLBACK';
 
 /**
  * Action Constructors
  */
 export function proceedStep() {
-  return { type: REGISTER_STEP_PROCEED };
+  return { type: ARRIVAL_PICKUP_STEP_PROCEED };
 }
 
 export function fallBackStep() {
-  return { type: REGISTER_STEP_FALLBACK };
+  return { type: ARRIVAL_PICKUP_STEP_FALLBACK };
 }

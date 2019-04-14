@@ -1,0 +1,30 @@
+<!--表头-->
+<view class="form-header">
+  <view class="form-title">{{ localepkg[locale].header }}</view>
+  <view class="form-description">{{ localepkg[locale].description }}</view>
+</view>
+<!-- 表单页 -->
+<form bind:submit="onSubmit" hidden="{{ currentStep.index != 0 }}" class="fvw">
+  <!-- 基础信息 -->
+  <van-cell-group custom-class="form-group" border="{{ false }}">
+    <van-field name="name" type="text" label="{{ localepkg[locale].name }}" placeholder="{{ localepkg[locale].namePlaceholder }}" required error-message="{{ errorMessage.name }}" />
+    <van-field name="tel" type="number" label="{{ localepkg[locale].tel }}" placeholder="{{ localepkg[locale].telPlaceholder }}" required border="{{ false }}" error-message="{{ errorMessage.tel }}" />
+  </van-cell-group>
+  <view class="form-button-wrapper fw">
+    <button size="large" class="form-button" form-type="submit">{{ localepkg[locale].next }}</button>
+  </view>
+</form>
+<van-popup show="{{ popup.departure }}" bind:close="popupClose" data-id="departure" position="bottom">
+  <van-datetime-picker type="date" value="{{ startDate }}" min-date="{{ minDate }}" max-date="{{ maxDate }}" bind:input="onInput" bind:cancel="popupClose" data-id="departure" bind:confirm="departureDatePickerConfirm" />
+</van-popup>
+<!--结果页-->
+<view class="fvw" hidden="{{ currentStep.index != 2 }}">
+  <view class="form-result fw d-flex-column align-items-center justify-content-center">
+    <icon type="form-success" class="form-success-icon" size="56px" color="#d1233e" />
+    <text class="form-success-header">{{ localepkg[locale].success }}</text>
+    <text class="form-success-direction">{{ localepkg[locale].direction }}</text>
+    <view class="form-button-wrapper" style="width: 50vw;">
+      <button class="form-button d-flex-row align-items-center justify-content-center" bind:tap="exit">{{ localepkg[locale].exit }}</button>
+    </view>
+  </view>
+</view>

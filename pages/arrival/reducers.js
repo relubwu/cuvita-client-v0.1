@@ -1,8 +1,5 @@
 import { combineReducers } from '../../lib/redux.min';
-import {
-  TOGGLE_ARRIVAL_BANNER_DETAIL,
-  RESET_ARRIVAL_BANNER_DETAIL
-} from './actions';
+import SUBPAGE_REDUCER_PICKUP from './pickup/reducers';
 
 /**
  * CUVita Client Side Implementations - reducers.js
@@ -12,13 +9,8 @@ import {
  * @copyright  © CHINESE UNION 2019
  */
 
-
-const SUBPAGE_REDUCER_INDEX = combineReducers({
-  
-});
-
 const reducers = combineReducers({
-  index: SUBPAGE_REDUCER_INDEX
+  pickup: SUBPAGE_REDUCER_PICKUP
 });
 
 export default reducers;
